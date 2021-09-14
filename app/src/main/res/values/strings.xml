@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Workout app</string>
+    <string name="Persoonlijke_code_input">Jouw persoonlijke code</string>
+    <string name="Achternaam_input">Achternaam</string>
+    <string name="Naam_input">Naam</string>
+    <string name="Annuleren_Input">ANNULEER</string>
+    <string name="Volgende_input">VOLGENDE</string>
 </resources>
