@@ -88,9 +88,9 @@
         android:id="@+id/button2"
         android:layout_width="117dp"
         android:layout_height="36dp"
-        android:layout_marginEnd="79dp"
+        android:layout_marginEnd="84dp"
         android:background="@color/Knop"
         android:text="@string/Volgende_input"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="422dp" />
+        tools:layout_editor_absoluteY="446dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
