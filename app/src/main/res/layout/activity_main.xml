@@ -7,12 +7,184 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="261dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="73dp"
+        android:fontFamily="@font/montserrat"
+        android:text="JOUW PROFIEL"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtAge"
+        android:layout_width="346dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="57dp"
+        android:ems="10"
+        android:hint="LEEFTIJD"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+    <TextView
+        android:id="@+id/txtNiveau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="33dp"
+        android:text="NIVEAU*"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtAge" />
+
+    <Button
+        android:id="@+id/btnBeginner"
+        android:layout_width="346dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="4dp"
+        android:text="BEGINNER"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNiveau" />
+
+    <Button
+        android:id="@+id/btnMaster"
+        android:layout_width="346dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:text="MASTER"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBeginner" />
+
+    <Button
+        android:id="@+id/btnGevorderd"
+        android:layout_width="346dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:text="GEVORDERD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMaster" />
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="GEWENST TIJDSTIP VOOR WORKOUT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGevorderd" />
+
+    <TextView
+        android:id="@+id/txtMonday"
+        android:layout_width="255.02dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:text="MAANDAG"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTime" />
+
+    <TextView
+        android:id="@+id/txtTuesday"
+        android:layout_width="255.02dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="15dp"
+        android:text="DINSDAG"
+        app:layout_constraintEnd_toEndOf="@+id/txtMonday"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtMonday"
+        app:layout_constraintTop_toBottomOf="@+id/txtMonday" />
+
+    <TextView
+        android:id="@+id/txtWednesday"
+        android:layout_width="255.02dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="15dp"
+        android:text="WOENSDAG"
+        app:layout_constraintEnd_toEndOf="@+id/txtTuesday"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtTuesday"
+        app:layout_constraintTop_toBottomOf="@+id/txtTuesday" />
+
+    <TextView
+        android:id="@+id/txtThursday"
+        android:layout_width="255.02dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="15dp"
+        android:text="DONDERDAG"
+        app:layout_constraintEnd_toEndOf="@+id/txtWednesday"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtWednesday"
+        app:layout_constraintTop_toBottomOf="@+id/txtWednesday" />
+
+    <TextView
+        android:id="@+id/txtFriday"
+        android:layout_width="255.02dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="15dp"
+        android:text="VRIJDAG"
+        app:layout_constraintEnd_toEndOf="@+id/txtThursday"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtThursday"
+        app:layout_constraintTop_toBottomOf="@+id/txtThursday" />
+
+    <Spinner
+        android:id="@+id/spnMonday"
+        android:layout_width="129.58dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtMonday"
+        tools:layout_editor_absoluteY="444dp" />
+
+    <Spinner
+        android:id="@+id/spnTuesday"
+        android:layout_width="129.58dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtTuesday"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <Spinner
+        android:id="@+id/spnWednesday"
+        android:layout_width="129.58dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtWednesday"
+        tools:layout_editor_absoluteY="515dp" />
+
+    <Spinner
+        android:id="@+id/spnThursday"
+        android:layout_width="129.58dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtThursday"
+        tools:layout_editor_absoluteY="551dp" />
+
+    <Spinner
+        android:id="@+id/spnFriday"
+        android:layout_width="129.58dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtFriday"
+        tools:layout_editor_absoluteY="587dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
