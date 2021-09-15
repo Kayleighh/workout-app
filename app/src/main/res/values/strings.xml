@@ -5,4 +5,11 @@
     <string name="Naam_input">Naam</string>
     <string name="Annuleren_Input">ANNULEER</string>
     <string name="Volgende_input">VOLGENDE</string>
+    <string-array name="Bedrijfs_Afdelingen">
+        <item>VERKOOP</item>
+        <item>MARKETING</item>
+        <item>KLANTENSERVICE</item>
+        <item>MANAGEMENT</item>
+    </string-array>
 </resources>
+
