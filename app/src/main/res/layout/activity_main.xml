@@ -46,6 +46,7 @@
         android:layout_width="346dp"
         android:layout_height="37dp"
         android:layout_marginTop="4dp"
+        android:onClick="isClicked"
         android:text="BEGINNER"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +57,7 @@
         android:layout_width="346dp"
         android:layout_height="37dp"
         android:layout_marginTop="10dp"
+        android:onClick="isClicked"
         android:text="MASTER"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +68,7 @@
         android:layout_width="346dp"
         android:layout_height="37dp"
         android:layout_marginTop="10dp"
+        android:onClick="isClicked"
         android:text="GEVORDERD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +92,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:text="MAANDAG"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTime" />
 
@@ -98,6 +102,7 @@
         android:layout_height="21dp"
         android:layout_marginTop="15dp"
         android:text="DINSDAG"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/txtMonday"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtMonday"
@@ -109,6 +114,7 @@
         android:layout_height="21dp"
         android:layout_marginTop="15dp"
         android:text="WOENSDAG"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/txtTuesday"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtTuesday"
@@ -120,6 +126,7 @@
         android:layout_height="21dp"
         android:layout_marginTop="15dp"
         android:text="DONDERDAG"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/txtWednesday"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtWednesday"
@@ -131,6 +138,7 @@
         android:layout_height="21dp"
         android:layout_marginTop="15dp"
         android:text="VRIJDAG"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/txtThursday"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtThursday"
@@ -138,53 +146,71 @@
 
     <Spinner
         android:id="@+id/spnMonday"
-        android:layout_width="129.58dp"
+        android:layout_width="75dp"
         android:layout_height="21dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtMonday"
-        tools:layout_editor_absoluteY="444dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTime" />
 
     <Spinner
         android:id="@+id/spnTuesday"
-        android:layout_width="129.58dp"
+        android:layout_width="75dp"
         android:layout_height="21dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtTuesday"
-        tools:layout_editor_absoluteY="480dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spnMonday" />
 
     <Spinner
         android:id="@+id/spnWednesday"
-        android:layout_width="129.58dp"
+        android:layout_width="75dp"
         android:layout_height="21dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtWednesday"
-        tools:layout_editor_absoluteY="515dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spnTuesday" />
 
     <Spinner
         android:id="@+id/spnThursday"
-        android:layout_width="129.58dp"
+        android:layout_width="75dp"
         android:layout_height="21dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.973"
         app:layout_constraintStart_toEndOf="@+id/txtThursday"
-        tools:layout_editor_absoluteY="551dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spnWednesday" />
 
     <Spinner
         android:id="@+id/spnFriday"
-        android:layout_width="129.58dp"
+        android:layout_width="75dp"
         android:layout_height="21dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtFriday"
-        tools:layout_editor_absoluteY="587dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spnThursday" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="onClick"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFriday" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
