@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity{
 
         edtAge = findViewById(R.id.edtAge);
 
-        btnBeginner = findViewById(R.id.btnBeginner);
-        btnGevorderd = findViewById(R.id.btnGevorderd);
-        btnMaster = findViewById(R.id.btnMaster);
+//        btnBeginner = findViewById(R.id.btnBeginner);
+//        btnGevorderd = findViewById(R.id.btnGevorderd);
+//        btnMaster = findViewById(R.id.btnMaster);
 
         spnTime = findViewById(R.id.spnMonday);
 
@@ -70,24 +70,24 @@ public class MainActivity extends AppCompatActivity{
 
     //Misschien ListView gebruiken ipv buttons
 
-    public void isClicked(View view){
-        switch (view.getId()){
-            case R.id.btnBeginner:
-                String niv1 = btnBeginner.getText().toString();
-                System.out.println(niv1);
-                break;
-            case R.id.btnGevorderd:
-                String niv2 = btnGevorderd.getText().toString();
-                System.out.println(niv2);
-                break;
-            case R.id.btnMaster:
-                String niv3 = btnMaster.getText().toString();
-                System.out.println(niv3);
-                break;
-            default:
-                break;
-        }
-    }
+//    public void isClicked(View view){
+//        switch (view.getId()){
+//            case R.id.btnBeginner:
+//                String niv1 = btnBeginner.getText().toString();
+//                System.out.println(niv1);
+//                break;
+//            case R.id.btnGevorderd:
+//                String niv2 = btnGevorderd.getText().toString();
+//                System.out.println(niv2);
+//                break;
+//            case R.id.btnMaster:
+//                String niv3 = btnMaster.getText().toString();
+//                System.out.println(niv3);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 
     // TODO: Werkt alleen op het moment dat de Button wordt ingedrukt (dus nog niet wanneer onClick uitgevoerd wordt);
 

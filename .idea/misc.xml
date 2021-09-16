@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_main.xml" value="0.22333333333333336" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/radio_normal.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/radio_selected.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/radio_selector.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/text_color.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/xml/item_spinner.xml" value="0.268359375" />
       </map>
     </option>
