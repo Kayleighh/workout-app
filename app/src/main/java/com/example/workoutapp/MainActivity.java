@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
@@ -21,21 +23,66 @@ public class MainActivity extends AppCompatActivity{
     private Button btnGevorderd;
     private Button btnMaster;
     private Spinner spnTime;
+    private Spinner spnMonday;
+    private Spinner spnTuesday;
+    private Spinner spnWednesday;
+    private Spinner spnThursday;
+    private Spinner spnFriday;
+
+    private TextView selectedMonday;
+    private TextView selectedTuesday;
+    private TextView selectedWednesday;
+    private TextView selectedFriday;
+    private TextView selectedThursday;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        edtAge = findViewById(R.id.edtAge);
+    // een methode die voegt alle spinners (van mijn account scherm) aan de lijst toe
+    // wordt gebruikt voor het fixen van de bug dat alleen de eerste spinner werkt.
+    //return een lijst met 5 spinners
+    private ArrayList<Spinner> makeSpinnersList()
+    {
+        //spnTime = findViewById(R.id.spnMonday);
+        spnMonday = findViewById(R.id.spnMonday);
+        spnTuesday = findViewById(R.id.spnTuesday);
+        spnWednesday = findViewById(R.id.spnWednesday);
+        spnThursday = findViewById(R.id.spnThursday);
+        spnFriday = findViewById(R.id.spnFriday);
 
-//        btnBeginner = findViewById(R.id.btnBeginner);
-//        btnGevorderd = findViewById(R.id.btnGevorderd);
-//        btnMaster = findViewById(R.id.btnMaster);
 
-        spnTime = findViewById(R.id.spnMonday);
+        ArrayList<Spinner> spinners = new ArrayList<>();
+        spinners.add(spnMonday);
+        spinners.add(spnTuesday);
+        spinners.add(spnWednesday);
+        spinners.add(spnThursday);
+        spinners.add(spnFriday);
 
+        return spinners;
+    }
+
+    private ArrayList<TextView> makeTextViewsList()
+    {
+        selectedMonday = findViewById(R.id.selectedMonday);
+        selectedTuesday = findViewById(R.id.selectedTuesday);
+        selectedWednesday = findViewById(R.id.selectedWednsday);
+        selectedThursday = findViewById(R.id.selectedThrusday);
+        selectedFriday = findViewById(R.id.selectedFriday);
+
+        ArrayList<TextView> textViews = new ArrayList<>();
+        textViews.add(selectedMonday);
+        textViews.add(selectedTuesday);
+        textViews.add(selectedWednesday);
+        textViews.add(selectedThursday);
+        textViews.add(selectedFriday);
+
+        return textViews;
+    }
+
+    // een methode dat voegt tijden aan timelist
+    //wordt later gebruikt voor het maken van een spinner droptown item.
+    //return timelist
+    private ArrayList<String> makeTimeList()
+    {
         ArrayList<String> timeList = new ArrayList<>();
         timeList.add("09:00");
         timeList.add("10:00");
@@ -47,21 +94,54 @@ public class MainActivity extends AppCompatActivity{
         timeList.add("16:00");
         timeList.add("17:00");
 
-        ArrayAdapter<String> timeListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, timeList);
+        return timeList;
+    }
 
-        spnTime.setAdapter(timeListAdapter);
+    private void makeSpinnerDropdownItem(Spinner spinner)
+    {
+        ArrayAdapter<String> timeListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, makeTimeList());
 
-        spnTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println(spnTime.getSelectedItem().toString());
-            }
+            spnTime = spinner;
+            spnTime.setAdapter(timeListAdapter);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            spnTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    //System.out.println(spnTime.getSelectedItem().toString());
+                    System.out.println(makeSpinnersList().indexOf(spnTime));
+                    selectedMonday.setText(String.valueOf( spnMonday.getItemAtPosition(i)));
 
-            }
-        });
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        for(Spinner spinner : makeSpinnersList())
+        {
+            makeSpinnerDropdownItem(spinner);
+        }
+
+
+//        btnBeginner = findViewById(R.id.btnBeginner);
+//        btnGevorderd = findViewById(R.id.btnGevorderd);
+//        btnMaster = findViewById(R.id.btnMaster);
+
+
+
+
+
+
+
+
+
 
         // TODO: Nog alleen de eerste Spinner werkt; uitzoeken hoe we het voor allemaal kunnen laten werken
         // TODO: Bij het opstarten van de applicatie wordt de eerste waarde uitgeprint van de Spinner

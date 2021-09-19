@@ -10,12 +10,12 @@
         android:id="@+id/txtTitle"
         android:layout_width="261dp"
         android:layout_height="18dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat"
         android:text="JOUW PROFIEL"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,11 +23,12 @@
         android:id="@+id/edtAge"
         android:layout_width="346dp"
         android:layout_height="40dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="LEEFTIJD"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
@@ -35,8 +36,8 @@
         android:id="@+id/txtNiveau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
         android:text="NIVEAU*"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtAge" />
@@ -45,16 +46,16 @@
         android:id="@+id/txtTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="GEWENST TIJDSTIP VOOR WORKOUT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.183"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <TextView
         android:id="@+id/txtMonday"
-        android:layout_width="255.02dp"
+        android:layout_width="155.02dp"
         android:layout_height="21dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
@@ -65,8 +66,8 @@
 
     <TextView
         android:id="@+id/txtTuesday"
-        android:layout_width="255.02dp"
-        android:layout_height="21dp"
+        android:layout_width="155dp"
+        android:layout_height="20dp"
         android:layout_marginTop="15dp"
         android:text="DINSDAG"
         android:textAlignment="center"
@@ -77,8 +78,8 @@
 
     <TextView
         android:id="@+id/txtWednesday"
-        android:layout_width="255.02dp"
-        android:layout_height="21dp"
+        android:layout_width="158dp"
+        android:layout_height="19dp"
         android:layout_marginTop="15dp"
         android:text="WOENSDAG"
         android:textAlignment="center"
@@ -89,8 +90,8 @@
 
     <TextView
         android:id="@+id/txtThursday"
-        android:layout_width="255.02dp"
-        android:layout_height="21dp"
+        android:layout_width="159dp"
+        android:layout_height="16dp"
         android:layout_marginTop="15dp"
         android:text="DONDERDAG"
         android:textAlignment="center"
@@ -101,13 +102,13 @@
 
     <TextView
         android:id="@+id/txtFriday"
-        android:layout_width="255.02dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="162dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="24dp"
         android:text="VRIJDAG"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/txtThursday"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/txtThursday"
         app:layout_constraintTop_toBottomOf="@+id/txtThursday" />
 
@@ -177,8 +178,10 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFriday" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFriday"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -239,5 +242,58 @@
             app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/selectedMonday"
+        android:layout_width="88dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/txtMonday"
+        app:layout_constraintTop_toBottomOf="@+id/txtTime" />
+
+    <TextView
+        android:id="@+id/selectedTuesday"
+        android:layout_width="88dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/selectedWednsday"
+        app:layout_constraintEnd_toStartOf="@+id/spnTuesday"
+        app:layout_constraintStart_toEndOf="@+id/txtTuesday"
+        app:layout_constraintTop_toBottomOf="@+id/selectedMonday" />
+
+    <TextView
+        android:id="@+id/selectedWednsday"
+        android:layout_width="91dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/selectedThrusday"
+        app:layout_constraintEnd_toStartOf="@+id/spnWednesday"
+        app:layout_constraintStart_toEndOf="@+id/txtWednesday"
+        app:layout_constraintTop_toBottomOf="@+id/selectedTuesday" />
+
+    <TextView
+        android:id="@+id/selectedThrusday"
+        android:layout_width="87dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/selectedFriday"
+        app:layout_constraintEnd_toStartOf="@+id/spnThursday"
+        app:layout_constraintStart_toEndOf="@+id/txtThursday"
+        app:layout_constraintTop_toBottomOf="@+id/selectedWednsday" />
+
+    <TextView
+        android:id="@+id/selectedFriday"
+        android:layout_width="84dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/txtFriday"
+        app:layout_constraintTop_toBottomOf="@+id/selectedThrusday" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
