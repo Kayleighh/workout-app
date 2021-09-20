@@ -5,6 +5,7 @@ import static java.security.AccessController.getContext;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.security.PrivateKey;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity{
 
     private EditText edtAge;
+    private String age;
+    private String testLevel;
     private Button btnBeginner;
     private Button btnGevorderd;
     private Button btnMaster;
@@ -109,7 +113,7 @@ public class MainActivity extends AppCompatActivity{
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     //System.out.println(spnTime.getSelectedItem().toString());
                     System.out.println(makeSpinnersList().indexOf(spnTime));
-                    selectedMonday.setText(String.valueOf( spnMonday.getItemAtPosition(i)));
+                    //selectedMonday.setText(String.valueOf( spnMonday.getItemAtPosition(i)));
 
 
                 }
@@ -129,7 +133,13 @@ public class MainActivity extends AppCompatActivity{
             makeSpinnerDropdownItem(spinner);
         }
 
-
+        DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+        boolean succes = db.addContact("23","beginner");
+        if(succes == true){
+           System.out.print("worked");
+        }else{
+           System.out.print("wrong");
+        }
 //        btnBeginner = findViewById(R.id.btnBeginner);
 //        btnGevorderd = findViewById(R.id.btnGevorderd);
 //        btnMaster = findViewById(R.id.btnMaster);
@@ -172,8 +182,16 @@ public class MainActivity extends AppCompatActivity{
     // TODO: Werkt alleen op het moment dat de Button wordt ingedrukt (dus nog niet wanneer onClick uitgevoerd wordt);
 
     public void onClick(View view) {
-        String age = edtAge.getText().toString();
+        age = edtAge.getText().toString();
         System.out.println(age);
+    }
+
+    public String getAge(){
+        return age;
+    }
+    public String getLevel(){
+        testLevel = "testing";
+        return testLevel;
     }
 }
 
