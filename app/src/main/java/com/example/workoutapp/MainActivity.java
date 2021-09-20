@@ -4,6 +4,7 @@ import static java.security.AccessController.getContext;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -134,11 +135,20 @@ public class MainActivity extends AppCompatActivity{
         }
 
         DatabaseHandler db = new DatabaseHandler(MainActivity.this);
-        boolean succes = db.addContact("23","beginner");
+        boolean succes = db.addProfile("23","beginner");
         if(succes == true){
            System.out.print("worked");
         }else{
            System.out.print("wrong");
+        }
+        Cursor cursor = db.getProfiles();
+        if(cursor.getColumnCount() > 0){
+            while(cursor.moveToNext()){
+                System.out.print(cursor.getString(0) + " " + cursor.getString(1)+ " " + cursor.getString(2));
+            }
+
+        }else{
+            System.out.print("nope");
         }
 //        btnBeginner = findViewById(R.id.btnBeginner);
 //        btnGevorderd = findViewById(R.id.btnGevorderd);

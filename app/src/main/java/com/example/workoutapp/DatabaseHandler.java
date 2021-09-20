@@ -2,6 +2,7 @@ package com.example.workoutapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -32,10 +33,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFILE);
+        onCreate(db);
     }
-    public boolean addContact(String age,String level)
+    public boolean addProfile(String age,String level)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
@@ -50,6 +52,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Log.d("failedAdd","Failed to add profile");
             return false;
         }
+
+    }
+
+    public Cursor getProfiles(){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM profile", null);
+        return cursor;
 
     }
 }
