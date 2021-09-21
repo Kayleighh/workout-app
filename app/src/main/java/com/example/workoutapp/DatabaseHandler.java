@@ -11,13 +11,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "workoutApp.db";
     public static final String TABLE_PROFILE = "profile";
-    public static final String KEY_USERID = "id";
-    public static final String KEY_PROFID = "profId";
-    public static final String KEY_AGE = "age";
-    public static final String KEY_LEVEL = "level";
-    public static final String TABLE_USER = "user";
-    public static final String KEY_FIRSTNAME = "firstName";
-    public static final String KEY_LASTNAME = "lastName";
+    private static final String ID = "id";
+    private static final String FIRST_NAME = "firstName";
+    private static final String LASTNAME = "lastname";
+    private static final String DEPARTMENT = "department";
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+    private static final String AGE = "age";
+    private static final String LEVEL = "level";
 
 
     public DatabaseHandler(Context context)
@@ -29,11 +30,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            String CREATE_PROFILE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_PROFILE + " (" + KEY_PROFID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_AGE + " TEXT, " + KEY_LEVEL + " TEXT)";
-
-            String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_USER + " (" + KEY_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_FIRSTNAME + " TEXT, " + KEY_LASTNAME + " TEXT)";
+            String CREATE_PROFILE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_PROFILE + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + FIRST_NAME + " TEXT, " + LASTNAME + " TEXT, " + DEPARTMENT + " TEXT, " + USERNAME + " TEXT, " + PASSWORD + " TEXT, " + AGE + " TEXT, " + LEVEL + " TEXT)";
             db.execSQL(CREATE_PROFILE_TABLE);
-            db.execSQL(CREATE_USER_TABLE);
         } catch (Exception e) {
             System.out.print("wrong " + e.getMessage());
         }
@@ -46,12 +44,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Write to database
-    public boolean addProfile(String age,String level)
+    public boolean addProfile(String firstName,String lastName,String department,String username,String password,String age,String level)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
-        value.put(KEY_AGE,age);
-        value.put(KEY_LEVEL,level);
+        value.put(FIRST_NAME,firstName);
+        value.put(LASTNAME,lastName);
+        value.put(DEPARTMENT,department);
+        value.put(USERNAME,username);
+        value.put(PASSWORD,password);
+        value.put(AGE,age);
+        value.put(LEVEL,level);
         Long insert = db.insert(TABLE_PROFILE,null,value);
         if(insert >= 1)
         {
@@ -59,24 +62,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         else {
             Log.d("failedAdd","Failed to add profile");
-            return false;
-        }
-
-    }
-
-    public boolean addUser(String fistname,String lastname)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues value = new ContentValues();
-        value.put(KEY_FIRSTNAME,fistname);
-        value.put(KEY_LASTNAME,lastname);
-        Long insert = db.insert(TABLE_USER,null,value);
-        if(insert >= 1)
-        {
-            return true;
-        }
-        else {
-            Log.d("failedAdd","Failed to add user");
             return false;
         }
 

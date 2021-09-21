@@ -130,17 +130,11 @@ public class myAccount extends AppCompatActivity {
         }
 
         DatabaseHandler db = new DatabaseHandler(myAccount.this);
-        boolean succes = db.addProfile("23","beginner");
+        boolean succes = db.addProfile("Kayleigh","Reeringh","testDep","TestUser","testPass","23","Beginner");
         if(succes == true){
             System.out.print("worked");
         }else{
             System.out.print("wrong");
-        }
-        boolean test =  db.addUser("test","test");
-        if(test == true){
-            System.out.print("worked user");
-        }else{
-            System.out.print("wrong user");
         }
         Cursor cursor = db.getProfiles();
         if(cursor.getColumnCount() > 0){
