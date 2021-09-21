@@ -141,6 +141,12 @@ public class MainActivity extends AppCompatActivity{
         }else{
            System.out.print("wrong");
         }
+        boolean test =  db.addUser("test","test");
+        if(test == true){
+            System.out.print("worked user");
+        }else{
+            System.out.print("wrong user");
+        }
         Cursor cursor = db.getProfiles();
         if(cursor.getColumnCount() > 0){
             while(cursor.moveToNext()){
