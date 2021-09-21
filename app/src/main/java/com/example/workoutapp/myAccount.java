@@ -2,20 +2,25 @@ package com.example.workoutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class myAccount extends AppCompatActivity {
-
+public class myAccount extends AppCompatActivity{
+    RadioButton radioButton;
     private EditText edtAge;
     private String age;
     private String testLevel;
@@ -35,7 +40,35 @@ public class myAccount extends AppCompatActivity {
     private TextView selectedFriday;
     private TextView selectedThursday;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_account);
+        addProfile();
+        //getLevel();
+        for(Spinner spinner : makeSpinnersList())
+        {
+            makeSpinnerDropdownItem(spinner);
+        }
 
+
+//        btnBeginner = findViewById(R.id.btnBeginner);
+//        btnGevorderd = findViewById(R.id.btnGevorderd);
+//        btnMaster = findViewById(R.id.btnMaster);
+
+
+
+
+
+
+
+
+
+
+        // TODO: Nog alleen de eerste Spinner werkt; uitzoeken hoe we het voor allemaal kunnen laten werken
+        // TODO: Bij het opstarten van de applicatie wordt de eerste waarde uitgeprint van de Spinner
+        // TODO: Spinners hebben nog een soort van "hint" nodig om de eerste waarde (09:00) weer te geven
+    }
 
     // een methode die voegt alle spinners (van mijn account scherm) aan de lijst toe
     // wordt gebruikt voor het fixen van de bug dat alleen de eerste spinner werkt.
@@ -120,49 +153,32 @@ public class myAccount extends AppCompatActivity {
             }
         });
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_account);
-        for(Spinner spinner : makeSpinnersList())
-        {
-            makeSpinnerDropdownItem(spinner);
-        }
 
-        DatabaseHandler db = new DatabaseHandler(myAccount.this);
-        boolean succes = db.addProfile("Kayleigh","Reeringh","testDep","TestUser","testPass","23","Beginner");
-        if(succes == true){
-            System.out.print("worked");
-        }else{
-            System.out.print("wrong");
-        }
-        Cursor cursor = db.getProfiles();
-        if(cursor.getColumnCount() > 0){
-            while(cursor.moveToNext()){
-                System.out.print(cursor.getString(0) + " " + cursor.getString(1)+ " " + cursor.getString(2));
+
+    public void addProfile() {
+        Button save = findViewById(R.id.save);
+        RadioGroup levelButtons = findViewById(R.id.radioGroup);
+        edtAge = findViewById(R.id.edtAge);
+        save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                String age = edtAge.getText().toString();
+
+                int selectedId = levelButtons.getCheckedRadioButtonId();
+                radioButton = findViewById(selectedId);
+                String selectedRadioButton = radioButton.getText().toString();
+
+                DatabaseHandler db = new DatabaseHandler(myAccount.this);
+                boolean succes = db.addProfile("TestFirstName","TestLastName","testDep","TestUser","testPass",age,selectedRadioButton);
+                if(succes == true){
+                    Log.d("tst","beep");
+                    //Go to main screen.
+
+                }else{
+                    System.out.print("wrong");
+                }
             }
-
-        }else{
-            System.out.print("nope");
-        }
-//        btnBeginner = findViewById(R.id.btnBeginner);
-//        btnGevorderd = findViewById(R.id.btnGevorderd);
-//        btnMaster = findViewById(R.id.btnMaster);
-
-
-
-
-
-
-
-
-
-
-        // TODO: Nog alleen de eerste Spinner werkt; uitzoeken hoe we het voor allemaal kunnen laten werken
-        // TODO: Bij het opstarten van de applicatie wordt de eerste waarde uitgeprint van de Spinner
-        // TODO: Spinners hebben nog een soort van "hint" nodig om de eerste waarde (09:00) weer te geven
+        });
     }
-
     //Misschien ListView gebruiken ipv buttons
 
 //    public void isClicked(View view){
@@ -186,16 +202,10 @@ public class myAccount extends AppCompatActivity {
 
     // TODO: Werkt alleen op het moment dat de Button wordt ingedrukt (dus nog niet wanneer onClick uitgevoerd wordt);
 
-    public void onClick(View view) {
-        age = edtAge.getText().toString();
-        System.out.println(age);
-    }
+   /* public void onClick() {
+        *//*age = edtAge.getText().toString();
+        System.out.println(age);*//*
 
-    public String getAge(){
-        return age;
-    }
-    public String getLevel(){
-        testLevel = "testing";
-        return testLevel;
-    }
+
+    }*/
 }
