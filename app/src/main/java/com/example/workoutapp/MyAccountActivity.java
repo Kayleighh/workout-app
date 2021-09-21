@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class myAccountActivity extends AppCompatActivity {
+public class MyAccountActivity extends AppCompatActivity {
 
     private EditText edtAge;
     private Button btnBeginner;
