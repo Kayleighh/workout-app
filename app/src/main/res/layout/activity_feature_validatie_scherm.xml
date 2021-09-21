@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature_Validatie_Scherm">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Naredo"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="147dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/cardview_shadow_end_color"
+            android:text="@string/Annuleren_Input"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:icon="@android:drawable/list_selector_background"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="14dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/Achternaam_input"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="14dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/Naam_input"
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="14dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/Persoonlijke_code_input"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="261dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="73dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Registreren"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="117dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="164dp"
+            android:background="@color/Knop"
+            android:onClick="printData"
+            android:text="@string/Volgende_input"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="28dp"
+            android:background="@android:drawable/btn_dropdown"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
