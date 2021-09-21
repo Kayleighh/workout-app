@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity{
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     //System.out.println(spnTime.getSelectedItem().toString());
                     System.out.println(makeSpinnersList().indexOf(spnTime));
-                    selectedMonday.setText(String.valueOf( spnMonday.getItemAtPosition(i)));
+//                    selectedMonday.setText(String.valueOf( spnMonday.getItemAtPosition(i)));
 
 
                 }
