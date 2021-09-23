@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void next(){
-        Intent intent = new Intent(this, WorkoutActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 }

@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
+        <activity android:name=".RegisterActivity"/>
         <activity
             android:name=".WorkoutStartActivity"
             android:exported="true" />
