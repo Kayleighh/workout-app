@@ -23,4 +23,4 @@ public class WorkoutStartActivity extends AppCompatActivity {
             }
         });
     }
-}git 
+}
