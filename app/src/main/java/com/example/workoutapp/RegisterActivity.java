@@ -7,16 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    private Button button;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
-        button = findViewById(R.id.button);
+        button = findViewById(R.id.btnVolgende);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void next(){
-        Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
     }
 }

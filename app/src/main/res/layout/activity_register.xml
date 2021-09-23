@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/imgProfielFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnKiesFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="KIES FOTO"
+        app:layout_constraintEnd_toEndOf="@+id/imgProfielFoto"
+        app:layout_constraintStart_toStartOf="@+id/imgProfielFoto"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfielFoto" />
+
+    <Button
+        android:id="@+id/btnVolgende"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="VOLGENDE"
+        app:layout_constraintEnd_toEndOf="@+id/edtWachtwoordHerhaal"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/edtWachtwoordHerhaal"
+        app:layout_constraintTop_toBottomOf="@+id/edtWachtwoordHerhaal" />
+
+    <EditText
+        android:id="@+id/edtGebruikersnaam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="GEBRUIKERSNAAM"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/btnKiesFoto"
+        app:layout_constraintStart_toStartOf="@+id/btnKiesFoto"
+        app:layout_constraintTop_toBottomOf="@+id/btnKiesFoto" />
+
+    <EditText
+        android:id="@+id/edtWachtwoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="WACHTWOORD"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edtGebruikersnaam"
+        app:layout_constraintStart_toStartOf="@+id/edtGebruikersnaam"
+        app:layout_constraintTop_toBottomOf="@+id/edtGebruikersnaam" />
+
+    <EditText
+        android:id="@+id/edtWachtwoordHerhaal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="HERHAAL WACHTWOORD"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edtWachtwoord"
+        app:layout_constraintStart_toStartOf="@+id/edtWachtwoord"
+        app:layout_constraintTop_toBottomOf="@+id/edtWachtwoord" />
+</androidx.constraintlayout.widget.ConstraintLayout>
