@@ -2,6 +2,7 @@ package com.example.workoutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,6 +42,9 @@ public class feature_Validatie_Scherm extends AppCompatActivity {
         String Number = edtNumber.getText().toString();
 
         System.out.println(Name1 + " " + Name2 + " " + Number);
+
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
 
 }
 class SpinnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
