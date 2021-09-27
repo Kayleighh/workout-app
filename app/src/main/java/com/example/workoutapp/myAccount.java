@@ -2,8 +2,6 @@ package com.example.workoutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +13,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,7 +41,6 @@ public class myAccount extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
-        addProfile();
         //getLevel();
         for(Spinner spinner : makeSpinnersList())
         {
@@ -155,30 +151,7 @@ public class myAccount extends AppCompatActivity{
     }
 
 
-    public void addProfile() {
-        Button save = findViewById(R.id.save);
-        RadioGroup levelButtons = findViewById(R.id.radioGroup);
-        edtAge = findViewById(R.id.edtAge);
-        save.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                String age = edtAge.getText().toString();
 
-                int selectedId = levelButtons.getCheckedRadioButtonId();
-                radioButton = findViewById(selectedId);
-                String selectedRadioButton = radioButton.getText().toString();
-
-                DatabaseHandler db = new DatabaseHandler(myAccount.this);
-                boolean succes = db.addProfile("TestFirstName","TestLastName","testDep","TestUser","testPass",age,selectedRadioButton);
-                if(succes == true){
-                    Log.d("tst","beep");
-                    //Go to main screen.
-
-                }else{
-                    System.out.print("wrong");
-                }
-            }
-        });
-    }
     //Misschien ListView gebruiken ipv buttons
 
 //    public void isClicked(View view){

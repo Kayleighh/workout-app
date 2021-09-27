@@ -11,9 +11,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 
@@ -126,7 +135,51 @@ public class MyAccountActivity extends AppCompatActivity {
         next();
     }
     public void next(){
+        EditText editAge = findViewById(R.id.edtAge);
+        String age = editAge.getText().toString();
+        RadioGroup group = findViewById(R.id.radioGroup);
+        int selectedId = group.getCheckedRadioButtonId();
+        RadioButton radioButton = (RadioButton) findViewById(selectedId);
+        String level = radioButton.getText().toString();
+        Spinner mySpinner = (Spinner) findViewById(R.id.spnMonday);
+        String text = mySpinner.getSelectedItem().toString();
+
+        addProfile(age,level,text);
         Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
+    }
+
+
+    public JSONObject addProfile(String age, String lvl,String time )
+    {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("Age", age);
+            jsonObject.put("Level", lvl);
+            jsonObject.put("Time", time);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        toJSON(jsonObject);
+        return jsonObject;
+
+    }
+    public void toJSON(JSONObject JsonObject)
+    {
+        String userString = JsonObject.toString();
+        String filename = "test.json";
+
+        try {
+            File file = new File(this.getFilesDir()+filename);
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(userString);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 }
