@@ -19,8 +19,10 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.PrivateKey;
@@ -119,6 +121,7 @@ public class MyAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account2);
         makeTextViewsList();
+        readFromJSON();
         for(Spinner spinner : makeSpinnersList())
         {
             makeSpinnerDropdownItem(spinner);
@@ -160,26 +163,68 @@ public class MyAccountActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        toJSON(jsonObject);
+        String input = jsonObject.toString();
+        toJSON(input);
+
         return jsonObject;
 
     }
-    public void toJSON(JSONObject JsonObject)
+    public boolean toJSON(String input)
     {
-        String userString = JsonObject.toString();
         String filename = "test.json";
-
+        Boolean check;
         try {
             File file = new File(this.getFilesDir()+filename);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(userString);
+            bufferedWriter.write(input);
             bufferedWriter.close();
+            check = true;
+            return check;
+        } catch (IOException e) {
+            e.printStackTrace();
+            check = false;
+            return check;
+        }
+    }
+    public void readFromJSON()
+    {
+        String filename = "test.json";
+        Boolean check;
+        try {
+            File file = new File(this.getFilesDir()+filename);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null)
+            {
+                stringBuilder.append(line).append("\n");
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            String responce = stringBuilder.toString();
+            getProfilesFromJSON(responce);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
+
+    public void getProfilesFromJSON(String responce)
+    {
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(responce);
+
+            String age = jsonObject.get("Age").toString();
+            String lvl = jsonObject.get("Level").toString();
+            String time = jsonObject.get("Time").toString();
+            System.out.println(age + " " + lvl + " " + time);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
