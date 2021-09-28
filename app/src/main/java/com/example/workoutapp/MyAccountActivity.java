@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -163,13 +164,13 @@ public class MyAccountActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String input = jsonObject.toString();
+        JSONObject input = jsonObject;
         toJSON(input);
 
         return jsonObject;
 
     }
-    public boolean toJSON(String input)
+    public boolean toJSON(JSONObject input)
     {
         String filename = "test.json";
         Boolean check;
@@ -177,7 +178,19 @@ public class MyAccountActivity extends AppCompatActivity {
             File file = new File(this.getFilesDir()+filename);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(input);
+            JSONArray profileArray = new JSONArray();
+            profileArray.put(input);
+            for(int i = 0; i <= profileArray.length(); i++){
+                try {
+                    String test = profileArray.get(i).toString();
+                    bufferedWriter.append(test).append("\n");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+           // bufferedWriter.write(input);
             bufferedWriter.close();
             check = true;
             return check;
@@ -213,6 +226,7 @@ public class MyAccountActivity extends AppCompatActivity {
 
     public void getProfilesFromJSON(String responce)
     {
+
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(responce);
