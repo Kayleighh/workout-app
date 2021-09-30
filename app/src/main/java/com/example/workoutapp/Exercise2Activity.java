@@ -15,12 +15,12 @@ public class Exercise2Activity extends AppCompatActivity {
 
     private VideoView videoView2;
     private Button btnDone;
-//    public static boolean showBtn = false;
+    public static boolean showBtn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        showBtn = true;
+        showBtn = true;
         setContentView(R.layout.activity_exercise_2);
         videoView2 = findViewById(R.id.videoView2);
 
@@ -32,24 +32,24 @@ public class Exercise2Activity extends AppCompatActivity {
             }
         });
 
-        String videopath = "android.resource://com.example.workoutapp/" + R.raw.squat;
-        Uri uri = Uri.parse(videopath);
-        videoView2.setVideoURI(uri);
-        videoView2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.start();
-                mediaPlayer.setLooping(true);
-                new CountDownTimer(10000, 1000) {
-                    public void onTick(long millisUntilFinished) {
-                    }
-
-                    public void onFinish() {
-                        mediaPlayer.stop();
-                    }
-                }.start();
-            }
-        });
+//        String videopath = "android.resource://com.example.workoutapp/" + R.raw.squat;
+//        Uri uri = Uri.parse(videopath);
+//        videoView2.setVideoURI(uri);
+//        videoView2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mediaPlayer) {
+//                mediaPlayer.start();
+//                mediaPlayer.setLooping(true);
+//                new CountDownTimer(10000, 1000) {
+//                    public void onTick(long millisUntilFinished) {
+//                    }
+//
+//                    public void onFinish() {
+//                        mediaPlayer.stop();
+//                    }
+//                }.start();
+//            }
+//        });
     }
 
     public void finishWorkout(){
