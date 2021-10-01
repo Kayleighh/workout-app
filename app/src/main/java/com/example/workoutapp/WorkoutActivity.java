@@ -87,7 +87,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
     public void getProfilesFromJSON(JSONObject response){
         try{
-            String exercise = response.get("exercise").toString();
+            String exercise = response.get("workouts").toString();
             System.out.println(exercise);
         } catch(JSONException e){
             e.printStackTrace();

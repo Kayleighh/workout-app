@@ -180,7 +180,7 @@ public class MyAccountActivity extends AppCompatActivity {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             JSONArray profileArray = new JSONArray();
             profileArray.put(input);
-            for(int i = 0; i <= profileArray.length(); i++){
+           /* for(int i = 0; i <= profileArray.length(); i++){
                 try {
                     String test = profileArray.get(i).toString();
                     bufferedWriter.append(test).append("\n");
@@ -188,7 +188,7 @@ public class MyAccountActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-            }
+            }*/
 
            // bufferedWriter.write(input);
             bufferedWriter.close();
