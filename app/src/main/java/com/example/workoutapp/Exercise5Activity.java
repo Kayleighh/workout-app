@@ -1,7 +1,5 @@
 package com.example.workoutapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
@@ -13,11 +11,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-public class Exercise2Activity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    private VideoView videoView;
+public class Exercise5Activity extends AppCompatActivity {
+
     private Button btnDone;
-    private TextView circle2;
+    private VideoView videoView;
+    public static boolean showBtn = false;
+    private TextView circle5;
     private GradientDrawable sd;
 
     @Override
@@ -25,11 +26,13 @@ public class Exercise2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
-        System.out.println("je bent nu in exercise 2");
+        System.out.println("je bent nu in exercise 5");
 
-        videoView = findViewById(R.id.videoView2);
+        showBtn = true;
+
+        videoView  = (VideoView) findViewById(R.id.videoView2);
         btnDone = findViewById(R.id.btnDone);
-        circle2 = findViewById(R.id.circle2);
+        circle5 = findViewById(R.id.circle5);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,31 +49,6 @@ public class Exercise2Activity extends AppCompatActivity {
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mediaPlayer.start();
                 mediaPlayer.setLooping(true);
-                new CountDownTimer(10000, 1000) {
-                    public void onTick(long millisUntilFinished) {
-                        mediaPlayer.setLooping(true);
-                    }
-
-                    public void onFinish() {
-                        mediaPlayer.setLooping(false);
-                        mediaPlayer.stop();
-                    }
-                }.start();
-            }
-        });
-
-        sd = (GradientDrawable) circle2.getBackground().mutate();
-        sd.setColor(0xff999999);
-        sd.invalidateSelf();
-
-//        String videopath = "android.resource://com.example.workoutapp/" + R.raw.squat;
-//        Uri uri = Uri.parse(videopath);
-//        videoView2.setVideoURI(uri);
-//        videoView2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mediaPlayer) {
-//                mediaPlayer.start();
-//                mediaPlayer.setLooping(true);
 //                new CountDownTimer(10000, 1000) {
 //                    public void onTick(long millisUntilFinished) {
 //                    }
@@ -79,14 +57,19 @@ public class Exercise2Activity extends AppCompatActivity {
 //                        mediaPlayer.stop();
 //                    }
 //                }.start();
-//            }
-//        });
+            }
+        });
+
+        sd = (GradientDrawable) circle5.getBackground().mutate();
+        sd.setColor(0xff999999);
+        sd.invalidateSelf();
     }
 
     public void toNext(){
-        System.out.println("je gaat nu naar exercise 3");
-        Intent intent = new Intent(this, Exercise3Activity.class);
+        System.out.println("je gaat nu terug naar home");
+        Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
+        WorkoutActivity.btnFinishWorkout.setVisibility(View.VISIBLE);
         sd.setColor(666666);
         sd.invalidateSelf();
     }

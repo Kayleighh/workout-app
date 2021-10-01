@@ -1,7 +1,5 @@
 package com.example.workoutapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
@@ -13,11 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-public class Exercise2Activity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    private VideoView videoView;
+public class Exercise3Activity extends AppCompatActivity {
     private Button btnDone;
-    private TextView circle2;
+    private VideoView videoView;
+    private TextView circle3;
     private GradientDrawable sd;
 
     @Override
@@ -25,11 +24,11 @@ public class Exercise2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
-        System.out.println("je bent nu in exercise 2");
+        System.out.println("je bent nu in exercise 3");
 
-        videoView = findViewById(R.id.videoView2);
+        videoView  = (VideoView) findViewById(R.id.videoView2);
         btnDone = findViewById(R.id.btnDone);
-        circle2 = findViewById(R.id.circle2);
+        circle3 = findViewById(R.id.circle3);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,33 +58,14 @@ public class Exercise2Activity extends AppCompatActivity {
             }
         });
 
-        sd = (GradientDrawable) circle2.getBackground().mutate();
+        sd = (GradientDrawable) circle3.getBackground().mutate();
         sd.setColor(0xff999999);
         sd.invalidateSelf();
-
-//        String videopath = "android.resource://com.example.workoutapp/" + R.raw.squat;
-//        Uri uri = Uri.parse(videopath);
-//        videoView2.setVideoURI(uri);
-//        videoView2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mediaPlayer) {
-//                mediaPlayer.start();
-//                mediaPlayer.setLooping(true);
-//                new CountDownTimer(10000, 1000) {
-//                    public void onTick(long millisUntilFinished) {
-//                    }
-//
-//                    public void onFinish() {
-//                        mediaPlayer.stop();
-//                    }
-//                }.start();
-//            }
-//        });
     }
 
     public void toNext(){
-        System.out.println("je gaat nu naar exercise 3");
-        Intent intent = new Intent(this, Exercise3Activity.class);
+        System.out.println("je gaat nu naar exercise 4");
+        Intent intent = new Intent(this, Exercise4Activity.class);
         startActivity(intent);
         sd.setColor(666666);
         sd.invalidateSelf();

@@ -10,15 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
         <activity
+            android:name=".Exercise1Activity"
+            android:exported="true" />
+        <activity
             android:name=".Exercise2Activity"
             android:exported="true" />
-        <activity android:name=".RegisterActivity" />
         <activity
-            android:name=".Exercise1Activity"
+            android:name=".Exercise3Activity"
+            android:exported="true" />
+        <activity
+            android:name=".Exercise4Activity"
+            android:exported="true" />
+        <activity
+            android:name=".Exercise5Activity"
             android:exported="true" />
         <activity
             android:name=".WorkoutActivity"
             android:exported="true" />
+        <activity android:name=".RegisterActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

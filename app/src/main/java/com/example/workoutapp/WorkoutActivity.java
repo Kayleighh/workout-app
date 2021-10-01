@@ -25,7 +25,8 @@ public class WorkoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        readJSON();
+
+//        readJSON();
 
         btnStartWorkout = findViewById(R.id.btnStartWorkout);
         btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
@@ -49,6 +50,7 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     public void startWorkout(){
+        System.out.println("je gaat nu naar exercise 1");
         Intent switchActivityIntent = new Intent(this, Exercise1Activity.class);
         startActivity(switchActivityIntent);
     }
@@ -62,35 +64,36 @@ public class WorkoutActivity extends AppCompatActivity {
 // *** dit werkt maar na terug keren naar deze activity vanuit mainActivity wordt de button ook geactiveerd waardoor die visible blijft ***
     @Override
     protected void onResume(){
-        if (Exercise2Activity.showBtn){
+        System.out.println("je bent nu terug in home");
+        if (Exercise5Activity.showBtn){
             btnFinishWorkout.setVisibility(View.VISIBLE);
         }
         super.onResume();
     }
 
-    private void readJSON(){
-        try {
-            Resources res = getResources();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(res.openRawResource(R.raw.jsonfile)));
-            StringBuilder responseBuilder = new StringBuilder();
-
-            String inputStr;
-            while ((inputStr = bufferedReader.readLine()) != null){
-                responseBuilder.append(inputStr);
-            }
-            getProfilesFromJSON(new JSONObject(responseBuilder.toString()));
-
-        }catch (Exception e){
-
-        }
-    }
-
-    public void getProfilesFromJSON(JSONObject response){
-        try{
-            String exercise = response.get("exercise").toString();
-            System.out.println(exercise);
-        } catch(JSONException e){
-            e.printStackTrace();
-        }
-    }
+//    private void readJSON(){
+//        try {
+//            Resources res = getResources();
+//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(res.openRawResource(R.raw.jsonfile)));
+//            StringBuilder responseBuilder = new StringBuilder();
+//
+//            String inputStr;
+//            while ((inputStr = bufferedReader.readLine()) != null){
+//                responseBuilder.append(inputStr);
+//            }
+//            getProfilesFromJSON(new JSONObject(responseBuilder.toString()));
+//
+//        }catch (Exception e){
+//
+//        }
+//    }
+//
+//    public void getProfilesFromJSON(JSONObject response){
+//        try{
+//            String exercise = response.get("exercise").toString();
+//            System.out.println(exercise);
+//        } catch(JSONException e){
+//            e.printStackTrace();
+//        }
+//    }
 }
