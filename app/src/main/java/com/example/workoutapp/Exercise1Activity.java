@@ -3,6 +3,7 @@ package com.example.workoutapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,19 @@ public class Exercise1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_1);
+        //whatsapp button
+        Button whatsapp = findViewById(R.id.whatsapp);
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number = "+31620033805";
+                String url = "https://api.whatsapp.com/send?phone="+number;
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
 
         videoView  = (VideoView) findViewById(R.id.videoView2);
 
