@@ -10,17 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
         <activity
-            android:name=".MyAccountActivity"
+            android:name=".Exercise2Activity"
             android:exported="true" />
         <activity android:name=".RegisterActivity" />
         <activity
-            android:name=".WorkoutStartActivity"
+            android:name=".Exercise1Activity"
             android:exported="true" />
         <activity
             android:name=".WorkoutActivity"
-            android:exported="true" />
-        <activity
-            android:name=".feature_Validatie_Scherm"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
@@ -30,11 +27,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".myAccount"
-            android:parentActivityName=".MainActivity">
-
         </activity>
 
         <meta-data
