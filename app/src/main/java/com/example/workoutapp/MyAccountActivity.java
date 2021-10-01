@@ -217,7 +217,7 @@ public class MyAccountActivity extends AppCompatActivity {
             }
             bufferedReader.close();
             String responce = stringBuilder.toString();
-            getProfilesFromJSON(responce);
+            getProfilesFromJSON(stringBuilder.toString());
 
         } catch (IOException e) {
             e.printStackTrace();
