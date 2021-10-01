@@ -134,8 +134,6 @@ public class MyAccountActivity extends AppCompatActivity {
     // TODO: Werkt alleen op het moment dat de Button wordt ingedrukt (dus nog niet wanneer onClick uitgevoerd wordt);
 
     public void onClick(View view) {
-//        String age = edtAge.getText().toString();
-//        System.out.println(age);
         next();
     }
     public void next(){
@@ -164,13 +162,17 @@ public class MyAccountActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        JSONArray testArray= new JSONArray();
+
         JSONObject input = jsonObject;
-        toJSON(input);
+        testArray.put(input);
+        System.out.println(testArray);
+        toJSON(testArray);
 
         return jsonObject;
 
     }
-    public boolean toJSON(JSONObject input)
+    public boolean toJSON(JSONArray input)
     {
         String filename = "test.json";
         Boolean check;
@@ -178,19 +180,16 @@ public class MyAccountActivity extends AppCompatActivity {
             File file = new File(this.getFilesDir()+filename);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            JSONArray profileArray = new JSONArray();
-            profileArray.put(input);
-           /* for(int i = 0; i <= profileArray.length(); i++){
+            input.put("test");
+           for(int i = 0; i <= input.length(); i++){
                 try {
-                    String test = profileArray.get(i).toString();
+                    String test = input.get(i).toString();
                     bufferedWriter.append(test).append("\n");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-            }*/
-
-           // bufferedWriter.write(input);
+            }
             bufferedWriter.close();
             check = true;
             return check;
@@ -203,7 +202,6 @@ public class MyAccountActivity extends AppCompatActivity {
     public void readFromJSON()
     {
         String filename = "test.json";
-        Boolean check;
         try {
             File file = new File(this.getFilesDir()+filename);
             FileReader fileReader = new FileReader(file);
@@ -216,7 +214,6 @@ public class MyAccountActivity extends AppCompatActivity {
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
-            String responce = stringBuilder.toString();
             getProfilesFromJSON(stringBuilder.toString());
 
         } catch (IOException e) {
