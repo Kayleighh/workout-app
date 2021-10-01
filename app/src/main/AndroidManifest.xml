@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
         <activity
+            android:name=".RankingsActivity"
+            android:exported="true" />
+        <activity
             android:name=".Exercise1Activity"
             android:exported="true" />
         <activity
