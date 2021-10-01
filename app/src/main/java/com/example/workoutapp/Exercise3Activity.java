@@ -45,16 +45,15 @@ public class Exercise3Activity extends AppCompatActivity {
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mediaPlayer.start();
                 mediaPlayer.setLooping(true);
-                new CountDownTimer(10000, 1000) {
-                    public void onTick(long millisUntilFinished) {
-                        mediaPlayer.setLooping(true);
-                    }
-
-                    public void onFinish() {
-                        mediaPlayer.setLooping(false);
-                        mediaPlayer.stop();
-                    }
-                }.start();
+//                new CountDownTimer(10000, 1000) {
+//                    public void onTick(long millisUntilFinished) {
+//                    }
+//
+//                    public void onFinish() {
+//                        mediaPlayer.setLooping(false);
+//                        mediaPlayer.stop();
+//                    }
+//                }.start();
             }
         });
 
