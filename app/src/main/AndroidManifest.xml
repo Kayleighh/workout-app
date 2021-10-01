@@ -17,6 +17,12 @@
             android:name=".Exercise1Activity"
             android:exported="true" />
         <activity
+            android:name=".feature_Validatie_Scherm"
+            android:exported="true" />
+        <activity
+            android:name=".MyAccountActivity"
+            android:exported="true" />
+        <activity
             android:name=".WorkoutActivity"
             android:exported="true" />
         <activity
