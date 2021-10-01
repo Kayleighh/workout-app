@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:background="#ECF0F1"
+    tools:context=".RankingsActivity">
+
+    <TextView
+        android:id="@+id/RanglijstTitel"
+        android:layout_width="218dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="58dp"
+        android:fontFamily="@font/montserrat"
+        android:text="RANGLIJST"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="37dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/RanglijstTitel"
+        app:layout_constraintStart_toStartOf="@+id/RanglijstTitel"
+        app:layout_constraintTop_toBottomOf="@+id/RanglijstTitel">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_left_selector"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:onClick="onRadioButtonClicked"
+            android:text="COLLEGA'S"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_right_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:fontFamily="@font/montserrat_bold"
+            android:onClick="onRadioButtonClicked"
+            android:text="AFDELING"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RadioGroup>
+
+    <ListView
+        android:layout_width="379dp"
+        android:layout_height="472dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
