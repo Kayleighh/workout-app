@@ -12,6 +12,13 @@ import android.widget.Spinner;
 import android.util.Log;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 
 public class feature_Validatie_Scherm extends AppCompatActivity {
@@ -55,7 +62,42 @@ class SpinnerActivity extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 }
+    public JSONObject addProfile(String gebruikersnaam, String wachtwoord)
+    {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("Age",0);
+            jsonObject.put("Level","Beginner");
+            jsonObject.put("Time","09:00");
+            jsonObject.put("Username", gebruikersnaam);
+            jsonObject.put("Password", wachtwoord);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        String input = jsonObject.toString();
+        toJSON(input);
 
+        return jsonObject;
+
+    }
+    public boolean toJSON(String input)
+    {
+        String filename = "test.json";
+        Boolean check;
+        try {
+            File file = new File(this.getFilesDir()+filename);
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(input);
+            bufferedWriter.close();
+            check = true;
+            return check;
+        } catch (IOException e) {
+            e.printStackTrace();
+            check = false;
+            return check;
+        }
+    }
 
 }

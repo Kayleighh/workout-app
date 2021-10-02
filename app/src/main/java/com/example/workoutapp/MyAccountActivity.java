@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,8 +37,7 @@ public class MyAccountActivity extends AppCompatActivity {
     // een methode die voegt alle spinners (van mijn account scherm) aan een lijst toe
     // wordt gebruikt voor het fixen van de bug dat alleen de eerste spinner werkt.
     //return een lijst met 5 spinners
-    private ArrayList<Spinner> makeSpinnersList()
-    {
+    private ArrayList<Spinner> makeSpinnersList() {
         //spnTime = findViewById(R.id.spnMonday);
         Spinner spnMonday = findViewById(R.id.spnMonday);
         Spinner spnTuesday = findViewById(R.id.spnTuesday);
@@ -55,10 +55,10 @@ public class MyAccountActivity extends AppCompatActivity {
 
         return spinners;
     }
+
     //Een methode die voegt alle textViews (van mijn account scherm ) aan een lijst toe
     //returnt lijst met textviews.
-    private ArrayList<TextView> makeTextViewsList()
-    {
+    private ArrayList<TextView> makeTextViewsList() {
         TextView selectedMonday = findViewById(R.id.selectedMonday);
         TextView selectedTuesday = findViewById(R.id.selectedTuesday);
         TextView selectedWednesday = findViewById(R.id.selectedWednsday);
@@ -78,8 +78,7 @@ public class MyAccountActivity extends AppCompatActivity {
     // een methode dat voegt tijden aan timelist
     //wordt later gebruikt voor het maken van een spinner droptown item.
     //return timelist
-    private ArrayList<String> makeTimeList()
-    {
+    private ArrayList<String> makeTimeList() {
         ArrayList<String> timeList = new ArrayList<>();
         timeList.add("09:00");
         timeList.add("10:00");
@@ -96,8 +95,7 @@ public class MyAccountActivity extends AppCompatActivity {
 
     //een methode die wordt gebruikt voor het maken van een dropdown voor de spinners en dan kan de eindgebruiker een tijd kunnen selecteren
 
-    private void makeSpinnerDropdownItem(Spinner spinner)
-    {
+    private void makeSpinnerDropdownItem(Spinner spinner) {
         ArrayAdapter<String> timeListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, makeTimeList());
 
         spinner.setAdapter(timeListAdapter);
@@ -117,14 +115,13 @@ public class MyAccountActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account2);
         makeTextViewsList();
-        readFromJSON();
-        for(Spinner spinner : makeSpinnersList())
-        {
+        for (Spinner spinner : makeSpinnersList()) {
             makeSpinnerDropdownItem(spinner);
         }
 
@@ -136,29 +133,35 @@ public class MyAccountActivity extends AppCompatActivity {
     public void onClick(View view) {
         next();
     }
-    public void next(){
+
+    public void next() {
         EditText editAge = findViewById(R.id.edtAge);
         String age = editAge.getText().toString();
         RadioGroup group = findViewById(R.id.radioGroup);
         int selectedId = group.getCheckedRadioButtonId();
-        RadioButton radioButton = (RadioButton) findViewById(selectedId);
+        RadioButton radioButton = findViewById(selectedId);
         String level = radioButton.getText().toString();
-        Spinner mySpinner = (Spinner) findViewById(R.id.spnMonday);
+        Spinner mySpinner = findViewById(R.id.spnMonday);
         String text = mySpinner.getSelectedItem().toString();
 
-        addProfile(age,level,text);
+        addProfile(age, level, text);
         Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
     }
 
 
-    public JSONObject addProfile(String age, String lvl,String time )
-    {
+    public JSONObject addProfile(String age, String lvl, String time) {
         JSONObject jsonObject = new JSONObject();
         try {
+            getProfilesFromJSON();
+            String username = getProfilesFromJSON().get(3).toString();
+            String password = getProfilesFromJSON().get(4).toString();
+
             jsonObject.put("Age", age);
             jsonObject.put("Level", lvl);
             jsonObject.put("Time", time);
+            jsonObject.put("Username", username);
+            jsonObject.put("Password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -169,12 +172,12 @@ public class MyAccountActivity extends AppCompatActivity {
         return jsonObject;
 
     }
-    public boolean toJSON(String input)
-    {
+
+    public boolean toJSON(String input) {
         String filename = "test.json";
         Boolean check;
         try {
-            File file = new File(this.getFilesDir()+filename);
+            File file = new File(this.getFilesDir() + filename);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(input);
@@ -187,43 +190,43 @@ public class MyAccountActivity extends AppCompatActivity {
             return check;
         }
     }
-    public void readFromJSON()
-    {
+
+    public JSONArray getProfilesFromJSON() {
+        JSONArray profiles = new JSONArray();
         String filename = "test.json";
+        File file = new File(this.getFilesDir() + filename);
+        FileReader fileReader = null;
         try {
-            File file = new File(this.getFilesDir()+filename);
-            FileReader fileReader = new FileReader(file);
+            fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             StringBuilder stringBuilder = new StringBuilder();
             String line = bufferedReader.readLine();
-            while (line != null)
-            {
+            while (line != null) {
                 stringBuilder.append(line).append("\n");
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
-            getProfilesFromJSON(stringBuilder.toString());
+            String response = stringBuilder.toString();
+            JSONObject jsonObject = null;
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void getProfilesFromJSON(String responce)
-    {
-
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(responce);
+            jsonObject = new JSONObject(response);
 
             String age = jsonObject.get("Age").toString();
             String lvl = jsonObject.get("Level").toString();
             String time = jsonObject.get("Time").toString();
+            String username = jsonObject.get("Username").toString();
+            String password = jsonObject.get("Password").toString();
+            profiles.put(age);
+            profiles.put(lvl);
+            profiles.put(time);
+            profiles.put(username);
+            profiles.put(password);
+
             System.out.println(age + " " + lvl + " " + time);
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+        return profiles;
     }
-
-
 }
