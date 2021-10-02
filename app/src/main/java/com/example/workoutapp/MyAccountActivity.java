@@ -162,17 +162,14 @@ public class MyAccountActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JSONArray testArray= new JSONArray();
 
-        JSONObject input = jsonObject;
-        testArray.put(input);
-        System.out.println(testArray);
-        toJSON(testArray);
+        String input = jsonObject.toString();
+        toJSON(input);
 
         return jsonObject;
 
     }
-    public boolean toJSON(JSONArray input)
+    public boolean toJSON(String input)
     {
         String filename = "test.json";
         Boolean check;
@@ -180,16 +177,7 @@ public class MyAccountActivity extends AppCompatActivity {
             File file = new File(this.getFilesDir()+filename);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            input.put("test");
-           for(int i = 0; i <= input.length(); i++){
-                try {
-                    String test = input.get(i).toString();
-                    bufferedWriter.append(test).append("\n");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
+            bufferedWriter.write(input);
             bufferedWriter.close();
             check = true;
             return check;
