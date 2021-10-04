@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.util.Log;
 import android.widget.TextView;
@@ -47,9 +49,10 @@ public class feature_Validatie_Scherm extends AppCompatActivity {
         String Name1 = edtName.getText().toString();
         String Name2 = edtName2.getText().toString();
         String Number = edtNumber.getText().toString();
-
+        Spinner mySpinner = findViewById(R.id.spinner);
+        String text = mySpinner.getSelectedItem().toString();
         System.out.println(Name1 + " " + Name2 + " " + Number);
-
+        addProfile(Name1,Name2,Number,text);
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
 
@@ -62,15 +65,21 @@ class SpinnerActivity extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 }
-    public JSONObject addProfile(String gebruikersnaam, String wachtwoord)
+    public JSONObject addProfile(String voornaam, String achternaam, String number, String function)
     {
         JSONObject jsonObject = new JSONObject();
+
         try {
+            jsonObject.put("Firstname", voornaam);
+            jsonObject.put("Lastname", achternaam);
+            jsonObject.put("Number",number);
+            jsonObject.put("Function",function);
+            jsonObject.put("Username", "");
+            jsonObject.put("Password", "");
             jsonObject.put("Age",0);
             jsonObject.put("Level","Beginner");
             jsonObject.put("Time","09:00");
-            jsonObject.put("Username", gebruikersnaam);
-            jsonObject.put("Password", wachtwoord);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

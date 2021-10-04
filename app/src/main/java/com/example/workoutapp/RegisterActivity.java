@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,12 +58,23 @@ public class RegisterActivity extends AppCompatActivity {
     public JSONObject addProfile(String gebruikersnaam, String wachtwoord)
     {
         JSONObject jsonObject = new JSONObject();
+
         try {
+            getProfilesFromJSON();
+            String firstname = getProfilesFromJSON().get(0).toString();
+            String lastname = getProfilesFromJSON().get(1).toString();
+            String function = getProfilesFromJSON().get(2).toString();
+            String number = getProfilesFromJSON().get(3).toString();
+            jsonObject.put("Firstname",firstname);
+            jsonObject.put("Lastname",lastname);
+            jsonObject.put("Function",function);
+            jsonObject.put("Number",number);
+            jsonObject.put("Username", gebruikersnaam);
+            jsonObject.put("Password", wachtwoord);
             jsonObject.put("Age",0);
             jsonObject.put("Level","Beginner");
             jsonObject.put("Time","09:00");
-            jsonObject.put("Username", gebruikersnaam);
-            jsonObject.put("Password", wachtwoord);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -90,5 +102,51 @@ public class RegisterActivity extends AppCompatActivity {
             check = false;
             return check;
         }
+    }
+    public JSONArray getProfilesFromJSON() {
+        JSONArray profiles = new JSONArray();
+        String filename = "test.json";
+        File file = new File(this.getFilesDir() + filename);
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                stringBuilder.append(line).append("\n");
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            String response = stringBuilder.toString();
+            JSONObject jsonObject = null;
+
+
+            jsonObject = new JSONObject(response);
+
+            String age = jsonObject.get("Age").toString();
+            String lvl = jsonObject.get("Level").toString();
+            String time = jsonObject.get("Time").toString();
+            String username = jsonObject.get("Username").toString();
+            String password = jsonObject.get("Password").toString();
+            String name = jsonObject.get("Firstname").toString();
+            String lastname = jsonObject.getString("Lastname");
+            String function = jsonObject.get("Function").toString();
+            String number = jsonObject.getString("Number");
+            profiles.put(name);
+            profiles.put(lastname);
+            profiles.put(function);
+            profiles.put(number);
+            profiles.put(age);
+            profiles.put(lvl);
+            profiles.put(time);
+            profiles.put(username);
+            profiles.put(password);
+
+            System.out.println(age + " " + lvl + " " + time);
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+        return profiles;
     }
 }

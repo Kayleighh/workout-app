@@ -154,14 +154,22 @@ public class MyAccountActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         try {
             getProfilesFromJSON();
-            String username = getProfilesFromJSON().get(3).toString();
-            String password = getProfilesFromJSON().get(4).toString();
-
+            String firstname = getProfilesFromJSON().get(0).toString();
+            String lastname = getProfilesFromJSON().get(1).toString();
+            String function = getProfilesFromJSON().get(2).toString();
+            String number = getProfilesFromJSON().get(3).toString();
+            String username = getProfilesFromJSON().get(7).toString();
+            String password = getProfilesFromJSON().get(8).toString();
+            jsonObject.put("Firstname",firstname);
+            jsonObject.put("Lastname",lastname);
+            jsonObject.put("Function",function);
+            jsonObject.put("Number",number);
+            jsonObject.put("Username", username);
+            jsonObject.put("Password", password);
             jsonObject.put("Age", age);
             jsonObject.put("Level", lvl);
             jsonObject.put("Time", time);
-            jsonObject.put("Username", username);
-            jsonObject.put("Password", password);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -217,6 +225,14 @@ public class MyAccountActivity extends AppCompatActivity {
             String time = jsonObject.get("Time").toString();
             String username = jsonObject.get("Username").toString();
             String password = jsonObject.get("Password").toString();
+            String name = jsonObject.get("Firstname").toString();
+            String lastname = jsonObject.getString("Lastname");
+            String function = jsonObject.get("Function").toString();
+            String number = jsonObject.getString("Number");
+            profiles.put(name);
+            profiles.put(lastname);
+            profiles.put(function);
+            profiles.put(number);
             profiles.put(age);
             profiles.put(lvl);
             profiles.put(time);
