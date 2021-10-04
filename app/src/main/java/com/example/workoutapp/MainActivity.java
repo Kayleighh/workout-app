@@ -7,9 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
+    private TrainingJSON trainingJSON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 next();
+                try {
+                    trainingJSON.readJSON();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
