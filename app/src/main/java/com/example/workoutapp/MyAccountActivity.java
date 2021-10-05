@@ -173,10 +173,10 @@ public class MyAccountActivity extends AppCompatActivity {
             String number = getProfilesFromJSON().get(3).toString();
             String username = getProfilesFromJSON().get(7).toString();
             String password = getProfilesFromJSON().get(8).toString();
-            jsonObject.put("Firstname",firstname);
-            jsonObject.put("Lastname",lastname);
-            jsonObject.put("Function",function);
-            jsonObject.put("Number",number);
+            jsonObject.put("Firstname", firstname);
+            jsonObject.put("Lastname", lastname);
+            jsonObject.put("Function", function);
+            jsonObject.put("Number", number);
             jsonObject.put("Username", username);
             jsonObject.put("Password", password);
             jsonObject.put("Age", age);

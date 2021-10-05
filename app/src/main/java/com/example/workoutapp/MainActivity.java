@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private Button register;
     private Button login;
@@ -46,19 +46,18 @@ public class MainActivity extends AppCompatActivity{
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               login();
+                login();
             }
         });
 
     }
 
-    public void next(){
+    public void next() {
         Intent intent = new Intent(this, feature_Validatie_Scherm.class);
         startActivity(intent);
     }
 
-    public void login()
-    {
+    public void login() {
         EditText username = findViewById(R.id.username);
         String uname = username.getText().toString();
 
@@ -70,15 +69,13 @@ public class MainActivity extends AppCompatActivity{
             String valPass = getProfilesFromJSON().get(8).toString();
             String valUser = getProfilesFromJSON().get(7).toString();
             System.out.println(getProfilesFromJSON());
-            if(uname.isEmpty() || password.isEmpty()){
-              System.out.println("Not filled in");
-            }
-            else{
-                if(uname.equals(valUser) && password.equals(valPass)){
+            if (uname.isEmpty() || password.isEmpty()) {
+                System.out.println("Not filled in");
+            } else {
+                if (uname.equals(valUser) && password.equals(valPass)) {
                     Intent intent = new Intent(this, WorkoutActivity.class);
                     startActivity(intent);
-                }
-                else{
+                } else {
                     System.out.println("Wrong username or password");
                 }
             }
@@ -88,6 +85,7 @@ public class MainActivity extends AppCompatActivity{
         }
 
     }
+
     public JSONArray getProfilesFromJSON() {
         JSONArray profiles = new JSONArray();
         String filename = "test.json";

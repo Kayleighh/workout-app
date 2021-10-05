@@ -37,26 +37,26 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void next(){
+    public void next() {
         EditText gebruikersnaam = findViewById(R.id.edtGebruikersnaam);
         EditText pass1 = findViewById(R.id.edtWachtwoord);
         EditText pass2 = findViewById(R.id.edtWachtwoordHerhaal);
         String gebruiknm = gebruikersnaam.getText().toString();
         String password1 = pass1.getText().toString();
         String password2 = pass2.getText().toString();
-        if(password2.equals(password1)){
-            addProfile(gebruiknm,password1);
+        if (password2.equals(password1)) {
+            addProfile(gebruiknm, password1);
             Intent intent = new Intent(this, MyAccountActivity.class);
             startActivity(intent);
-        }else{
+        } else {
             System.out.println("passwords dont match");
-            System.out.println(password1 +" " + password2);
+            System.out.println(password1 + " " + password2);
 
         }
 
     }
-    public JSONObject addProfile(String gebruikersnaam, String wachtwoord)
-    {
+
+    public JSONObject addProfile(String gebruikersnaam, String wachtwoord) {
         JSONObject jsonObject = new JSONObject();
 
         try {
@@ -65,15 +65,15 @@ public class RegisterActivity extends AppCompatActivity {
             String lastname = getProfilesFromJSON().get(1).toString();
             String function = getProfilesFromJSON().get(2).toString();
             String number = getProfilesFromJSON().get(3).toString();
-            jsonObject.put("Firstname",firstname);
-            jsonObject.put("Lastname",lastname);
-            jsonObject.put("Function",function);
-            jsonObject.put("Number",number);
+            jsonObject.put("Firstname", firstname);
+            jsonObject.put("Lastname", lastname);
+            jsonObject.put("Function", function);
+            jsonObject.put("Number", number);
             jsonObject.put("Username", gebruikersnaam);
             jsonObject.put("Password", wachtwoord);
-            jsonObject.put("Age",0);
-            jsonObject.put("Level","Beginner");
-            jsonObject.put("Time","09:00");
+            jsonObject.put("Age", 0);
+            jsonObject.put("Level", "Beginner");
+            jsonObject.put("Time", "09:00");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -85,12 +85,12 @@ public class RegisterActivity extends AppCompatActivity {
         return jsonObject;
 
     }
-    public boolean toJSON(String input)
-    {
+
+    public boolean toJSON(String input) {
         String filename = "test.json";
         Boolean check;
         try {
-            File file = new File(this.getFilesDir()+filename);
+            File file = new File(this.getFilesDir() + filename);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(input);
@@ -103,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
             return check;
         }
     }
+
     public JSONArray getProfilesFromJSON() {
         JSONArray profiles = new JSONArray();
         String filename = "test.json";
