@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_notification_option2);
 
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void next(){
-        Intent intent = new Intent(this, feature_Validatie_Scherm.class);
+        Intent intent = new Intent(this, NotificationO2.class);
         startActivity(intent);
     }
 }
