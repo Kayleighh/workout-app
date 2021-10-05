@@ -141,16 +141,29 @@ public class MyAccountActivity extends AppCompatActivity {
         int selectedId = group.getCheckedRadioButtonId();
         RadioButton radioButton = findViewById(selectedId);
         String level = radioButton.getText().toString();
-        Spinner mySpinner = findViewById(R.id.spnMonday);
-        String text = mySpinner.getSelectedItem().toString();
-
-        addProfile(age, level, text);
+        Spinner spinMonday = findViewById(R.id.spnMonday);
+        Spinner spinTuesday = findViewById(R.id.spnTuesday);
+        Spinner spinWednesday = findViewById(R.id.spnWednesday);
+        Spinner spinThursday = findViewById(R.id.spnThursday);
+        Spinner spinFriday = findViewById(R.id.spnFriday);
+        String monday = spinMonday.getSelectedItem().toString();
+        String tuesday = spinTuesday.getSelectedItem().toString();
+        String wednesday = spinWednesday.getSelectedItem().toString();
+        String thursday = spinThursday.getSelectedItem().toString();
+        String friday = spinFriday.getSelectedItem().toString();
+        ArrayList<String> spinners = new ArrayList<>();
+        spinners.add(monday);
+        spinners.add(tuesday);
+        spinners.add(wednesday);
+        spinners.add(thursday);
+        spinners.add(friday);
+        addProfile(age, level, spinners);
         Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
     }
 
 
-    public JSONObject addProfile(String age, String lvl, String time) {
+    public JSONObject addProfile(String age, String lvl, ArrayList time) {
         JSONObject jsonObject = new JSONObject();
         try {
             getProfilesFromJSON();
