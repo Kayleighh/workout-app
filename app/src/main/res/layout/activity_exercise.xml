@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F1"
-    tools:context=".Exercise1Activity">
+    tools:context=".ExerciseActivity">
 
     <VideoView
         android:id="@+id/videoView2"
@@ -96,7 +96,8 @@
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:layout_marginTop="280dp"
-        android:fontFamily="@font/montserrat"
+        android:backgroundTint="#2980B9"
+        android:fontFamily="@font/montserrat_bold"
         android:text="MOEITE MET DE OEFENING?"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/ratingBar"
@@ -109,8 +110,10 @@
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginTop="1dp"
-        android:fontFamily="@font/montserrat"
+        android:backgroundTint="#C4C4C4"
+        android:fontFamily="@font/montserrat_bold"
         android:text="STOP"
+        android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.006"
@@ -122,7 +125,8 @@
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginTop="1dp"
-        android:fontFamily="@font/montserrat"
+        android:backgroundTint="#2980B9"
+        android:fontFamily="@font/montserrat_bold"
         android:text="PAUZE"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/button2"
@@ -135,73 +139,70 @@
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:layout_marginTop="1dp"
-        android:fontFamily="@font/montserrat"
+        android:backgroundTint="#DF6037"
+        android:fontFamily="@font/montserrat_bold"
         android:text="DONE!"
+        android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/button4"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
-    <TextView
-        android:id="@+id/circle1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/ellipse_25"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ellipse_25"
         app:layout_constraintEnd_toEndOf="@+id/btnDone"
-        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="@+id/btnDone"
-        app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDone" />
 
-    <TextView
-        android:id="@+id/circle2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/ellipse_26"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ellipse_25"
         app:layout_constraintEnd_toEndOf="@+id/btnDone"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.323"
         app:layout_constraintStart_toStartOf="@+id/btnDone"
-        app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDone" />
 
-    <TextView
-        android:id="@+id/circle3"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/ellipse_27"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ellipse_25"
         app:layout_constraintEnd_toEndOf="@+id/btnDone"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/btnDone"
-        app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDone" />
 
-    <TextView
-        android:id="@+id/circle4"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/ellipse_28"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ellipse_25"
         app:layout_constraintEnd_toEndOf="@+id/btnDone"
-        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintHorizontal_bias="0.668"
         app:layout_constraintStart_toStartOf="@+id/btnDone"
-        app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDone" />
 
-    <TextView
-        android:id="@+id/circle5"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/ellipse_29"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/ellipse_25"
         app:layout_constraintEnd_toEndOf="@+id/btnDone"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toStartOf="@+id/btnDone"
-        app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.533" />
-
+        app:layout_constraintTop_toBottomOf="@+id/btnDone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
