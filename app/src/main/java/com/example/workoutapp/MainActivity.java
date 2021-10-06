@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -14,10 +15,18 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
-    private TrainingJSON trainingJSON;
+    private TrainingJSON trainingJSON = new TrainingJSON();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("HERE WE START");
+        try {
+            System.out.println("HERE WE END");
+           trainingJSON.getJSONObject(getApplicationContext());
+        }catch(IOException | JSONException e) {
+            System.out.println("NIZAAAAAAAAAAAAAAAR" );
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -26,13 +35,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 next();
-                try {
-                    trainingJSON.readJSON();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
             }
         });
     }
