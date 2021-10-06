@@ -5,12 +5,14 @@ import static java.security.AccessController.getContext;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -173,6 +175,7 @@ public class MyAccountActivity extends AppCompatActivity {
             String number = getProfilesFromJSON().get(3).toString();
             String username = getProfilesFromJSON().get(7).toString();
             String password = getProfilesFromJSON().get(8).toString();
+            String image = getProfilesFromJSON().get(9).toString();
             jsonObject.put("Firstname", firstname);
             jsonObject.put("Lastname", lastname);
             jsonObject.put("Function", function);
@@ -182,6 +185,7 @@ public class MyAccountActivity extends AppCompatActivity {
             jsonObject.put("Age", age);
             jsonObject.put("Level", lvl);
             jsonObject.put("Time", time);
+            jsonObject.put("Image", image);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -242,6 +246,7 @@ public class MyAccountActivity extends AppCompatActivity {
             String lastname = jsonObject.getString("Lastname");
             String function = jsonObject.get("Function").toString();
             String number = jsonObject.getString("Number");
+            String image = jsonObject.getString("Image");
             profiles.put(name);
             profiles.put(lastname);
             profiles.put(function);
@@ -251,8 +256,7 @@ public class MyAccountActivity extends AppCompatActivity {
             profiles.put(time);
             profiles.put(username);
             profiles.put(password);
-
-            System.out.println(age + " " + lvl + " " + time);
+            profiles.put(image);
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }

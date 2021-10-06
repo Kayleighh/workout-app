@@ -1,12 +1,15 @@
 package com.example.workoutapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,13 +24,18 @@ import java.io.IOException;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private static final int GALLERY_REQUEST_CODE = 123;
+    Uri imageData;
+    String image;
     Button button;
+ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+         imageView = findViewById(R.id.imgProfielFoto);
         button = findViewById(R.id.btnVolgende);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +43,28 @@ public class RegisterActivity extends AppCompatActivity {
                 next();
             }
         });
+
+        Button profilePic = findViewById(R.id.btnKiesFoto);
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Pick an image"), GALLERY_REQUEST_CODE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null){
+            imageData = data.getData();
+             image = imageData.toString();
+                imageView.setImageURI(imageData);
+
+        }
     }
 
     public void next() {
@@ -61,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         try {
             getProfilesFromJSON();
+            System.out.println("beep "+ image);
             String firstname = getProfilesFromJSON().get(0).toString();
             String lastname = getProfilesFromJSON().get(1).toString();
             String function = getProfilesFromJSON().get(2).toString();
@@ -74,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
             jsonObject.put("Age", 0);
             jsonObject.put("Level", "Beginner");
             jsonObject.put("Time", "09:00");
+            jsonObject.put("Image",image);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -134,6 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
             String lastname = jsonObject.getString("Lastname");
             String function = jsonObject.get("Function").toString();
             String number = jsonObject.getString("Number");
+            //String image = jsonObject.getString("Image");
             profiles.put(name);
             profiles.put(lastname);
             profiles.put(function);
@@ -143,6 +176,7 @@ public class RegisterActivity extends AppCompatActivity {
             profiles.put(time);
             profiles.put(username);
             profiles.put(password);
+            profiles.put(image);
 
             System.out.println(age + " " + lvl + " " + time);
         } catch (JSONException | IOException e) {
