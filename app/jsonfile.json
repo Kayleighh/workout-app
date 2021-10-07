@@ -1,0 +1,194 @@
+{
+  "workouts":
+  [
+      {
+      "Id": 1,
+      "exercises":
+        [
+            {
+            "exercise": "Pistol squat",
+            "exerciseDescription": "Belangrijk is om de squat uit te voeren totdat de knieën tot 90 graden zijn gebogen. Mooie rechte rug te behouden en langzaam te zakken",
+            "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+            
+            "repsDescription": "Keer",
+            "amountOfExercise":20,
+            "videoId": "pistolsquat1",
+            "sets": 3,
+            "amountOfReps":
+            {
+                    "amountOfRepsPerSet":
+                    [
+                    {
+                    "set1":20,
+                    "set2":30,
+                    "set3":40
+                    
+                }
+                ]
+            },
+            "amountOfRest": 5.0
+            },
+             {
+             "exercise": "Push up",
+             "exerciseDescription": "Belangrijk is om de push up uit te voeren totdat de borst op de grond komt. Mooie rechte rug te behouden en langzaam te zakken",
+            "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+            "repsDescription": "Keer",
+            "amountOfExercise":20,
+            "videoId": "Push up 1x",
+            "sets": 3,
+            "amountOfReps":
+            {
+                    "amountOfRepsPerSet":
+                    [
+                    {
+                    "set1":20,
+                    "set2":30,
+                    "set3":40
+                    
+                }
+                ]
+            },
+            "amountOfRest": 5.0
+            },
+            {
+                "exercise": "Squat",
+                "exerciseDescription": "Belangrijk is om de squat uit te voeren totdat de knieën tot 90 graden zijn gebogen. Mooie rechte rug te behouden en langzaam te zakken",
+                "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+                "repsDescription": "Keer",
+                "amountOfExercise":20,
+                "videoId": "pistolsquat1",
+                "sets": 3,
+                "amountOfReps":
+                {
+                        "amountOfRepsPerSet":
+                        [
+                        {
+                        "set1":20,
+                        "set2":30,
+                        "set3":40
+                        
+                    }
+                    ]
+                },
+                "amountOfRest":5.0
+            },
+            {
+                "exercise": "Squat",
+                "exerciseDescription": "Belangrijk is om de squat uit te voeren totdat de knieën tot 90 graden zijn gebogen. Mooie rechte rug te behouden en langzaam te zakken",
+                "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+                "repsDescription": "Keer",
+                "amountOfExercise":12,
+                "videoId": "Squat",
+                "sets": 3,
+                "amountOfReps":
+                {
+                        "amountOfRepsPerSet":
+                        [
+                        {
+                        "set1":20,
+                        "set2":30,
+                        "set3":40
+                        
+                    }
+                    ]
+                },
+                "amountOfRest": 5.0
+            }
+        ]
+    },
+{
+  "Id": 2,
+  "exercises":
+    [
+        {
+        "exercise": "Pistol squat",
+        "exerciseDescription": "Belangrijk is om de squat uit te voeren totdat de knieën tot 90 graden zijn gebogen. Mooie rechte rug te behouden en langzaam te zakken",
+        "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+        "repsDescription": "Keer",
+        "amountOfExercise":20,
+        "videoId": "pistolsquat1",
+        "sets": 3,
+        "amountOfReps":
+        {
+                "amountOfRepsPerSet":
+                [
+                {
+                "set1":20,
+                "set2":30,
+                "set3":40
+                
+            }
+            ]
+        },
+        "amountOfRest": 5.0
+        },
+         {
+         "exercise": "Push up",
+         "exerciseDescription": "Belangrijk is om de push up uit te voeren totdat de borst op de grond komt. Mooie rechte rug te behouden en langzaam te zakken",
+        "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+        "repsDescription": "Keer",
+        "amountOfExercise":20,
+        "videoId": "Push up 1x",
+        "sets": 3,
+        "amountOfReps":
+        {
+                "amountOfRepsPerSet":
+                [
+                {
+                "set1":20,
+                "set2":30,
+                "set3":40
+                
+            }
+            ]
+        },
+        "amountOfRest": 5.0
+        },
+        {
+            "exercise": "Squat",
+            "exerciseDescription": "Belangrijk is om de squat uit te voeren totdat de knieën tot 90 graden zijn gebogen. Mooie rechte rug te behouden en langzaam te zakken",
+            "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+            "repsDescription": "Keer",
+            "amountOfExercise":20,
+            "videoId": "pistolsquat1",
+            "sets": 3,
+            "amountOfReps":
+            {
+                    "amountOfRepsPerSet":
+                    [
+                    {
+                    "set1":20,
+                    "set2":30,
+                    "set3":40
+                    
+                }
+                ]
+            },
+            "amountOfRest":5.0
+        },
+        {
+            "exercise": "Squat",
+            "exerciseDescription": "Belangrijk is om de squat uit te voeren totdat de knieën tot 90 graden zijn gebogen. Mooie rechte rug te behouden en langzaam te zakken",
+            "exerciseTip": "Hoe langzamer je hem doet hoe zwaarder hij uiteindelijk wordt",
+            "repsDescription": "Keer",
+            "amountOfExercise":12,
+            "videoId": "Squat",
+            "sets": 3,
+            "amountOfReps":
+            {
+                    "amountOfRepsPerSet":
+                    [
+                    {
+                    "set1":20,
+                    "set2":30,
+                    "set3":40
+                    
+                }
+                ]
+            },
+            "amountOfRest": 5.0
+        }
+    ]
+}
+ ]
+}

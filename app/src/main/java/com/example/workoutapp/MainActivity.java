@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
+    private TrainingJSON trainingJSON = new TrainingJSON();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
