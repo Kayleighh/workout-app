@@ -6,14 +6,8 @@ import android.content.res.AssetManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 public class TrainingJSON {

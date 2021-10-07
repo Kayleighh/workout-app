@@ -120,9 +120,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
                     if (training.getExerciseName().equals("Push up"))
                     {
-                        System.out.println("if loop test");
                         String tip = training.getExerciseTip();
-                        System.out.println("tip " + tip);
                         exerciseTipTextView.clearComposingText();
                         exerciseTipTextView.setText(tip);
                         exerciseDescriptionTextView.clearComposingText();

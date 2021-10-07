@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import org.json.JSONException;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
