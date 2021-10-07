@@ -3,6 +3,8 @@ package com.example.workoutapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -29,6 +32,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private TrainingJSON trainingJSON = new TrainingJSON();
     private TextView exerciseTipTextView;
     private TextView exerciseDescriptionTextView;
+    private Button whatsapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,44 @@ public class ExerciseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        whatsapp = findViewById(R.id.button2);
+        int orientation = this.getResources().getConfiguration().orientation;
+        //If orientation is landscape, hide whatsapp button and ratingbar
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            whatsapp.setVisibility(View.INVISIBLE);
+            RatingBar rating = findViewById(R.id.ratingBar);
+            rating.setVisibility(View.INVISIBLE);
+
+            View circle1 = findViewById(R.id.ellipse_25);
+            circle1.setVisibility(View.INVISIBLE);
+            View circle2 = findViewById(R.id.ellipse_26);
+            circle2.setVisibility(View.INVISIBLE);
+            View circle3 = findViewById(R.id.ellipse_27);
+            circle3.setVisibility(View.INVISIBLE);
+            View circle4 = findViewById(R.id.ellipse_28);
+            circle4.setVisibility(View.INVISIBLE);
+            View circle5 = findViewById(R.id.ellipse_29);
+            circle5.setVisibility(View.INVISIBLE);
+
+        }
+
+        //OnClickListener voor whatsapp knop.
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Variabele met het whatsappnummer
+                String number = "+31620033805";
+                //URL van de whatsapp api. Deze handelt verder alles af.
+                String url = "https://api.whatsapp.com/send?phone="+number;
+                //Begin nieuw intent
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                //Stuur de url mee met de intent
+                i.setData(Uri.parse(url));
+                //Voer het uit
+                startActivity(i);
             }
         });
     }
