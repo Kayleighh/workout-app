@@ -110,7 +110,6 @@ public class MyAccountActivity extends AppCompatActivity {
 
 
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
