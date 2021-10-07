@@ -17,7 +17,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class TrainingJSON {
-    private Training training = new Training();
     private ArrayList<Training> trainings = new ArrayList<>();
     public String loadJSONFromAssets(Context context,String fileName)throws IOException
     {
@@ -36,7 +35,7 @@ public class TrainingJSON {
 
     }
 
-    private ArrayList<Training> getTraining()
+    public ArrayList<Training> getTraining()
     {
         return trainings;
     }
@@ -50,6 +49,7 @@ public class TrainingJSON {
             JSONArray jsonArray1 = obj.getJSONArray("exercises");
             for(int x = 0 ; x<jsonArray1.length();x++)
             {
+                Training training = new Training();
                 JSONObject object = jsonArray1.getJSONObject(x);
                 training.setExerciseName((String) object.get("exercise"));
                 training.setExerciseDescription((String) object.get("exerciseDescription"));
@@ -61,7 +61,8 @@ public class TrainingJSON {
                 JSONArray jsonArray2 = ((JSONObject)object.get("amountOfReps")).getJSONArray("amountOfRepsPerSet");
                 for(int y = 0 ;y<jsonArray2.length();y++)
                 {
-                    JSONObject jsonObject1 = (JSONObject) jsonArray2.getJSONObject(y);
+                    training.getAmountOfRepsPerSet().clear();
+                    JSONObject jsonObject1 = jsonArray2.getJSONObject(y);
                     training.addAmountsOfRepsPerSet((int)jsonObject1.get("set1"));
                     training.addAmountsOfRepsPerSet((int)jsonObject1.get("set2"));
                     training.addAmountsOfRepsPerSet((int)jsonObject1.get("set3"));
@@ -71,8 +72,9 @@ public class TrainingJSON {
                 training.setAmountOfRest((Double) object.get("amountOfRest"));
 
                 trainings.add(training);
-
+//
             }
+
         }
 
     }}

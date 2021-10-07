@@ -19,14 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("HERE WE START");
-        try {
-            System.out.println("HERE WE END");
-           trainingJSON.getJSONObject(getApplicationContext());
-        }catch(IOException | JSONException e) {
-            System.out.println("NIZAAAAAAAAAAAAAAAR" );
-            e.printStackTrace();
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

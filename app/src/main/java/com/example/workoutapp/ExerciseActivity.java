@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -22,6 +25,10 @@ public class ExerciseActivity extends AppCompatActivity {
     private Button btnDone;
     private VideoView videoView;
     private ArrayList<Integer> arrayListCircles = new ArrayList<>();
+    private TextView exerciseNameTextView;
+    private TrainingJSON trainingJSON = new TrainingJSON();
+    private TextView exerciseTipTextView;
+    private TextView exerciseDescriptionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +75,67 @@ public class ExerciseActivity extends AppCompatActivity {
             View ellipse = findViewById(circle);
             ellipse.setBackground(ContextCompat.getDrawable(this, R.drawable.ellipse));
             System.out.println("je bent nu in exercise " + (currentExerciseIndex + 1));
+
+            try {
+                trainingJSON.getJSONObject(getApplicationContext());
+            }catch(IOException | JSONException e) {
+                e.printStackTrace();
+            }
+            for(Training training : trainingJSON.getTraining())
+            {
+                System.out.println(trainingJSON.getTraining().size());
+                System.out.println(training.getExerciseName());
+            }
+
+            exerciseNameTextView= findViewById(R.id.textView3);
+            exerciseTipTextView=findViewById(R.id.textView2);
+            exerciseDescriptionTextView = findViewById(R.id.textView6);
+
+            if(currentExerciseIndex == 0 )
+            {
+                exerciseNameTextView.clearComposingText();
+                exerciseNameTextView.setText("Squat");
+
+                for (Training training :trainingJSON.getTraining())
+                {
+                    System.out.println(training.getExerciseName());
+                    if (training.getExerciseName().equals("Squat"))
+                    {
+                        String tip = training.getExerciseTip();
+                        exerciseTipTextView.clearComposingText();
+                        exerciseTipTextView.setText(tip);
+                        exerciseDescriptionTextView.clearComposingText();
+                        exerciseDescriptionTextView.setText(training.getExerciseDescription());
+                    }
+
+                }
+            }
+            if(currentExerciseIndex==1)
+            {
+                exerciseNameTextView.clearComposingText();
+                exerciseNameTextView.setText("Push up");
+
+                for (Training training :trainingJSON.getTraining())
+                {
+
+                    if (training.getExerciseName().equals("Push up"))
+                    {
+                        System.out.println("if loop test");
+                        String tip = training.getExerciseTip();
+                        System.out.println("tip " + tip);
+                        exerciseTipTextView.clearComposingText();
+                        exerciseTipTextView.setText(tip);
+                        exerciseDescriptionTextView.clearComposingText();
+                        exerciseDescriptionTextView.setText(training.getExerciseDescription());
+                    }
+            }
         }
-    }
+    }}
+
+
+
+
+
 
     public void addCirclesToList(){
         arrayListCircles.add(R.id.ellipse_25);

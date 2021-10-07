@@ -66,6 +66,7 @@ public class WorkoutActivity extends AppCompatActivity {
                     ExerciseIntent.putExtra("key1", videopath);
                     ExerciseIntent.putExtra("key2", currentExerciseIndex);
                     startActivity(ExerciseIntent);
+
                 }
             }
             catch (Exception e){
@@ -89,6 +90,8 @@ public class WorkoutActivity extends AppCompatActivity {
         checkMark = findViewById(R.id.check_mark_);
 
     }
+
+
 
     public void addVideosToList(){
         arrayListVideos.add(R.raw.squat);
