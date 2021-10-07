@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void next(){
-        Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, feature_Validatie_Scherm.class);
         startActivity(intent);
     }
 }

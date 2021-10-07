@@ -10,12 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
         <activity
-            android:name=".ExerciseActivity"
+            android:name=".MyAccountActivity"
+            android:exported="true" />
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".WorkoutStartActivity"
             android:exported="true" />
         <activity
             android:name=".WorkoutActivity"
             android:exported="true" />
-        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".feature_Validatie_Scherm"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
