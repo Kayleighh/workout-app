@@ -65,6 +65,10 @@ ImageView imageView;
                 imageView.setImageURI(imageData);
 
         }
+        else{
+            image = "android:resource://com.example.workoutapp/drawable/placeholder";
+            System.out.println("test");
+        }
     }
 
     public void next() {
@@ -92,6 +96,9 @@ ImageView imageView;
         try {
             getProfilesFromJSON();
             System.out.println("beep "+ image);
+            if(image == null){
+                image = "android:resource://com.example.workoutapp/drawable/placeholder";
+            }
             String firstname = getProfilesFromJSON().get(0).toString();
             String lastname = getProfilesFromJSON().get(1).toString();
             String function = getProfilesFromJSON().get(2).toString();

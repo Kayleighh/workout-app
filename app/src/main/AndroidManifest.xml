@@ -14,7 +14,7 @@
             android:exported="true" />
         <activity android:name=".RegisterActivity" />
         <activity
-            android:name=".WorkoutStartActivity"
+            android:name=".ExerciseActivity"
             android:exported="true" />
         <activity
             android:name=".WorkoutActivity"
