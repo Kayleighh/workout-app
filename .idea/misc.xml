@@ -3,20 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_my_account2.xml" value="0.378125" />
-        <entry key="..\:/Users/jverh/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_feature_validatie_scherm.xml" value="0.25" />
-        <entry key="..\:/Users/jverh/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/jverh/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_register.xml" value="0.33" />
-        <entry key="..\:/Users/jverh/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_workout.xml" value="0.33" />
-        <entry key="..\:/Users/jverh/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_workout_start.xml" value="0.38333333333333336" />
+        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_feature_validatie_scherm.xml" value="0.2" />
+        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_register.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/agenda_items_scrollview.xml" value="0.427734375" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_button.xml" value="0.427734375" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/orange_divider.xml" value="0.427734375" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/workout_animation_box.xml" value="0.427734375" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/workout_box.xml" value="0.427734375" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_exercise_2.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_main.xml" value="0.415625" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_register.xml" value="0.473731884057971" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_workout.xml" value="0.3666666666666667" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_workout_next.xml" value="0.3666666666666667" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_workout_start.xml" value="0.3666666666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
