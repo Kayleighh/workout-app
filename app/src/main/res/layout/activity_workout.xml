@@ -83,20 +83,28 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <Button
+    <View
         android:id="@+id/btnStartWorkout"
         android:layout_width="86dp"
         android:layout_height="39dp"
         android:layout_marginTop="13dp"
-        android:backgroundTint="#DF6037"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="START"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
+        android:background="@drawable/rectangle_5"
         app:layout_constraintEnd_toEndOf="@+id/holderWorkout"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/holderWorkout"
         app:layout_constraintTop_toBottomOf="@+id/holderWorkout" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START"
+        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/montserrat_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStartWorkout"
+        app:layout_constraintEnd_toEndOf="@+id/btnStartWorkout"
+        app:layout_constraintStart_toStartOf="@+id/btnStartWorkout"
+        app:layout_constraintTop_toTopOf="@+id/btnStartWorkout" />
 
     <View
         android:id="@+id/holderWorkout"

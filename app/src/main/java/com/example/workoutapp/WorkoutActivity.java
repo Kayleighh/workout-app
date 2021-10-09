@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class WorkoutActivity extends AppCompatActivity {
 
-    private Button btnStartWorkout;
+    private View btnStartWorkout;
     private View finishWorkout;
     private View checkMark;
     private int currentExerciseIndex = -2;
@@ -32,7 +32,7 @@ public class WorkoutActivity extends AppCompatActivity {
         findViews();
         shouldExecuteOnResume = false;
 
-        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
+//        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
         btnStartWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
