@@ -35,6 +35,7 @@ import java.util.ArrayList;
 public class MyAccountActivity extends AppCompatActivity {
 
     private EditText edtAge;
+    Button save;
 
     // een methode die voegt alle spinners (van mijn account scherm) aan een lijst toe
     // wordt gebruikt voor het fixen van de bug dat alleen de eerste spinner werkt.
@@ -125,23 +126,33 @@ public class MyAccountActivity extends AppCompatActivity {
         for (Spinner spinner : makeSpinnersList()) {
             makeSpinnerDropdownItem(spinner);
         }
-
+        save = findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                next();
+            }
+        });
     }
 
 
     // TODO: Werkt alleen op het moment dat de Button wordt ingedrukt (dus nog niet wanneer onClick uitgevoerd wordt);
 
-    public void onClick(View view) {
-        next();
-    }
+
 
     public void next() {
+        String level;
         EditText editAge = findViewById(R.id.edtAge);
         String age = editAge.getText().toString();
         RadioGroup group = findViewById(R.id.radioGroup);
         int selectedId = group.getCheckedRadioButtonId();
-        RadioButton radioButton = findViewById(selectedId);
-        String level = radioButton.getText().toString();
+        if(selectedId == -1){
+            level = "beginner";
+        }else{
+            RadioButton radioButton = findViewById(selectedId);
+            level = radioButton.getText().toString();
+        }
+
         Spinner spinMonday = findViewById(R.id.spnMonday);
         Spinner spinTuesday = findViewById(R.id.spnTuesday);
         Spinner spinWednesday = findViewById(R.id.spnWednesday);
@@ -152,12 +163,14 @@ public class MyAccountActivity extends AppCompatActivity {
         String wednesday = spinWednesday.getSelectedItem().toString();
         String thursday = spinThursday.getSelectedItem().toString();
         String friday = spinFriday.getSelectedItem().toString();
+
         ArrayList<String> spinners = new ArrayList<>();
         spinners.add(monday);
         spinners.add(tuesday);
         spinners.add(wednesday);
         spinners.add(thursday);
         spinners.add(friday);
+
         addProfile(age, level, spinners);
         Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);

@@ -295,4 +295,13 @@
         app:layout_constraintStart_toEndOf="@+id/txtFriday"
         app:layout_constraintTop_toBottomOf="@+id/selectedThrusday" />
 
+    <TextView
+        android:id="@+id/errorText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFriday" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
