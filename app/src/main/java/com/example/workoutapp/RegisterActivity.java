@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,13 +29,14 @@ public class RegisterActivity extends AppCompatActivity {
     Uri imageData;
     String image;
     Button button;
+    TextView error;
 ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        error = findViewById(R.id.errorText2);
          imageView = findViewById(R.id.imgProfielFoto);
         button = findViewById(R.id.btnVolgende);
         button.setOnClickListener(new View.OnClickListener() {
@@ -78,15 +80,24 @@ ImageView imageView;
         String gebruiknm = gebruikersnaam.getText().toString();
         String password1 = pass1.getText().toString();
         String password2 = pass2.getText().toString();
-        if (password2.equals(password1)) {
-            addProfile(gebruiknm, password1);
-            Intent intent = new Intent(this, MyAccountActivity.class);
-            startActivity(intent);
+        if (password1.equals(password2)) {
+            if(password1.isEmpty() || password2.isEmpty() || gebruiknm.isEmpty()){
+                error.setText("Vul a.u.b alle velden in.");
+            }
+
+            else{
+                System.out.println("test "+ gebruiknm);
+                addProfile(gebruiknm, password1);
+                Intent intent = new Intent(this, MyAccountActivity.class);
+                startActivity(intent);
+            }
+
         } else {
-            System.out.println("passwords dont match");
-            System.out.println(password1 + " " + password2);
+
+            error.setText("Wachtwoorden zijn niet gelijk");
 
         }
+
 
     }
 
@@ -95,7 +106,6 @@ ImageView imageView;
 
         try {
             getProfilesFromJSON();
-            System.out.println("beep "+ image);
             if(image == null){
                 image = "android:resource://com.example.workoutapp/drawable/placeholder";
             }

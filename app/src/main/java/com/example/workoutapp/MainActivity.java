@@ -17,6 +17,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Button register;
     private Button login;
+    TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        error = findViewById(R.id.errorText);
         Intent intent = new Intent(this, myAccount.class);
         register = findViewById(R.id.btnRegister);
         register.setOnClickListener(view -> next());
@@ -65,13 +68,14 @@ public class MainActivity extends AppCompatActivity {
             String valUser = getProfilesFromJSON().get(7).toString();
             System.out.println(getProfilesFromJSON());
             if (uname.isEmpty() || password.isEmpty()) {
-                System.out.println("Not filled in");
+                error.setText("Gebruikersnaam of wachtwoord is niet ingevuld.");
             } else {
                 if (uname.equals(valUser) && password.equals(valPass)) {
                     Intent intent = new Intent(this, WorkoutActivity.class);
                     startActivity(intent);
                 } else {
-                    System.out.println("Wrong username or password");
+
+                    error.setText("Gegevens kloppen niet. Probeer opnieuw.");
                 }
             }
 
