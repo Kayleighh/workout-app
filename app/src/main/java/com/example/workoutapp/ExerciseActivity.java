@@ -1,6 +1,7 @@
 package com.example.workoutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -11,7 +12,10 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView exerciseTipTextView;
     private TextView exerciseDescriptionTextView;
     private Button whatsapp;
+    Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +47,26 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
-        btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
+        btnDone.setOnClickListener(view -> {
+            extras = getIntent().getExtras();
+            if (extras != null) {
+
+                int currentExerciseIndex = extras.getInt("key2");
+                ArrayList<Integer> arrayListVideos = extras.getIntegerArrayList("key3");
+
+                if (currentExerciseIndex != arrayListVideos.size() - 1) {
+                    findViewById(R.id.ConstraintLayout2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.ConstraintLayout3).setVisibility(View.INVISIBLE);
+
+                    findViewById(R.id.ConstraintLayout4).setVisibility(View.VISIBLE);
+                    Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        finish();
+                    }, 3000);
+                }
+                else {
+                    finish();
+                }
             }
         });
 
@@ -71,46 +92,40 @@ public class ExerciseActivity extends AppCompatActivity {
         }
 
         //OnClickListener voor whatsapp knop.
-        whatsapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Variabele met het whatsappnummer
-                String number = "+31620033805";
-                //URL van de whatsapp api. Deze handelt verder alles af.
-                String url = "https://api.whatsapp.com/send?phone="+number;
-                //Begin nieuw intent
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                //Stuur de url mee met de intent
-                i.setData(Uri.parse(url));
-                //Voer het uit
-                startActivity(i);
-            }
+        whatsapp.setOnClickListener(view -> {
+            //Variabele met het whatsappnummer
+            String number = "+31620033805";
+            //URL van de whatsapp api. Deze handelt verder alles af.
+            String url = "https://api.whatsapp.com/send?phone="+number;
+            //Begin nieuw intent
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            //Stuur de url mee met de intent
+            i.setData(Uri.parse(url));
+            //Voer het uit
+            startActivity(i);
         });
     }
 
     public void setContent(){
-        Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key1");
 
             Uri uri = Uri.parse(value);
             videoView.setVideoURI(uri);
-            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
+            videoView.setOnPreparedListener(mediaPlayer -> {
+                mediaPlayer.start();
 
-                    new CountDownTimer(10000, 1000) {
-                        @Override
-                        public void onTick(long l) {
-                            mediaPlayer.setLooping(true);
-                        }
+                new CountDownTimer(10000, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        mediaPlayer.setLooping(true);
+                    }
 
-                        public void onFinish() {
-                            mediaPlayer.stop();
-                        }
-                    };
-                }
+                    public void onFinish() {
+                        mediaPlayer.stop();
+                    }
+                };
             });
             int currentExerciseIndex = extras.getInt("key2");
             int circle = arrayListCircles.get(currentExerciseIndex);
@@ -171,11 +186,6 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         }
     }}
-
-
-
-
-
 
     public void addCirclesToList(){
         arrayListCircles.add(R.id.ellipse_25);

@@ -21,7 +21,6 @@ public class WorkoutActivity extends AppCompatActivity {
     private int currentExerciseIndex = -2;
     private ArrayList<Integer> arrayListVideos = new ArrayList<>();
     private boolean shouldExecuteOnResume;
-    private GradientDrawable sd;
 
 
     @Override
@@ -65,6 +64,7 @@ public class WorkoutActivity extends AppCompatActivity {
                     Intent ExerciseIntent = new Intent(this, ExerciseActivity.class);
                     ExerciseIntent.putExtra("key1", videopath);
                     ExerciseIntent.putExtra("key2", currentExerciseIndex);
+                    ExerciseIntent.putExtra("key3", arrayListVideos);
                     startActivity(ExerciseIntent);
 
                 }

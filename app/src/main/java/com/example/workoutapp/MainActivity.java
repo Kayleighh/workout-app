@@ -36,12 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, myAccount.class);
         register = findViewById(R.id.btnRegister);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                next();
-            }
-        });
+        register.setOnClickListener(view -> next());
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
