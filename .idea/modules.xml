@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Workout_app.iml" filepath="$PROJECT_DIR$/.idea/modules/Workout_app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Workout_app.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Workout_app.app.iml" />
     </modules>
   </component>
