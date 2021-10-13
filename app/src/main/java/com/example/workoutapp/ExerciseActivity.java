@@ -9,12 +9,10 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -24,8 +22,6 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -43,7 +39,8 @@ public class ExerciseActivity extends AppCompatActivity {
     private View rectangleCloseRest;
     private TextView textRest;
     private long timeLeftInMillis = 10000;
-
+    private ImageView btnPlay;
+    boolean btnDoneIsClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +50,8 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
-        btnDone.setOnClickListener(this::onClick);
+        btnDone.setOnClickListener(this::toNextExercise);
+        btnPlay.setOnClickListener(this::startVideo);
 
         whatsapp = findViewById(R.id.button2);
         int orientation = this.getResources().getConfiguration().orientation;
@@ -91,7 +89,9 @@ public class ExerciseActivity extends AppCompatActivity {
         });
     }
 
-    private void onClick(View view) {
+    private void toNextExercise(View view) {
+        btnDoneIsClicked = true;
+
         extras = getIntent().getExtras();
         if (extras != null) {
 
@@ -127,25 +127,6 @@ public class ExerciseActivity extends AppCompatActivity {
     private void setContent(){
         extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("key1");
-
-            Uri uri = Uri.parse(value);
-            videoView.setVideoURI(uri);
-            videoView.setOnPreparedListener(mediaPlayer -> {
-                mediaPlayer.start();
-
-                new CountDownTimer(10000, 1000) {
-                    @Override
-                    public void onTick(long l) {
-                        mediaPlayer.setLooping(true);
-                    }
-
-                    public void onFinish() {
-                        mediaPlayer.stop();
-                    }
-                };
-            });
-
             int currentExerciseIndex = extras.getInt("key2");
             int circle = arrayListCircles.get(currentExerciseIndex);
             View ellipse = findViewById(circle);
@@ -219,6 +200,7 @@ public class ExerciseActivity extends AppCompatActivity {
         pb = findViewById(R.id.progressBar);
         rectangleCloseRest = findViewById(R.id.closeRest);
         textRest = findViewById(R.id.textRest);
+        btnPlay = findViewById(R.id.btnPlay);
     }
 
     public void updateTextRest(int progress){
@@ -233,6 +215,54 @@ public class ExerciseActivity extends AppCompatActivity {
         }
 
         textRest.setText(timeLeftText);
+    }
+
+    private void startVideo(View view) {
+        extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("key1");
+
+            Uri uri = Uri.parse(value);
+            videoView.setVideoURI(uri);
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                    mediaPlayer.setLooping(true);
+                    btnPlay.setVisibility(View.INVISIBLE);
+
+                    new CountDownTimer(10000, 1000){
+
+                        @Override
+                        public void onTick(long l) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mediaPlayer.stop();
+                            btnPlay.setVisibility(View.VISIBLE);
+                        }
+                    }.start();
+                }
+            });
+
+//            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                @Override
+//                public void onPrepared(MediaPlayer mediaPlayer) {
+//                    mediaPlayer.start();
+//                    mediaPlayer.setLooping(true);
+//                    btnPlay.setVisibility(View.INVISIBLE);
+//
+//                    Runnable r = () -> {
+//                        mediaPlayer.stop();
+//                        btnPlay.setVisibility(View.VISIBLE);
+//                    };
+//
+//                    Handler handler = new Handler();
+//                    handler.postDelayed(r, 3000);
+
+        }
     }
 }
 
