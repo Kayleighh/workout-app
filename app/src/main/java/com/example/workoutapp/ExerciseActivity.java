@@ -1,5 +1,7 @@
 package com.example.workoutapp;
 
+import static java.lang.Boolean.getBoolean;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -52,6 +54,13 @@ public class ExerciseActivity extends AppCompatActivity {
 
         btnDone.setOnClickListener(this::toNextExercise);
         btnPlay.setOnClickListener(this::startVideo);
+        findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WorkoutActivity.getInstance().finish();
+                finish();
+            }
+        });
 
         whatsapp = findViewById(R.id.button2);
         int orientation = this.getResources().getConfiguration().orientation;
@@ -103,7 +112,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 findViewById(R.id.ConstraintLayout3).setVisibility(View.INVISIBLE);
 
                 findViewById(R.id.ConstraintLayout4).setVisibility(View.VISIBLE);
-                CountDownTimer countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+                new CountDownTimer(timeLeftInMillis, 1000) {
                     @Override
                     public void onTick(long l) {
                         currentProgress = currentProgress + 10;
@@ -246,22 +255,6 @@ public class ExerciseActivity extends AppCompatActivity {
                     }.start();
                 }
             });
-
-//            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//                @Override
-//                public void onPrepared(MediaPlayer mediaPlayer) {
-//                    mediaPlayer.start();
-//                    mediaPlayer.setLooping(true);
-//                    btnPlay.setVisibility(View.INVISIBLE);
-//
-//                    Runnable r = () -> {
-//                        mediaPlayer.stop();
-//                        btnPlay.setVisibility(View.VISIBLE);
-//                    };
-//
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(r, 3000);
-
         }
     }
 }
