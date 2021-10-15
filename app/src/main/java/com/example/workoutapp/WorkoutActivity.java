@@ -21,6 +21,7 @@ public class WorkoutActivity extends AppCompatActivity {
     private int currentExerciseIndex = -2;
     private ArrayList<Integer> arrayListVideos = new ArrayList<>();
     private boolean shouldExecuteOnResume;
+    static WorkoutActivity activityA;
 
 
     @Override
@@ -30,6 +31,7 @@ public class WorkoutActivity extends AppCompatActivity {
         addVideosToList();
         findViews();
         shouldExecuteOnResume = false;
+        activityA = this;
 
 //        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
         btnStartWorkout.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +48,10 @@ public class WorkoutActivity extends AppCompatActivity {
                 finishWorkout();
             }
         });
+    }
+
+    public static WorkoutActivity getInstance(){
+        return activityA;
     }
 
     @Override
@@ -65,6 +71,7 @@ public class WorkoutActivity extends AppCompatActivity {
                     ExerciseIntent.putExtra("key1", videopath);
                     ExerciseIntent.putExtra("key2", currentExerciseIndex);
                     ExerciseIntent.putExtra("key3", arrayListVideos);
+                    ExerciseIntent.putExtra("key4", shouldExecuteOnResume);
                     startActivity(ExerciseIntent);
 
                 }
