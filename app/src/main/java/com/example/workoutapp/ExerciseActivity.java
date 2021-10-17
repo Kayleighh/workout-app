@@ -42,6 +42,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView textRest;
     private long timeLeftInMillis = 10000;
     private ImageView btnPlay;
+    private ImageView btnPlay2;
     boolean btnDoneIsClicked = false;
 
     @Override
@@ -52,6 +53,9 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
+
+        btnPlay2 = findViewById(R.id.btnPlay2);
+        btnPlay2.setVisibility(View.INVISIBLE);
         btnDone.setOnClickListener(this::toNextExercise);
         btnPlay.setOnClickListener(this::startVideo);
         findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
@@ -244,7 +248,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
                         @Override
                         public void onTick(long l) {
-
+                            pauseVideo(mediaPlayer);
                         }
 
                         @Override
@@ -256,6 +260,24 @@ public class ExerciseActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void pauseVideo(MediaPlayer mediaPlayer)
+    {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            mediaPlayer.pause();
+            int length = mediaPlayer.getCurrentPosition();
+            System.out.println(length);
+            btnPlay2.setVisibility(View.VISIBLE);
+            btnPlay2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mediaPlayer.seekTo(length);
+                    mediaPlayer.start();
+                }
+            });
+        }
+    });
     }
 }
 
