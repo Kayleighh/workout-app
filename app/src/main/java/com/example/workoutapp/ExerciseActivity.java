@@ -243,12 +243,13 @@ public class ExerciseActivity extends AppCompatActivity {
                     mediaPlayer.start();
                     mediaPlayer.setLooping(true);
                     btnPlay.setVisibility(View.INVISIBLE);
+                    pauseVideo(mediaPlayer);
 
                     new CountDownTimer(10000, 1000){
 
                         @Override
                         public void onTick(long l) {
-                            pauseVideo(mediaPlayer);
+
                         }
 
                         @Override
@@ -265,17 +266,25 @@ public class ExerciseActivity extends AppCompatActivity {
     {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            mediaPlayer.pause();
-            int length = mediaPlayer.getCurrentPosition();
-            System.out.println(length);
-            btnPlay2.setVisibility(View.VISIBLE);
-            btnPlay2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mediaPlayer.seekTo(length);
-                    mediaPlayer.start();
+            if(mediaPlayer.isPlaying())
+            {
+                mediaPlayer.pause();
+                int length = mediaPlayer.getCurrentPosition();
+                System.out.println(length);
+                btnPlay2.setVisibility(View.VISIBLE);
+                btnPlay2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mediaPlayer.seekTo(length+100);
+                        mediaPlayer.start();
+                        btnPlay2.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+            else
+                {
+
                 }
-            });
         }
     });
     }
