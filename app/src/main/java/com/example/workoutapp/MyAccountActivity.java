@@ -180,24 +180,32 @@ public class MyAccountActivity extends AppCompatActivity {
     public JSONObject addProfile(String age, String lvl, ArrayList time) {
         JSONObject jsonObject = new JSONObject();
         try {
-            getProfilesFromJSON();
-            String firstname = getProfilesFromJSON().get(0).toString();
-            String lastname = getProfilesFromJSON().get(1).toString();
-            String function = getProfilesFromJSON().get(2).toString();
-            String number = getProfilesFromJSON().get(3).toString();
-            String username = getProfilesFromJSON().get(7).toString();
-            String password = getProfilesFromJSON().get(8).toString();
-            String image = getProfilesFromJSON().get(9).toString();
-            jsonObject.put("Firstname", firstname);
-            jsonObject.put("Lastname", lastname);
-            jsonObject.put("Function", function);
-            jsonObject.put("Number", number);
-            jsonObject.put("Username", username);
-            jsonObject.put("Password", password);
-            jsonObject.put("Age", age);
-            jsonObject.put("Level", lvl);
-            jsonObject.put("Time", time);
-            jsonObject.put("Image", image);
+
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                String firstname = extras.getString("Firstname");
+                String lastname = extras.getString("Lastname");
+                String function = extras.getString("Function");
+                String number = extras.getString("Number");
+                String username = extras.getString("Username");
+                String password = extras.getString("Password");
+                String image = extras.getString("Image");
+
+                jsonObject.put("Firstname", firstname);
+                jsonObject.put("Lastname", lastname);
+                jsonObject.put("Function", function);
+                jsonObject.put("Number", number);
+                jsonObject.put("Username", username);
+                jsonObject.put("Password", password);
+                jsonObject.put("Age", age);
+                jsonObject.put("Level", lvl);
+                jsonObject.put("Time", time);
+                jsonObject.put("Image", image);
+                jsonObject.put("HR","true");
+                jsonObject.put("Oefening","true");
+                jsonObject.put("Stappen","true");
+                jsonObject.put("Reminder","true");
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -226,52 +234,5 @@ public class MyAccountActivity extends AppCompatActivity {
             check = false;
             return check;
         }
-    }
-
-    public JSONArray getProfilesFromJSON() {
-        JSONArray profiles = new JSONArray();
-        String filename = "test.json";
-        File file = new File(this.getFilesDir() + filename);
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = bufferedReader.readLine();
-            while (line != null) {
-                stringBuilder.append(line).append("\n");
-                line = bufferedReader.readLine();
-            }
-            bufferedReader.close();
-            String response = stringBuilder.toString();
-            JSONObject jsonObject = null;
-
-
-            jsonObject = new JSONObject(response);
-
-            String age = jsonObject.get("Age").toString();
-            String lvl = jsonObject.get("Level").toString();
-            String time = jsonObject.get("Time").toString();
-            String username = jsonObject.get("Username").toString();
-            String password = jsonObject.get("Password").toString();
-            String name = jsonObject.get("Firstname").toString();
-            String lastname = jsonObject.getString("Lastname");
-            String function = jsonObject.get("Function").toString();
-            String number = jsonObject.getString("Number");
-            String image = jsonObject.getString("Image");
-            profiles.put(name);
-            profiles.put(lastname);
-            profiles.put(function);
-            profiles.put(number);
-            profiles.put(age);
-            profiles.put(lvl);
-            profiles.put(time);
-            profiles.put(username);
-            profiles.put(password);
-            profiles.put(image);
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-        }
-        return profiles;
     }
 }

@@ -46,8 +46,21 @@ public class WorkoutActivity extends AppCompatActivity {
                 finishWorkout();
             }
         });
+
+        Button settings = findViewById(R.id.settingsBtn);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                next();
+            }
+        });
     }
 
+    public void next()
+    {
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+    }
     @Override
     protected void onResume() {
         currentExerciseIndex++;
