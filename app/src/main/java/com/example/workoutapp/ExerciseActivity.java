@@ -266,48 +266,36 @@ public class ExerciseActivity extends AppCompatActivity {
     {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(mediaPlayer.isPlaying())
+            int i = 0;
+            while (i==0)
             {
-                mediaPlayer.pause();
-                int length = mediaPlayer.getCurrentPosition();
-                System.out.println(length);
-                btnPlay2.setVisibility(View.VISIBLE);
-                btnPlay2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mediaPlayer.seekTo(length+100);
-                        mediaPlayer.start();
-                        btnPlay2.setVisibility(View.INVISIBLE);
-                    }
-                });
-            }
-            else
+                if(mediaPlayer.isPlaying())
                 {
+                    mediaPlayer.pause();
+                    int length = mediaPlayer.getCurrentPosition();
+                    System.out.println(length);
+                    btnPlay.setVisibility(View.VISIBLE);
+                    if(length!=0)
+                    {
+                        btnPlay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mediaPlayer.seekTo(length +400);
+                                mediaPlayer.start();
+                                btnPlay.setVisibility(View.INVISIBLE);
 
+                            }
+                        });
+                    }
+                    else{}
                 }
+                else
+                {
+                    btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
+                    i=1;
+                }
+            }
         }
     });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
