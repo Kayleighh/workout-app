@@ -42,6 +42,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView textRest;
     private long timeLeftInMillis = 10000;
     private ImageView btnPlay;
+    private ImageView btnPlay2;
     boolean btnDoneIsClicked = false;
 
     @Override
@@ -52,6 +53,9 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
+
+        btnPlay2 = findViewById(R.id.btnPlay2);
+        btnPlay2.setVisibility(View.INVISIBLE);
         btnDone.setOnClickListener(this::toNextExercise);
         btnPlay.setOnClickListener(this::startVideo);
         findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
@@ -239,6 +243,7 @@ public class ExerciseActivity extends AppCompatActivity {
                     mediaPlayer.start();
                     mediaPlayer.setLooping(true);
                     btnPlay.setVisibility(View.INVISIBLE);
+                    pauseVideo(mediaPlayer);
 
                     new CountDownTimer(10000, 1000){
 
@@ -257,26 +262,40 @@ public class ExerciseActivity extends AppCompatActivity {
             });
         }
     }
+    private void pauseVideo(MediaPlayer mediaPlayer)
+    {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int i = 0;
+            while (i==0)
+            {
+                if(mediaPlayer.isPlaying())
+                {
+                    mediaPlayer.pause();
+                    int length = mediaPlayer.getCurrentPosition();
+                    System.out.println(length);
+                    btnPlay.setVisibility(View.VISIBLE);
+                    if(length!=0)
+                    {
+                        btnPlay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mediaPlayer.seekTo(length +400);
+                                mediaPlayer.start();
+                                btnPlay.setVisibility(View.INVISIBLE);
+
+                            }
+                        });
+                    }
+                    else{}
+                }
+                else
+                {
+                    btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
+                    i=1;
+                }
+            }
+        }
+    });
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
