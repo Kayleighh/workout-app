@@ -266,36 +266,55 @@ public class ExerciseActivity extends AppCompatActivity {
     {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            int i = 0;
-            while (i==0)
+            if(mediaPlayer.isPlaying())
             {
-                if(mediaPlayer.isPlaying())
-                {
-                    mediaPlayer.pause();
-                    int length = mediaPlayer.getCurrentPosition();
-                    System.out.println(length);
-                    btnPlay.setVisibility(View.VISIBLE);
-                    if(length!=0)
-                    {
-                        btnPlay.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                mediaPlayer.seekTo(length +400);
-                                mediaPlayer.start();
-                                btnPlay.setVisibility(View.INVISIBLE);
-
-                            }
-                        });
+                mediaPlayer.pause();
+                int length = mediaPlayer.getCurrentPosition();
+                btnPlay2.setVisibility(View.VISIBLE);
+                btnPlay2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mediaPlayer.seekTo(length);
+                        mediaPlayer.start();
+                        btnPlay2.setVisibility(View.INVISIBLE);
                     }
-                    else{}
-                }
-                else
-                {
-                    btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
-                    i=1;
-                }
+                });
             }
-        }
-    });
+
+//            int i = 0;
+//            while (i==0)
+//            {
+//                //setOnCompletionListener
+//                if(mediaPlayer.isPlaying())
+//                {
+//                    mediaPlayer.pause();
+//                    int length = mediaPlayer.getCurrentPosition();
+//                    System.out.println(length);
+//                    btnPlay.setVisibility(View.VISIBLE);
+//                    if(length!=0)
+//                    {
+//                        btnPlay.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                mediaPlayer.seekTo(length +400);
+//                                mediaPlayer.start();
+//                                btnPlay.setVisibility(View.INVISIBLE);
+//
+//                            }
+//                        });
+//                    }
+//                    else{}
+//                    break;
+//                }
+//                else
+//                {
+//                    btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
+//                    i=1;
+//                }
+//            }
+//        }
+//    });
+//    }
+        }});
     }
 }
