@@ -35,9 +35,9 @@ public class RankingsActivity extends AppCompatActivity {
         }
     }
 
-    public void onWorkoutFinishedButtonClicked(View view) {
-        if (finishWorkout.setEnabled(true)) {
-
-        }
-    }
+//    public void onWorkoutFinishedButtonClicked(View view) {
+//        if (finishWorkout.setEnabled(true)) {
+//
+//        }
+//    }
 }
