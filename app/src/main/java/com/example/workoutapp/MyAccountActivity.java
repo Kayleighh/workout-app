@@ -18,8 +18,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +31,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MyAccountActivity extends AppCompatActivity {
 
@@ -167,60 +164,114 @@ public class MyAccountActivity extends AppCompatActivity {
         String thursday = spinThursday.getSelectedItem().toString();
         String friday = spinFriday.getSelectedItem().toString();
 
-        HashMap<String,String> time = new HashMap<>();
-        time.put("Monday",monday);
-        time.put("Tuesday",tuesday);
-        time.put("Wednesday",wednesday);
-        time.put("Thursday",thursday);
-        time.put("Friday",friday);
-        addProfile(age, level, time);
+        ArrayList<String> spinners = new ArrayList<>();
+        spinners.add(monday);
+        spinners.add(tuesday);
+        spinners.add(wednesday);
+        spinners.add(thursday);
+        spinners.add(friday);
+
+        addProfile(age, level, spinners);
         Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
     }
 
 
-    public void addProfile(String age, String lvl, HashMap time) {
-        HashMap<String, String> notifications = new HashMap<String, String>();
-        notifications.put("HR","true");
-        notifications.put("Nieuwe oefening","true");
-        notifications.put("Behaalde stappen","true");
-        notifications.put("Reminder","true");
+    public JSONObject addProfile(String age, String lvl, ArrayList time) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            getProfilesFromJSON();
+            String firstname = getProfilesFromJSON().get(0).toString();
+            String lastname = getProfilesFromJSON().get(1).toString();
+            String function = getProfilesFromJSON().get(2).toString();
+            String number = getProfilesFromJSON().get(3).toString();
+            String username = getProfilesFromJSON().get(7).toString();
+            String password = getProfilesFromJSON().get(8).toString();
+            String image = getProfilesFromJSON().get(9).toString();
+            jsonObject.put("Firstname", firstname);
+            jsonObject.put("Lastname", lastname);
+            jsonObject.put("Function", function);
+            jsonObject.put("Number", number);
+            jsonObject.put("Username", username);
+            jsonObject.put("Password", password);
+            jsonObject.put("Age", age);
+            jsonObject.put("Level", lvl);
+            jsonObject.put("Time", time);
+            jsonObject.put("Image", image);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            String firstname = extras.getString("Firstname");
-            String lastname = extras.getString("Lastname");
-            String function = extras.getString("Function");
-            String number = extras.getString("Number");
-            String username = extras.getString("Username");
-            String password = extras.getString("Password");
-            String image = extras.getString("Image");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        String input = jsonObject.toString();
+        toJSON(input);
 
-            Profile profile = new Profile();
-            profile.setFirstname(firstname);
-            profile.setLastname(lastname);
-            profile.setDepartment(function);
-            profile.setNumber(number);
-            profile.setUsername(username);
-            profile.setPassword(password);
-            profile.setAge(age);
-            profile.setLevel(lvl);
-            profile.setTimes(time);
-            profile.setNotifications(notifications);
-            profile.setImage(image);
-            System.out.println("image " + profile.getImage());
-            Gson gson = new Gson();
-            String filename = "test.json";
-            try {
-                FileWriter writer = new FileWriter(this.getFilesDir() + filename);
-                gson.toJson(profile,writer);
-                writer.flush(); //flush data to file   <---
-                writer.close(); //close write
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
+        return jsonObject;
+
+    }
+
+    public boolean toJSON(String input) {
+        String filename = "test.json";
+        Boolean check;
+        try {
+            File file = new File(this.getFilesDir() + filename);
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(input);
+            bufferedWriter.close();
+            check = true;
+            return check;
+        } catch (IOException e) {
+            e.printStackTrace();
+            check = false;
+            return check;
         }
     }
 
+    public JSONArray getProfilesFromJSON() {
+        JSONArray profiles = new JSONArray();
+        String filename = "test.json";
+        File file = new File(this.getFilesDir() + filename);
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                stringBuilder.append(line).append("\n");
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            String response = stringBuilder.toString();
+            JSONObject jsonObject = null;
+
+
+            jsonObject = new JSONObject(response);
+
+            String age = jsonObject.get("Age").toString();
+            String lvl = jsonObject.get("Level").toString();
+            String time = jsonObject.get("Time").toString();
+            String username = jsonObject.get("Username").toString();
+            String password = jsonObject.get("Password").toString();
+            String name = jsonObject.get("Firstname").toString();
+            String lastname = jsonObject.getString("Lastname");
+            String function = jsonObject.get("Function").toString();
+            String number = jsonObject.getString("Number");
+            String image = jsonObject.getString("Image");
+            profiles.put(name);
+            profiles.put(lastname);
+            profiles.put(function);
+            profiles.put(number);
+            profiles.put(age);
+            profiles.put(lvl);
+            profiles.put(time);
+            profiles.put(username);
+            profiles.put(password);
+            profiles.put(image);
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+        return profiles;
+    }
 }

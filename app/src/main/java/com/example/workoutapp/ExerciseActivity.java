@@ -267,8 +267,7 @@ public class ExerciseActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             int i = 0;
-            while (i==0)
-            {
+                    while(i==0){
                 if(mediaPlayer.isPlaying())
                 {
                     mediaPlayer.pause();
@@ -280,22 +279,24 @@ public class ExerciseActivity extends AppCompatActivity {
                         btnPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                mediaPlayer.seekTo(length +400);
+                                mediaPlayer.seekTo(length+400);
                                 mediaPlayer.start();
                                 btnPlay.setVisibility(View.INVISIBLE);
+
 
                             }
                         });
                     }
                     else{}
+                    break;
                 }
                 else
                 {
                     btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
-                    i=1;
+                    i = i +1;
                 }
-            }
-        }
+            }}
+
     });
     }
 }
