@@ -31,6 +31,14 @@ public class WorkoutActivity extends AppCompatActivity {
         findViews();
         shouldExecuteOnResume = false;
 
+        Button toRankingScreen = findViewById(R.id.button5);
+        toRankingScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toRankingsActivity();
+            }
+        });
+
 //        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
         btnStartWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +54,11 @@ public class WorkoutActivity extends AppCompatActivity {
                 finishWorkout();
             }
         });
+    }
+
+    private void toRankingsActivity() {
+        Intent intent = new Intent(this, RankingsActivity.class);
+        startActivity(intent);
     }
 
     @Override
