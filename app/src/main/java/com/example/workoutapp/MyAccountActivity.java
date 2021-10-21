@@ -36,6 +36,7 @@ public class MyAccountActivity extends AppCompatActivity {
 
     private EditText edtAge;
     Button save;
+    ArrayList<String> times = new ArrayList<>();
 
     // een methode die voegt alle spinners (van mijn account scherm) aan een lijst toe
     // wordt gebruikt voor het fixen van de bug dat alleen de eerste spinner werkt.
@@ -130,6 +131,10 @@ public class MyAccountActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                for(Spinner s : makeSpinnersList())
+                {
+                    times.add(String.valueOf(s.getSelectedItem()));
+                }
                 next();
             }
         });
@@ -179,7 +184,16 @@ public class MyAccountActivity extends AppCompatActivity {
 
     public JSONObject addProfile(String age, String lvl, ArrayList time) {
         JSONObject jsonObject = new JSONObject();
+//        JSONArray jsonArrayTime = new JSONArray();
         try {
+//            for(String time1 : times)
+//            {
+//                time.add(time1);
+//            }
+//            for(Object time2 : time)
+//            {
+//                jsonArrayTime.put(time.indexOf(time2));
+//            }
             getProfilesFromJSON();
             String firstname = getProfilesFromJSON().get(0).toString();
             String lastname = getProfilesFromJSON().get(1).toString();

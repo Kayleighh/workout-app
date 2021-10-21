@@ -25,6 +25,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                login();
+            public void onClick(View view) { login();
             }
         });
 
