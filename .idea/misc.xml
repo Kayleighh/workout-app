@@ -14,10 +14,10 @@
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_6_grey.xml" value="0.5703125" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_close_grey.xml" value="0.5703125" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_rest.xml" value="0.5703125" />
-        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_exercise.xml" value="0.22333333333333336" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_exercise.xml" value="0.4166666666666667" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_workout.xml" value="0.5541666666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

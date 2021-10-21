@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.VideoView;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -42,7 +44,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView textRest;
     private long timeLeftInMillis = 10000;
     private ImageView btnPlay;
-    boolean btnDoneIsClicked = false;
+    ImageView thumbnail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,18 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
+        extras = getIntent().getExtras();
+        thumbnail.setVisibility(View.VISIBLE);
+
+        if (extras != null) {
+            int value = extras.getInt("key5");
+            thumbnail.setBackground(ContextCompat.getDrawable(this, value));
+        }
+
+
         btnDone.setOnClickListener(this::toNextExercise);
         btnPlay.setOnClickListener(this::startVideo);
+
         findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +111,6 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
     private void toNextExercise(View view) {
-        btnDoneIsClicked = true;
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -136,6 +147,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private void setContent(){
         extras = getIntent().getExtras();
         if (extras != null) {
+
             int currentExerciseIndex = extras.getInt("key2");
             int circle = arrayListCircles.get(currentExerciseIndex);
             View ellipse = findViewById(circle);
@@ -205,9 +217,10 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private void findViews(){
         videoView  = findViewById(R.id.videoView2);
+        thumbnail = findViewById(R.id.imageView);
         btnDone = findViewById(R.id.btnDone);
         pb = findViewById(R.id.progressBar);
-        rectangleCloseRest = findViewById(R.id.closeRest);
+        rectangleCloseRest = findViewById(R.id.rectangle_close_grey);
         textRest = findViewById(R.id.textRest);
         btnPlay = findViewById(R.id.btnPlay);
     }
@@ -227,6 +240,8 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
     private void startVideo(View view) {
+        thumbnail.setVisibility(View.INVISIBLE);
+
         extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key1");

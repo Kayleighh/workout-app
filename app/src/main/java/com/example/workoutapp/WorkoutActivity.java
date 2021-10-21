@@ -3,13 +3,9 @@ package com.example.workoutapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -20,6 +16,7 @@ public class WorkoutActivity extends AppCompatActivity {
     private View checkMark;
     private int currentExerciseIndex = -2;
     private ArrayList<Integer> arrayListVideos = new ArrayList<>();
+    private ArrayList<Integer> arrayListThumbnails = new ArrayList<>();
     private boolean shouldExecuteOnResume;
     static WorkoutActivity activityA;
 
@@ -29,25 +26,15 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
         addVideosToList();
+        addThumbnailsToList();
         findViews();
         shouldExecuteOnResume = false;
         activityA = this;
 
-//        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
-        btnStartWorkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onResume();
-            }
-        });
+        btnStartWorkout.setOnClickListener(view -> onResume());
 
         finishWorkout.setEnabled(false);
-        finishWorkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finishWorkout();
-            }
-        });
+        finishWorkout.setOnClickListener(view -> finishWorkout());
     }
 
     public static WorkoutActivity getInstance(){
@@ -57,6 +44,7 @@ public class WorkoutActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         currentExerciseIndex++;
+        System.out.println("exercise: " + currentExerciseIndex);
 
         if (shouldExecuteOnResume){
             try {
@@ -67,11 +55,14 @@ public class WorkoutActivity extends AppCompatActivity {
                 }
                 else {
                     String videopath = "android.resource://com.example.workoutapp/" + arrayListVideos.get(currentExerciseIndex);
+                    int thumbnail = arrayListThumbnails.get(currentExerciseIndex);
+
                     Intent ExerciseIntent = new Intent(this, ExerciseActivity.class);
                     ExerciseIntent.putExtra("key1", videopath);
                     ExerciseIntent.putExtra("key2", currentExerciseIndex);
                     ExerciseIntent.putExtra("key3", arrayListVideos);
                     ExerciseIntent.putExtra("key4", shouldExecuteOnResume);
+                    ExerciseIntent.putExtra("key5", thumbnail);
                     startActivity(ExerciseIntent);
 
                 }
@@ -103,5 +94,10 @@ public class WorkoutActivity extends AppCompatActivity {
     public void addVideosToList(){
         arrayListVideos.add(R.raw.squat);
         arrayListVideos.add(R.raw.pushup);
+    }
+
+    public void addThumbnailsToList(){
+        arrayListThumbnails.add(R.drawable.squat);
+        arrayListThumbnails.add(R.drawable.pushup);
     }
 }
