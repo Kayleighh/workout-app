@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             String lastname = jsonObject.getString("Lastname");
             String function = jsonObject.get("Function").toString();
             String number = jsonObject.getString("Number");
+            String points = jsonObject.get("Points").toString();
             profiles.put(name);
             profiles.put(lastname);
             profiles.put(function);
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             profiles.put(time);
             profiles.put(username);
             profiles.put(password);
+            profiles.put(points);
 
         } catch (JSONException | IOException e) {
             e.printStackTrace();

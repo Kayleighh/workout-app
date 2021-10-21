@@ -123,6 +123,7 @@ ImageView imageView;
             jsonObject.put("Level", "Beginner");
             jsonObject.put("Time", "09:00");
             jsonObject.put("Image",image);
+            jsonObject.put("Points", 0);           // toevoeging voor puntentelling
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -184,6 +185,7 @@ ImageView imageView;
             String function = jsonObject.get("Function").toString();
             String number = jsonObject.getString("Number");
             //String image = jsonObject.getString("Image");
+            String points = jsonObject.get("Points").toString();    // toevoeging voor puntentelling
             profiles.put(name);
             profiles.put(lastname);
             profiles.put(function);
@@ -194,6 +196,7 @@ ImageView imageView;
             profiles.put(username);
             profiles.put(password);
             profiles.put(image);
+            profiles.put(points);        // toevoeging voor puntentelling
 
             System.out.println(age + " " + lvl + " " + time);
         } catch (JSONException | IOException e) {

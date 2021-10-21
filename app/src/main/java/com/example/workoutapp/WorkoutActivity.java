@@ -58,6 +58,8 @@ public class WorkoutActivity extends AppCompatActivity {
                     finishWorkout.setEnabled(true);
                     finishWorkout.setBackground(ContextCompat.getDrawable(this, R.drawable.finish));
                     checkMark.setVisibility(View.VISIBLE);
+                    Intent workoutStatus = new Intent();
+                    workoutStatus.putExtra("workoutFinished", true);
                 }
                 else {
                     String videopath = "android.resource://com.example.workoutapp/" + arrayListVideos.get(currentExerciseIndex);
