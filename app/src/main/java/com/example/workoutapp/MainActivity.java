@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+//test
     public void next() {
         Intent intent = new Intent(this, feature_Validatie_Scherm.class);
         startActivity(intent);
