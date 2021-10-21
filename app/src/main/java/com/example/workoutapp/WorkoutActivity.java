@@ -10,15 +10,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class WorkoutActivity extends AppCompatActivity {
 
@@ -29,8 +22,6 @@ public class WorkoutActivity extends AppCompatActivity {
     private ArrayList<Integer> arrayListVideos = new ArrayList<>();
     private boolean shouldExecuteOnResume;
     static WorkoutActivity activityA;
-    private ArrayList<String> testTimes = new ArrayList<>();
-    private ArrayList<String> testDays = new ArrayList<>();
 
 
     @Override
@@ -39,12 +30,8 @@ public class WorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_workout);
         addVideosToList();
         findViews();
-        setCurrentMonth(findViewById(R.id.txtMaand));
-        fillTimes(testTimes);
         shouldExecuteOnResume = false;
         activityA = this;
-
-
 
 //        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
         btnStartWorkout.setOnClickListener(new View.OnClickListener() {
@@ -104,63 +91,10 @@ public class WorkoutActivity extends AppCompatActivity {
         finishWorkout.setEnabled(false);
     }
 
-    public void setFirstRectengles(View view)
-    {
-        DateFormat dfgmt = new java.text.SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-        dfgmt.setTimeZone(TimeZone.getTimeZone("GMT+2:00"));
-        String nowTime = dfgmt.format(new Date());
-        String inputDate = nowTime.substring(0,9);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy");
-        Date dt1 = null;
-        try {
-            dt1 = format1.parse(inputDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        DateFormat format2 = new SimpleDateFormat("EEEE");
-        String finalDay = format2.format(dt1);
-        //view.setText
-    }
-
     public void findViews(){
         btnStartWorkout = findViewById(R.id.btnStartWorkout);
         finishWorkout = findViewById(R.id.btnFinishWorkout);
         checkMark = findViewById(R.id.check_mark_);
-
-    }
-
-    private void fillTimes (ArrayList<String> list)
-    {
-        list.add("09:00");
-        list.add("11:00");
-        list.add("15:00");
-        list.add("09:00");
-        list.add("10:00");
-
-
-    }
-
-    private void setCurrentMonth(TextView textView)
-    {
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        calendar.get(Calendar.YEAR);
-        int thisMonth = calendar.get(Calendar.MONTH) + 1;
-
-        String month = "";
-        if(thisMonth ==1){month = "Januari";}
-        if(thisMonth ==2){month = "Februari";}
-        if(thisMonth ==3){month = "Maart";}
-        if(thisMonth ==4){month = "April";}
-        if(thisMonth ==5){month = "Mei";}
-        if(thisMonth ==6){month = "Juni";}
-        if(thisMonth ==7){month = "Juli";}
-        if(thisMonth ==8){month = "Augustus";}
-        if(thisMonth ==9){month = "September";}
-        if(thisMonth ==10){month = "Oktober";}
-        if(thisMonth ==11){month = "November";}
-        if(thisMonth ==12){month = "December";}
-
-        textView.setText(month);
 
     }
 
