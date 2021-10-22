@@ -41,6 +41,7 @@ public class WorkoutActivity extends AppCompatActivity {
         findViews();
         setCurrentMonth(findViewById(R.id.txtMaand));
         fillTimes(testTimes);
+        setFirstRectengles(findViewById(R.id.button3));
         shouldExecuteOnResume = false;
         activityA = this;
 
@@ -104,13 +105,14 @@ public class WorkoutActivity extends AppCompatActivity {
         finishWorkout.setEnabled(false);
     }
 
-    public void setFirstRectengles(View view)
+    public void setFirstRectengles(Button btnFirstDate)
     {
         DateFormat dfgmt = new java.text.SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         dfgmt.setTimeZone(TimeZone.getTimeZone("GMT+2:00"));
         String nowTime = dfgmt.format(new Date());
-        String inputDate = nowTime.substring(0,9);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy");
+        String inputDate = nowTime.substring(0,10);
+        System.out.println(inputDate);
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd");
         Date dt1 = null;
         try {
             dt1 = format1.parse(inputDate);
@@ -120,6 +122,20 @@ public class WorkoutActivity extends AppCompatActivity {
         DateFormat format2 = new SimpleDateFormat("EEEE");
         String finalDay = format2.format(dt1);
         //view.setText
+        btnFirstDate.setText(finalDay + "\n" + inputDate);
+        System.out.println("SECOOOOOOOOOOOOOOOOOOnd " +setSecondRectangles());
+    }
+
+    public String setSecondRectangles()
+    {
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, 1);
+        dt = c.getTime();
+        String date = String.valueOf(dt);
+        String shapedDate = date.substring(8,)
+        return String.valueOf(dt);
     }
 
     public void findViews(){
