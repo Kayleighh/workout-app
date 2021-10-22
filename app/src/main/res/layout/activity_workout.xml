@@ -51,15 +51,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <View
-                android:id="@+id/rectangle_0"
-                android:layout_width="76dp"
-                android:layout_height="67dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/rectangle_6" />
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Button" />
 
             <View
                 android:id="@+id/line_15"
@@ -70,16 +67,12 @@
                 android:layout_marginTop="38dp"
                 android:background="#ECF0F1" />
 
-            <View
-                android:id="@+id/rectangle_1"
-                android:layout_width="76dp"
-                android:layout_height="67dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="22dp"
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/rectangle_6" />
+                android:text="Button" />
 
             <View
                 android:id="@+id/line_2"
@@ -91,16 +84,12 @@
                 android:layout_weight="1"
                 android:background="#ECF0F1" />
 
-            <View
-                android:id="@+id/rectangle_2"
-                android:layout_width="76dp"
-                android:layout_height="67dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="22dp"
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/rectangle_6" />
+                android:text="Button" />
 
             <View
                 android:id="@+id/line_3"
@@ -112,16 +101,12 @@
                 android:layout_weight="1"
                 android:background="#ECF0F1" />
 
-            <View
-                android:id="@+id/rectangle_3"
-                android:layout_width="76dp"
-                android:layout_height="67dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="22dp"
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/rectangle_6" />
+                android:text="Button" />
 
             <View
                 android:id="@+id/line_4"
@@ -133,16 +118,12 @@
                 android:layout_weight="1"
                 android:background="#ECF0F1" />
 
-            <View
-                android:id="@+id/rectangle_4"
-                android:layout_width="76dp"
-                android:layout_height="67dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="22dp"
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/rectangle_6" />
+                android:text="Button" />
 
         </LinearLayout>
     </HorizontalScrollView>
