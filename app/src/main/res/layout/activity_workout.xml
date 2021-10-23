@@ -23,18 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="52dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtTitleWorkout"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/txtMaand"
         android:layout_width="60dp"
@@ -424,25 +412,5 @@
         app:layout_constraintEnd_toEndOf="@+id/btnFinishWorkout"
         app:layout_constraintStart_toStartOf="@+id/btnFinishWorkout"
         app:layout_constraintTop_toTopOf="@+id/btnFinishWorkout" />
-
-    <Button
-        android:id="@+id/settingsBtn"
-        android:layout_width="88dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="32dp"
-        android:text="Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/mijnAccountbtn"
-        android:layout_width="88dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="32dp"
-        android:text="Mijn acount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

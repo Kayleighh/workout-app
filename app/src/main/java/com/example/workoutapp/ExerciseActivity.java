@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.VideoView;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -42,6 +44,9 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView textRest;
     private long timeLeftInMillis = 10000;
     private ImageView btnPlay;
+
+    ImageView thumbnail;
+
     private ImageView btnPlay2;
     boolean btnDoneIsClicked = false;
 
@@ -53,11 +58,19 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
+        extras = getIntent().getExtras();
+        thumbnail.setVisibility(View.VISIBLE);
+
+        if (extras != null) {
+            int value = extras.getInt("key5");
+            thumbnail.setBackground(ContextCompat.getDrawable(this, value));
+        }
 
         btnPlay2 = findViewById(R.id.btnPlay2);
         btnPlay2.setVisibility(View.INVISIBLE);
         btnDone.setOnClickListener(this::toNextExercise);
         btnPlay.setOnClickListener(this::startVideo);
+
         findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +116,6 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
     private void toNextExercise(View view) {
-        btnDoneIsClicked = true;
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -140,6 +152,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private void setContent(){
         extras = getIntent().getExtras();
         if (extras != null) {
+
             int currentExerciseIndex = extras.getInt("key2");
             int circle = arrayListCircles.get(currentExerciseIndex);
             View ellipse = findViewById(circle);
@@ -209,9 +222,10 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private void findViews(){
         videoView  = findViewById(R.id.videoView2);
+        thumbnail = findViewById(R.id.imageView);
         btnDone = findViewById(R.id.btnDone);
         pb = findViewById(R.id.progressBar);
-        rectangleCloseRest = findViewById(R.id.closeRest);
+        rectangleCloseRest = findViewById(R.id.rectangle_close_grey);
         textRest = findViewById(R.id.textRest);
         btnPlay = findViewById(R.id.btnPlay);
     }
@@ -231,6 +245,8 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
     private void startVideo(View view) {
+        thumbnail.setVisibility(View.INVISIBLE);
+
         extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key1");
@@ -266,36 +282,55 @@ public class ExerciseActivity extends AppCompatActivity {
     {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            int i = 0;
-            while (i==0)
+            if(mediaPlayer.isPlaying())
             {
-                if(mediaPlayer.isPlaying())
-                {
-                    mediaPlayer.pause();
-                    int length = mediaPlayer.getCurrentPosition();
-                    System.out.println(length);
-                    btnPlay.setVisibility(View.VISIBLE);
-                    if(length!=0)
-                    {
-                        btnPlay.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                mediaPlayer.seekTo(length +400);
-                                mediaPlayer.start();
-                                btnPlay.setVisibility(View.INVISIBLE);
-
-                            }
-                        });
+                mediaPlayer.pause();
+                int length = mediaPlayer.getCurrentPosition();
+                btnPlay2.setVisibility(View.VISIBLE);
+                btnPlay2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mediaPlayer.seekTo(length);
+                        mediaPlayer.start();
+                        btnPlay2.setVisibility(View.INVISIBLE);
                     }
-                    else{}
-                }
-                else
-                {
-                    btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
-                    i=1;
-                }
+                });
             }
-        }
-    });
+
+//            int i = 0;
+//            while (i==0)
+//            {
+//                //setOnCompletionListener
+//                if(mediaPlayer.isPlaying())
+//                {
+//                    mediaPlayer.pause();
+//                    int length = mediaPlayer.getCurrentPosition();
+//                    System.out.println(length);
+//                    btnPlay.setVisibility(View.VISIBLE);
+//                    if(length!=0)
+//                    {
+//                        btnPlay.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                mediaPlayer.seekTo(length +400);
+//                                mediaPlayer.start();
+//                                btnPlay.setVisibility(View.INVISIBLE);
+//
+//                            }
+//                        });
+//                    }
+//                    else{}
+//                    break;
+//                }
+//                else
+//                {
+//                    btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
+//                    i=1;
+//                }
+//            }
+//        }
+//    });
+//    }
+        }});
     }
 }
