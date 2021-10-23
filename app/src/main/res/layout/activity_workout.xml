@@ -52,11 +52,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/rectangle0"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <View
                 android:id="@+id/line_15"
@@ -68,11 +68,11 @@
                 android:background="#ECF0F1" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/rectangle1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <View
                 android:id="@+id/line_2"
@@ -85,11 +85,10 @@
                 android:background="#ECF0F1" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/rectangle2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Button" />
+                android:layout_weight="1" />
 
             <View
                 android:id="@+id/line_3"
@@ -102,11 +101,10 @@
                 android:background="#ECF0F1" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/rectangle3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Button" />
+                android:layout_weight="1" />
 
             <View
                 android:id="@+id/line_4"
@@ -119,11 +117,10 @@
                 android:background="#ECF0F1" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/rectangle4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Button" />
+                android:layout_weight="1" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -142,10 +139,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="START"
-        android:textSize="12sp"
-        android:textColor="#FFFFFF"
         android:fontFamily="@font/montserrat_bold"
+        android:text="START"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnStartWorkout"
         app:layout_constraintEnd_toEndOf="@+id/btnStartWorkout"
         app:layout_constraintStart_toStartOf="@+id/btnStartWorkout"
@@ -155,12 +152,13 @@
         android:id="@+id/holderWorkout"
         android:layout_width="218dp"
         android:layout_height="320dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/workout_box"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/horizontalScrollView"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"/>
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <TextView
         android:id="@+id/holderAnimation"
@@ -412,5 +410,21 @@
         app:layout_constraintEnd_toEndOf="@+id/btnFinishWorkout"
         app:layout_constraintStart_toStartOf="@+id/btnFinishWorkout"
         app:layout_constraintTop_toTopOf="@+id/btnFinishWorkout" />
+
+    <TextView
+        android:id="@+id/warningView1"
+        android:layout_width="228dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartWorkout"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

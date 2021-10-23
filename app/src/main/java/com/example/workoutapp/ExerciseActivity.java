@@ -63,7 +63,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
         if (extras != null) {
             int value = extras.getInt("key5");
-            thumbnail.setBackground(ContextCompat.getDrawable(this, value));
+            //thumbnail.setBackground(ContextCompat.getDrawable(this, value));
         }
 
         btnPlay2 = findViewById(R.id.btnPlay2);
