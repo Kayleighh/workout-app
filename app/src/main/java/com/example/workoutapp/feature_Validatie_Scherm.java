@@ -47,14 +47,18 @@ public class feature_Validatie_Scherm extends AppCompatActivity {
         EditText edtName2 = findViewById(R.id.editTextTextPersonName2);
         EditText edtNumber = findViewById(R.id.editTextNumber);
 
-        String Name1 = edtName.getText().toString();
-        String Name2 = edtName2.getText().toString();
-        String Number = edtNumber.getText().toString();
+        String firstname = edtName.getText().toString();
+        String lastname = edtName2.getText().toString();
+        String number = edtNumber.getText().toString();
         Spinner mySpinner = findViewById(R.id.spinner);
-        String text = mySpinner.getSelectedItem().toString();
-        System.out.println(Name1 + " " + Name2 + " " + Number);
-        addProfile(Name1, Name2, Number, text);
+        String function = mySpinner.getSelectedItem().toString();
+
+        //addProfile(Name1, Name2, Number, function);
         Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra("Firstname", firstname);
+        intent.putExtra("Lastname", lastname);
+        intent.putExtra("Number", number);
+        intent.putExtra("Function",function);
         startActivity(intent);
 
     }
@@ -66,49 +70,6 @@ public class feature_Validatie_Scherm extends AppCompatActivity {
 
         public void onNothingSelected(AdapterView<?> parent) {
 
-        }
-    }
-
-    public JSONObject addProfile(String voornaam, String achternaam, String number, String function) {
-        JSONObject jsonObject = new JSONObject();
-
-        try {
-            jsonObject.put("Firstname", voornaam);
-            jsonObject.put("Lastname", achternaam);
-            jsonObject.put("Number", number);
-            jsonObject.put("Function", function);
-            jsonObject.put("Username", "");
-            jsonObject.put("Password", "");
-            jsonObject.put("Age", 0);
-            jsonObject.put("Level", "Beginner");
-            jsonObject.put("Time", "09:00");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        String input = jsonObject.toString();
-        toJSON(input);
-
-        return jsonObject;
-
-    }
-
-    public boolean toJSON(String input) {
-        String filename = "test.json";
-        Boolean check;
-        try {
-            File file = new File(this.getFilesDir() + filename);
-            FileWriter fileWriter = new FileWriter(file);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(input);
-            bufferedWriter.close();
-            check = true;
-            return check;
-        } catch (IOException e) {
-            e.printStackTrace();
-            check = false;
-            return check;
         }
     }
 

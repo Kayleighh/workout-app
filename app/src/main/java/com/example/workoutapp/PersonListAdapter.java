@@ -27,8 +27,8 @@ public class PersonListAdapter extends ArrayAdapter<Profile> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        String name = getItem(position).getName();
-        String surname = getItem(position).getSurname();
+        String name = getItem(position).getFirstname();
+        String surname = getItem(position).getLastname();
         Integer points = getItem(position).getPoints();
         String stringPoints = points.toString();
 

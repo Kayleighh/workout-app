@@ -1,10 +1,12 @@
 package com.example.workoutapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +27,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Button login;
     TextView error;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 login();
@@ -56,18 +65,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void login() {
         EditText username = findViewById(R.id.username);
         String uname = username.getText().toString();
 
         EditText pass = findViewById(R.id.password);
         String password = pass.getText().toString();
-
-        getProfilesFromJSON();
-        try {
-            String valPass = getProfilesFromJSON().get(8).toString();
-            String valUser = getProfilesFromJSON().get(7).toString();
-            System.out.println(getProfilesFromJSON());
+           String valPass =getProfilesFromJSON().get(1).toString();
+            String valUser = getProfilesFromJSON().get(0).toString();
             if (uname.isEmpty() || password.isEmpty()) {
                 error.setText("Gebruikersnaam of wachtwoord is niet ingevuld.");
             } else {
@@ -80,53 +86,36 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
 
-    }
-
-    public JSONArray getProfilesFromJSON() {
-        JSONArray profiles = new JSONArray();
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public ArrayList getProfilesFromJSON() {
+        ArrayList<String> profiles = new ArrayList<>();
         String filename = "test.json";
-        File file = new File(this.getFilesDir() + filename);
-        FileReader fileReader = null;
+        Gson gson = new Gson();
         try {
-            fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = bufferedReader.readLine();
-            while (line != null) {
-                stringBuilder.append(line).append("\n");
-                line = bufferedReader.readLine();
-            }
-            bufferedReader.close();
-            String response = stringBuilder.toString();
-            JSONObject jsonObject = null;
+            Reader reader = Files.newBufferedReader(Paths.get(this.getFilesDir() + filename));
+            Profile profile = gson.fromJson(reader,Profile.class);
+            // close reader
+            reader.close();
 
+            profile.setNumber(profile.getNumber());
+            profile.setFirstname(profile.getFirstname());
+            profile.setLastname(profile.getLastname());
+            profile.setDepartment(profile.getDepartment());
+            profile.setAge(profile.getAge());
+            profile.setLevel(profile.getLevel());
+            profile.setTimes(profile.getTimes());
+            profile.setUsername(profile.getUsername());
+            profile.setPassword(profile.getPassword());
+            System.out.println(profile.getPassword());
+            profile.setImage(profile.getImage());
+            profile.setNotifications(profile.getNotifications());
 
-            jsonObject = new JSONObject(response);
+            profiles.add(profile.getUsername());
+            profiles.add(profile.getPassword());
 
-            String age = jsonObject.get("Age").toString();
-            String lvl = jsonObject.get("Level").toString();
-            String time = jsonObject.get("Time").toString();
-            String username = jsonObject.get("Username").toString();
-            String password = jsonObject.get("Password").toString();
-            String name = jsonObject.get("Firstname").toString();
-            String lastname = jsonObject.getString("Lastname");
-            String function = jsonObject.get("Function").toString();
-            String number = jsonObject.getString("Number");
-            profiles.put(name);
-            profiles.put(lastname);
-            profiles.put(function);
-            profiles.put(number);
-            profiles.put(age);
-            profiles.put(lvl);
-            profiles.put(time);
-            profiles.put(username);
-            profiles.put(password);
-
-        } catch (JSONException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return profiles;

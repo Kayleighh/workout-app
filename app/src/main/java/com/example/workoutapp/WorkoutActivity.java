@@ -30,7 +30,6 @@ public class WorkoutActivity extends AppCompatActivity {
         addVideosToList();
         findViews();
         shouldExecuteOnResume = false;
-
         Button toRankingScreen = findViewById(R.id.button5);
         toRankingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +37,21 @@ public class WorkoutActivity extends AppCompatActivity {
                 toRankingsActivity();
             }
         });
+        Button settings = findViewById(R.id.settingsBtn);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                next();
+            }
+        });
 
+        Button mijnAccount = findViewById(R.id.mijnAccountbtn);
+        mijnAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mijnAccount();
+            }
+        });
 //        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
         btnStartWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +68,20 @@ public class WorkoutActivity extends AppCompatActivity {
             }
         });
     }
-
     private void toRankingsActivity() {
         Intent intent = new Intent(this, RankingsActivity.class);
         startActivity(intent);
     }
-
+    public void next()
+    {
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+    }
+    public void mijnAccount()
+    {
+        Intent intent = new Intent(this, EditAccount.class);
+        startActivity(intent);
+    }
     @Override
     protected void onResume() {
         currentExerciseIndex++;
