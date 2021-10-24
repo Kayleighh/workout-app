@@ -10,17 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
         <activity
+            android:name=".RankingsActivity"
+            android:exported="true" />
+        <activity
             android:name=".MyAccountActivity"
             android:exported="true" />
         <activity android:name=".RegisterActivity" />
         <activity
-            android:name=".WorkoutStartActivity"
+            android:name=".ExerciseActivity"
             android:exported="true" />
         <activity
             android:name=".WorkoutActivity"
             android:exported="true" />
         <activity
             android:name=".feature_Validatie_Scherm"
+            android:exported="true" />
+        <activity
+            android:name=".Settings"
+            android:exported="true" />
+        <activity
+            android:name=".EditAccount"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
@@ -36,6 +45,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-    </application>
 
+    </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

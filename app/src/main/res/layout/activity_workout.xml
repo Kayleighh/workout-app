@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F1"
+    android:textAlignment="center"
     tools:context=".WorkoutActivity">
 
     <TextView
@@ -51,66 +52,113 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="#400000"
-                android:text="yes"
-                android:textColor="#ffffff" />
+                android:id="@+id/rectangle0"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <View
+                android:id="@+id/line_15"
+                android:layout_width="114dp"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="38dp"
+                android:background="#ECF0F1" />
 
             <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="#400000"
-                android:text="ok"
-                android:textColor="#ffffff" />
+                android:id="@+id/rectangle1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <View
+                android:id="@+id/line_2"
+                android:layout_width="125dp"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="38dp"
+                android:layout_weight="1"
+                android:background="#ECF0F1" />
 
             <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="#400000"
-                android:text="yes"
-                android:textColor="#ffffff" />
+                android:id="@+id/rectangle2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <View
+                android:id="@+id/line_3"
+                android:layout_width="101dp"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="38dp"
+                android:layout_weight="1"
+                android:background="#ECF0F1" />
 
             <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="#400000"
-                android:text="ok"
-                android:textColor="#ffffff" />
+                android:id="@+id/rectangle3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <View
+                android:id="@+id/line_4"
+                android:layout_width="96dp"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="38dp"
+                android:layout_weight="1"
+                android:background="#ECF0F1" />
+
+            <Button
+                android:id="@+id/rectangle4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </HorizontalScrollView>
 
-    <Button
+    <View
         android:id="@+id/btnStartWorkout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/montserrat"
-        android:text="START"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
+        android:layout_width="86dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/rectangle_5"
         app:layout_constraintEnd_toEndOf="@+id/holderWorkout"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/holderWorkout"
         app:layout_constraintTop_toBottomOf="@+id/holderWorkout" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="START"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStartWorkout"
+        app:layout_constraintEnd_toEndOf="@+id/btnStartWorkout"
+        app:layout_constraintStart_toStartOf="@+id/btnStartWorkout"
+        app:layout_constraintTop_toTopOf="@+id/btnStartWorkout" />
+
+    <View
         android:id="@+id/holderWorkout"
         android:layout_width="218dp"
         android:layout_height="320dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/workout_box"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/horizontalScrollView"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <TextView
         android:id="@+id/holderAnimation"
@@ -119,8 +167,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="11dp"
-        android:elevation="10dp"
         android:background="@drawable/workout_animation_box"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/holderWorkout"
         app:layout_constraintStart_toStartOf="@+id/holderWorkout"
         app:layout_constraintTop_toTopOf="@+id/holderWorkout" />
@@ -130,11 +178,11 @@
         android:layout_width="112dp"
         android:layout_height="28dp"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/montserrat"
+        android:elevation="10dp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="SQUAT"
         android:textColor="#FFFFFF"
         android:textSize="12dp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/holderAnimation"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/holderAnimation"
@@ -145,11 +193,11 @@
         android:layout_width="112dp"
         android:layout_height="28dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat"
+        android:elevation="10dp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="PUSH UPS"
         android:textColor="#FFFFFF"
         android:textSize="12dp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView24"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView24"
@@ -160,11 +208,11 @@
         android:layout_width="112dp"
         android:layout_height="28dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat"
+        android:elevation="10dp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="JUMPING ROPE"
         android:textColor="#FFFFFF"
         android:textSize="12dp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView25"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView25"
@@ -175,11 +223,11 @@
         android:layout_width="112dp"
         android:layout_height="28dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat"
+        android:elevation="10dp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="PISTOL SQUAT"
         android:textColor="#FFFFFF"
         android:textSize="12dp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView26"
         app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="@+id/textView26"
@@ -191,8 +239,8 @@
         android:layout_height="28dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="28dp"
-        android:elevation="10dp"
         android:background="@drawable/orange_divider"
+        android:elevation="10dp"
         app:layout_constraintStart_toEndOf="@+id/textView24"
         app:layout_constraintTop_toBottomOf="@+id/holderAnimation" />
 
@@ -201,8 +249,8 @@
         android:layout_width="2dp"
         android:layout_height="28dp"
         android:layout_marginTop="10dp"
-        android:elevation="10dp"
         android:background="@drawable/orange_divider"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView28"
         app:layout_constraintStart_toStartOf="@+id/textView28"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
@@ -212,8 +260,8 @@
         android:layout_width="2dp"
         android:layout_height="28dp"
         android:layout_marginTop="10dp"
-        android:elevation="10dp"
         android:background="@drawable/orange_divider"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView29"
         app:layout_constraintStart_toStartOf="@+id/textView29"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
@@ -223,8 +271,8 @@
         android:layout_width="2dp"
         android:layout_height="28dp"
         android:layout_marginTop="10dp"
-        android:elevation="10dp"
         android:background="@drawable/orange_divider"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView30"
         app:layout_constraintStart_toStartOf="@+id/textView30"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -234,11 +282,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:elevation="10dp"
         android:fontFamily="@font/montserrat"
         android:text="10"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/holderWorkout"
         app:layout_constraintStart_toEndOf="@+id/textView28"
         app:layout_constraintTop_toBottomOf="@+id/holderAnimation" />
@@ -247,11 +295,11 @@
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KEER"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="#FFFFFF"
         android:elevation="10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="KEER"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView32"
         app:layout_constraintStart_toStartOf="@+id/textView32"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
@@ -261,11 +309,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:elevation="10dp"
         android:fontFamily="@font/montserrat"
         android:text="10"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView33"
         app:layout_constraintStart_toStartOf="@+id/textView33"
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
@@ -274,11 +322,11 @@
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KEER"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="#FFFFFF"
         android:elevation="10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="KEER"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView34"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/textView34"
@@ -289,11 +337,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:elevation="10dp"
         android:fontFamily="@font/montserrat"
         android:text="10"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView35"
         app:layout_constraintStart_toStartOf="@+id/textView35"
         app:layout_constraintTop_toBottomOf="@+id/textView35" />
@@ -302,11 +350,11 @@
         android:id="@+id/textView37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KEER"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="#FFFFFF"
         android:elevation="10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="KEER"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView36"
         app:layout_constraintStart_toStartOf="@+id/textView36"
         app:layout_constraintTop_toBottomOf="@+id/textView36" />
@@ -316,11 +364,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:elevation="10dp"
         android:fontFamily="@font/montserrat"
         android:text="10"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView37"
         app:layout_constraintStart_toStartOf="@+id/textView37"
         app:layout_constraintTop_toBottomOf="@+id/textView37" />
@@ -329,146 +377,54 @@
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KEER"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="#FFFFFF"
         android:elevation="10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="KEER"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView38"
         app:layout_constraintStart_toStartOf="@+id/textView38"
         app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
+    <View
+        android:id="@+id/btnFinishWorkout"
+        android:layout_width="30dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/rectangle_1"
+        android:elegantTextHeight="false"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/holderWorkout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/holderWorkout"
+        app:layout_constraintTop_toBottomOf="@+id/holderWorkout" />
 
+    <View
+        android:id="@+id/check_mark_"
+        android:layout_width="14dp"
+        android:layout_height="13dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/vinkje"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFinishWorkout"
+        app:layout_constraintEnd_toEndOf="@+id/btnFinishWorkout"
+        app:layout_constraintStart_toStartOf="@+id/btnFinishWorkout"
+        app:layout_constraintTop_toTopOf="@+id/btnFinishWorkout" />
 
-
-    <!--    <TableLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/holderWorkout"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/holderWorkout"-->
-<!--        app:layout_constraintHorizontal_bias="0.541"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/holderWorkout"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/holderWorkout"-->
-<!--        app:layout_constraintVertical_bias="0.931">-->
-
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView3"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="PUSH UPS"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView10"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="TEXTVIEW"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView18"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="10 \n KEER"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--        </TableRow>-->
-
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView5"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="SQUAT"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView11"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text=""-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView19"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="10 \n KEER"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-<!--        </TableRow>-->
-
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView12"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="PISTOL SQUAT"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView14"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text=""-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView20"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="30 \n SEC"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-<!--        </TableRow>-->
-
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView15"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="JUMPING ROPE"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView17"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text=""-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView21"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="10 \n KEER"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="#FFFFFF"/>-->
-<!--        </TableRow>-->
-<!--    </TableLayout>-->
-
+    <TextView
+        android:id="@+id/warningView1"
+        android:layout_width="228dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartWorkout"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

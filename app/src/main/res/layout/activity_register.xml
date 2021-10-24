@@ -8,13 +8,16 @@
 
     <ImageView
         android:id="@+id/imgProfielFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:maxHeight="150dp"
+        android:maxWidth="150dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:adjustViewBounds="true"/>
 
     <Button
         android:id="@+id/btnKiesFoto"
@@ -30,10 +33,9 @@
         android:id="@+id/btnVolgende"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="60dp"
         android:text="VOLGENDE"
         app:layout_constraintEnd_toEndOf="@+id/edtWachtwoordHerhaal"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/edtWachtwoordHerhaal"
         app:layout_constraintTop_toBottomOf="@+id/edtWachtwoordHerhaal" />
 
@@ -72,4 +74,13 @@
         app:layout_constraintEnd_toEndOf="@+id/edtWachtwoord"
         app:layout_constraintStart_toStartOf="@+id/edtWachtwoord"
         app:layout_constraintTop_toBottomOf="@+id/edtWachtwoord" />
+
+    <TextView
+        android:id="@+id/errorText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtWachtwoordHerhaal" />
 </androidx.constraintlayout.widget.ConstraintLayout>
