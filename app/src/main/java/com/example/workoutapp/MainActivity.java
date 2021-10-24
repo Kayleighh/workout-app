@@ -3,6 +3,9 @@ package com.example.workoutapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 
@@ -58,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) { login();
             }
         });
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 4);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+
+
+        startAlarm(c);
 
     }
 //test
@@ -120,5 +130,16 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return profiles;
+    }
+    private void startAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1);
+        }
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 }
