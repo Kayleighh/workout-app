@@ -3,10 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_edit_account.xml" value="0.2" />
-        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_my_account.xml" value="0.1793478260869565" />
-        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_settings.xml" value="0.25" />
-        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_workout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress_bar.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/finish.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/polygon_9.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_1.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_5.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_6.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_6_grey.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_close_grey.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/rectangle_rest.xml" value="0.5703125" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_exercise.xml" value="0.22333333333333336" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_workout.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/drawable/radio_button_left_checked.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/drawable/radio_button_left_selector.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/drawable/radio_button_left_unchecked.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/drawable/radio_button_right_checked.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/drawable/radio_button_right_selector.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/drawable/radio_button_right_unchecked.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/drawable/radio_selector.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/layout/activity_rankings.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/layout/activity_register.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/layout/activity_workout.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/natha/AndroidStudioProjects/Fase 2/workout-app-oct19/app/src/main/res/layout/adapter_view_layout.xml" value="0.33" />
       </map>
     </option>
   </component>

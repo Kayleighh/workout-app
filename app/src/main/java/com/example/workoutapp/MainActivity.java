@@ -45,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         error = findViewById(R.id.errorText);
-        Intent intent = new Intent(this, myAccount.class);
+//        Intent intent = new Intent(this, myAccount.class);
         register = findViewById(R.id.btnRegister);
         register.setOnClickListener(view -> next());
         login = findViewById(R.id.login);
+
         login.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+//test
     public void next() {
         Intent intent = new Intent(this, feature_Validatie_Scherm.class);
         startActivity(intent);

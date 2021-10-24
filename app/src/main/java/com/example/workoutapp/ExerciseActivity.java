@@ -1,31 +1,31 @@
 package com.example.workoutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -37,7 +37,13 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView exerciseTipTextView;
     private TextView exerciseDescriptionTextView;
     private Button whatsapp;
-    Bundle extras;
+    private Bundle extras;
+    private int currentProgress = 0;
+    private ProgressBar pb;
+    private View rectangleCloseRest;
+    private TextView textRest;
+    private long timeLeftInMillis = 10000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,28 +53,7 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
-        btnDone.setOnClickListener(view -> {
-            extras = getIntent().getExtras();
-            if (extras != null) {
-
-                int currentExerciseIndex = extras.getInt("key2");
-                ArrayList<Integer> arrayListVideos = extras.getIntegerArrayList("key3");
-
-                if (currentExerciseIndex != arrayListVideos.size() - 1) {
-                    findViewById(R.id.ConstraintLayout2).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.ConstraintLayout3).setVisibility(View.INVISIBLE);
-
-                    findViewById(R.id.ConstraintLayout4).setVisibility(View.VISIBLE);
-                    Handler handler = new Handler();
-                    handler.postDelayed(() -> {
-                        finish();
-                    }, 3000);
-                }
-                else {
-                    finish();
-                }
-            }
-        });
+        btnDone.setOnClickListener(this::onClick);
 
         whatsapp = findViewById(R.id.button2);
         int orientation = this.getResources().getConfiguration().orientation;
@@ -106,7 +91,40 @@ public class ExerciseActivity extends AppCompatActivity {
         });
     }
 
-    public void setContent(){
+    private void onClick(View view) {
+        extras = getIntent().getExtras();
+        if (extras != null) {
+
+            int currentExerciseIndex = extras.getInt("key2");
+            ArrayList<Integer> arrayListVideos = extras.getIntegerArrayList("key3");
+
+            if (currentExerciseIndex != arrayListVideos.size() - 1) {
+                findViewById(R.id.ConstraintLayout2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.ConstraintLayout3).setVisibility(View.INVISIBLE);
+
+                findViewById(R.id.ConstraintLayout4).setVisibility(View.VISIBLE);
+                CountDownTimer countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        currentProgress = currentProgress + 10;
+                        pb.setProgress(currentProgress);
+                        pb.setMax(100);
+                        rectangleCloseRest.setOnClickListener(view1 -> finish());
+                        updateTextRest((int) l / 1000);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        finish();
+                    }
+                }.start();
+            } else {
+                finish();
+            }
+        }
+    }
+
+    private void setContent(){
         extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key1");
@@ -127,6 +145,7 @@ public class ExerciseActivity extends AppCompatActivity {
                     }
                 };
             });
+
             int currentExerciseIndex = extras.getInt("key2");
             int circle = arrayListCircles.get(currentExerciseIndex);
             View ellipse = findViewById(circle);
@@ -172,22 +191,21 @@ public class ExerciseActivity extends AppCompatActivity {
                 exerciseNameTextView.clearComposingText();
                 exerciseNameTextView.setText("Push up");
 
-                for (Training training :trainingJSON.getTraining())
-                {
+                for (Training training :trainingJSON.getTraining()) {
 
-                    if (training.getExerciseName().equals("Push up"))
-                    {
+                    if (training.getExerciseName().equals("Push up")) {
                         String tip = training.getExerciseTip();
                         exerciseTipTextView.clearComposingText();
                         exerciseTipTextView.setText(tip);
                         exerciseDescriptionTextView.clearComposingText();
                         exerciseDescriptionTextView.setText(training.getExerciseDescription());
                     }
+                }
             }
         }
-    }}
+    }
 
-    public void addCirclesToList(){
+    private void addCirclesToList(){
         arrayListCircles.add(R.id.ellipse_25);
         arrayListCircles.add(R.id.ellipse_26);
         arrayListCircles.add(R.id.ellipse_27);
@@ -195,9 +213,26 @@ public class ExerciseActivity extends AppCompatActivity {
         arrayListCircles.add(R.id.ellipse_29);
     }
 
-    public void findViews(){
+    private void findViews(){
         videoView  = findViewById(R.id.videoView2);
         btnDone = findViewById(R.id.btnDone);
+        pb = findViewById(R.id.progressBar);
+        rectangleCloseRest = findViewById(R.id.closeRest);
+        textRest = findViewById(R.id.textRest);
+    }
+
+    public void updateTextRest(int progress){
+        int seconds = progress % 60;
+
+        String timeLeftText;
+        if (seconds < 10){
+            timeLeftText = "0" + seconds;
+        }
+        else {
+            timeLeftText = "" + seconds;
+        }
+
+        textRest.setText(timeLeftText);
     }
 }
 

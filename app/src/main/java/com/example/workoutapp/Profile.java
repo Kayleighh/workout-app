@@ -1,37 +1,51 @@
 package com.example.workoutapp;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Comparator;
 
 public class Profile {
     String firstname;
     String lastname;
     String age;
     String number;
-    String function;
+    String department;
     String username;
     String password;
     String level;
     HashMap<String,String > notifications;
     HashMap<String, String> times;
     String image;
+    int points;
 
     Profile(){
 
     }
+    public Profile(String name, String surname, String department, int points) {
+        this.firstname = name;
+        this.lastname = surname;
 
-    public Profile(String firstname,String lastname,String function,String number,String username,String password,String age,String level,HashMap<String,String>times,String image, HashMap<String,String> notifications){
+    }
+
+    public Profile(String name, String surname, int points){
+        this.firstname = name;
+        this.lastname = surname;
+        this.points = points;
+    }
+    public Profile(String firstname,String lastname,String department,String number,String username,String password,String age,String level,HashMap<String,String>times,String image, HashMap<String,String> notifications){
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.number = number;
-        this.function = function;
+        this.department = department;
         this.username = username;
         this.password = password;
         this.level = level;
         this.notifications = notifications;
         this.times = times;
         this.image = image;
+        this.department = department;
     }
 
     public String getFirstname() {
@@ -66,12 +80,12 @@ public class Profile {
         this.number = number;
     }
 
-    public String getFunction() {
-        return function;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setFunction(String function) {
-        this.function = function;
+    public void setDepartment(String function) {
+        this.department = function;
     }
 
     public String getUsername() {
@@ -124,9 +138,26 @@ public class Profile {
 
     public String toString()
     {
-        String result = "User " +number+ " " + firstname + " " + lastname + "age " + age + " Function " + function + " Username "+ username +" Password " + password + " Level " + level + " Notifications " + notifications + " Times " +times + " Image " + image;
+        String result = "User " +number+ " " + firstname + " " + lastname + "age " + age + " Department " + function + " Username "+ username +" Password " + password + " Level " + level + " Notifications " + notifications + " Times " +times + " Image " + image + " Points "+ points;
         return result;
     }
 
+    public int getPoints() {
+        return points;
+    }
 
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public static Comparator<Profile> PointComparator = new Comparator<Profile>() {
+        public int compare(Profile profile1, Profile profile2) {
+            int points1 = profile1.getPoints();
+            int points2 = profile2.getPoints();
+
+            return points2-points1;
+        }
+    };
 }
+
+

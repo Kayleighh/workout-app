@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
         <activity
-            android:name=".EditAccount"
-            android:exported="true" />
-        <activity
-            android:name=".Settings"
+            android:name=".RankingsActivity"
             android:exported="true" />
         <activity
             android:name=".MyAccountActivity"

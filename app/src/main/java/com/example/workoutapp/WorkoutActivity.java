@@ -30,23 +30,13 @@ public class WorkoutActivity extends AppCompatActivity {
         addVideosToList();
         findViews();
         shouldExecuteOnResume = false;
-
-//        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
-        btnStartWorkout.setOnClickListener(new View.OnClickListener() {
+        Button toRankingScreen = findViewById(R.id.button5);
+        toRankingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                onResume();
+            public void onClick(View v) {
+                toRankingsActivity();
             }
         });
-
-        finishWorkout.setEnabled(false);
-        finishWorkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finishWorkout();
-            }
-        });
-
         Button settings = findViewById(R.id.settingsBtn);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +52,26 @@ public class WorkoutActivity extends AppCompatActivity {
                 mijnAccount();
             }
         });
-    }
+//        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
+        btnStartWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onResume();
+            }
+        });
 
+        finishWorkout.setEnabled(false);
+        finishWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishWorkout();
+            }
+        });
+    }
+    private void toRankingsActivity() {
+        Intent intent = new Intent(this, RankingsActivity.class);
+        startActivity(intent);
+    }
     public void next()
     {
         Intent intent = new Intent(this, Settings.class);
