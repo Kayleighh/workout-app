@@ -18,6 +18,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MyAccountActivity extends AppCompatActivity {
 
@@ -164,75 +167,60 @@ public class MyAccountActivity extends AppCompatActivity {
         String thursday = spinThursday.getSelectedItem().toString();
         String friday = spinFriday.getSelectedItem().toString();
 
-        ArrayList<String> spinners = new ArrayList<>();
-        spinners.add(monday);
-        spinners.add(tuesday);
-        spinners.add(wednesday);
-        spinners.add(thursday);
-        spinners.add(friday);
-
-        addProfile(age, level, spinners);
+        HashMap<String,String> time = new HashMap<>();
+        time.put("Monday",monday);
+        time.put("Tuesday",tuesday);
+        time.put("Wednesday",wednesday);
+        time.put("Thursday",thursday);
+        time.put("Friday",friday);
+        addProfile(age, level, time);
         Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
     }
 
 
-    public JSONObject addProfile(String age, String lvl, ArrayList time) {
-        JSONObject jsonObject = new JSONObject();
-        try {
+    public void addProfile(String age, String lvl, HashMap time) {
+        HashMap<String, String> notifications = new HashMap<String, String>();
+        notifications.put("HR","true");
+        notifications.put("Nieuwe oefening","true");
+        notifications.put("Behaalde stappen","true");
+        notifications.put("Reminder","true");
 
-            Bundle extras = getIntent().getExtras();
-            if(extras != null) {
-                String firstname = extras.getString("Firstname");
-                String lastname = extras.getString("Lastname");
-                String function = extras.getString("Function");
-                String number = extras.getString("Number");
-                String username = extras.getString("Username");
-                String password = extras.getString("Password");
-                String image = extras.getString("Image");
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            String firstname = extras.getString("Firstname");
+            String lastname = extras.getString("Lastname");
+            String function = extras.getString("Function");
+            String number = extras.getString("Number");
+            String username = extras.getString("Username");
+            String password = extras.getString("Password");
+            String image = extras.getString("Image");
 
-                jsonObject.put("Firstname", firstname);
-                jsonObject.put("Lastname", lastname);
-                jsonObject.put("Function", function);
-                jsonObject.put("Number", number);
-                jsonObject.put("Username", username);
-                jsonObject.put("Password", password);
-                jsonObject.put("Age", age);
-                jsonObject.put("Level", lvl);
-                jsonObject.put("Time", time);
-                jsonObject.put("Image", image);
-                jsonObject.put("HR","true");
-                jsonObject.put("Oefening","true");
-                jsonObject.put("Stappen","true");
-                jsonObject.put("Reminder","true");
+
+            Profile profile = new Profile();
+            profile.setFirstname(firstname);
+            profile.setLastname(lastname);
+            profile.setFunction(function);
+            profile.setNumber(number);
+            profile.setUsername(username);
+            profile.setPassword(password);
+            profile.setAge(age);
+            profile.setLevel(lvl);
+            profile.setTimes(time);
+            profile.setNotifications(notifications);
+            profile.setImage(image);
+            System.out.println("image " + profile.getImage());
+            Gson gson = new Gson();
+            String filename = "test.json";
+            try {
+                FileWriter writer = new FileWriter(this.getFilesDir() + filename);
+                gson.toJson(profile,writer);
+                writer.flush(); //flush data to file   <---
+                writer.close(); //close write
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        String input = jsonObject.toString();
-        toJSON(input);
-
-        return jsonObject;
-
-    }
-
-    public boolean toJSON(String input) {
-        String filename = "test.json";
-        Boolean check;
-        try {
-            File file = new File(this.getFilesDir() + filename);
-            FileWriter fileWriter = new FileWriter(file);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(input);
-            bufferedWriter.close();
-            check = true;
-            return check;
-        } catch (IOException e) {
-            e.printStackTrace();
-            check = false;
-            return check;
         }
     }
+
 }

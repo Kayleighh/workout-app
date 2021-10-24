@@ -3,6 +3,7 @@ package com.example.workoutapp;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,9 +20,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -67,10 +70,13 @@ ImageView imageView;
                 imageView.setImageURI(imageData);
 
         }
-        else{
-            image = "android:resource://com.example.workoutapp/drawable/placeholder";
-            System.out.println("test");
-        }
+       /* else{
+            Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                    "://" + getResources().getResourcePackageName(R.drawable.placeholder)
+                    + '/' + getResources().getResourceTypeName(R.drawable.placeholder) + '/' + getResources().getResourceEntryName(R.drawable.placeholder) );
+            image = imageUri.toString();
+            System.out.println(image);
+        }*/
     }
 
     public void next() {
@@ -92,10 +98,17 @@ ImageView imageView;
                     String lastname = extras.getString("Lastname");
                     String number = extras.getString("Number");
                     String function = extras.getString("Function");
-
+/*
                     if(image == null){
-                        image = "android:resource://com.example.workoutapp/drawable/placeholder";
-                    }
+                        Uri uri = Uri.parse("android:resource://com.example.workoutapp/drawable/placeholder");
+                        try {
+                            InputStream stream = getContentResolver().openInputStream(uri);
+                            image = stream.toString();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+                    }*/
 
                     Intent intent = new Intent(this, MyAccountActivity.class);
                     intent.putExtra("Firstname",firstname);
