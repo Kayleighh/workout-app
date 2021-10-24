@@ -138,7 +138,7 @@ public class Profile {
 
     public String toString()
     {
-        String result = "User " +number+ " " + firstname + " " + lastname + "age " + age + " Department " + function + " Username "+ username +" Password " + password + " Level " + level + " Notifications " + notifications + " Times " +times + " Image " + image + " Points "+ points;
+        String result = "User " +number+ " " + firstname + " " + lastname + "age " + age + " Department " + department + " Username "+ username +" Password " + password + " Level " + level + " Notifications " + notifications + " Times " +times + " Image " + image + " Points "+ points;
         return result;
     }
 

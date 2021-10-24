@@ -200,7 +200,7 @@ public class MyAccountActivity extends AppCompatActivity {
             Profile profile = new Profile();
             profile.setFirstname(firstname);
             profile.setLastname(lastname);
-            profile.setFunction(function);
+            profile.setDepartment(function);
             profile.setNumber(number);
             profile.setUsername(username);
             profile.setPassword(password);

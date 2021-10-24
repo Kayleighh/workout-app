@@ -3,6 +3,7 @@ package com.example.workoutapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,9 @@ public class EditAccount extends AppCompatActivity {
         image.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
         String imagefromJSON = getProfilesFromJSON().get(7);
         if(imagefromJSON != null){
+            /*Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_OPEN_DOCUMENT);*/
             image.setImageURI(Uri.parse(imagefromJSON));
         }
         System.out.println(getProfilesFromJSON().get(7));
@@ -49,7 +53,7 @@ public class EditAccount extends AppCompatActivity {
             profile.setNumber(profile.getNumber());
             profile.setFirstname(profile.getFirstname());
             profile.setLastname(profile.getLastname());
-            profile.setFunction(profile.getFunction());
+            profile.setDepartment(profile.getDepartment());
             profile.setAge(profile.getAge());
             profile.setLevel(profile.getLevel());
             profile.setTimes(profile.getTimes());
@@ -61,7 +65,7 @@ public class EditAccount extends AppCompatActivity {
             profiles.add(profile.getNumber());
             profiles.add(profile.getFirstname());
             profiles.add(profile.getLastname());
-            profiles.add(profile.getFunction());
+            profiles.add(profile.getDepartment());
             profiles.add(profile.getAge());
             profiles.add(profile.getUsername());
             profiles.add(profile.getPassword());

@@ -267,7 +267,7 @@ public class Settings extends AppCompatActivity {
         Profile profile = new Profile();
         profile.setFirstname(firstname);
         profile.setLastname(lastname);
-        profile.setFunction(function);
+        profile.setDepartment(function);
         profile.setNumber(number);
         profile.setUsername(username);
         profile.setPassword(password);
@@ -305,7 +305,7 @@ public class Settings extends AppCompatActivity {
             profile.setNumber(profile.getNumber());
             profile.setFirstname(profile.getFirstname());
             profile.setLastname(profile.getLastname());
-            profile.setFunction(profile.getFunction());
+            profile.setDepartment(profile.getDepartment());
             profile.setAge(profile.getAge());
             profile.setLevel(profile.getLevel());
             profile.setTimes(profile.getTimes());
@@ -317,7 +317,7 @@ public class Settings extends AppCompatActivity {
             profiles.add(profile.getNumber());
             profiles.add(profile.getFirstname());
             profiles.add(profile.getLastname());
-            profiles.add(profile.getFunction());
+            profiles.add(profile.getDepartment());
             profiles.add(profile.getAge());
             profiles.add(profile.getUsername());
             profiles.add(profile.getPassword());

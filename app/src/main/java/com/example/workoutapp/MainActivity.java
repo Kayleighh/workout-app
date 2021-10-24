@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             profile.setNumber(profile.getNumber());
             profile.setFirstname(profile.getFirstname());
             profile.setLastname(profile.getLastname());
-            profile.setFunction(profile.getFunction());
+            profile.setDepartment(profile.getDepartment());
             profile.setAge(profile.getAge());
             profile.setLevel(profile.getLevel());
             profile.setTimes(profile.getTimes());
