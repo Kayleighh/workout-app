@@ -150,13 +150,10 @@ public class WorkoutActivity extends AppCompatActivity {
             System.out.println(date);
             String day = date.substring(0,3);
             String datum = date.substring(8,10);
-            System.out.println("Daaaaaaaaay" + day);
             if(day.equals("Sat")){}
             else if(day.equals("Sun")){}
             else{String fullDate =translateDaysToDutch(day) +"\n"+ datum;
-            System.out.println("FULLLDAATEEEEEEEEEEE"+fullDate);
                 chooseRectangle(i,fullDate);}
-            System.out.println("IIIIIIIIIIIIIIIIIIII" + i);
         }
     }
 
@@ -248,6 +245,7 @@ public class WorkoutActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     b.setBackgroundColor(Color.BLACK);
                     b.setSelected(true);
+                    findViewById(R.id.warningView1).setVisibility(View.INVISIBLE);
                     for (Button b1 : buttons) {
                         if (b1 != b) {
                             b1.setBackgroundColor(Color.DKGRAY);
