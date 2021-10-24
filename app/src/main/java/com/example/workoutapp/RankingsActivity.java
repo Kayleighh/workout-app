@@ -37,11 +37,6 @@ public class RankingsActivity extends AppCompatActivity {
         button1 = findViewById(R.id.radioButton1);
         button2 = findViewById(R.id.radioButton2);
 
-//        profiles = new ProfileList();
-//        profiles.add(profile1);
-//        profiles.add(profile2);
-//        profiles.add(profile3);
-//        ProfileList.profiles.sort(Comparator.comparing(Profile::getPoints));
     }
 
     public void onRadioButtonClicked(View view){
