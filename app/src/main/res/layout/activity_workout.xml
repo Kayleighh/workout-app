@@ -23,6 +23,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095" />
 
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="52dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtTitleWorkout"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txtMaand"
         android:layout_width="60dp"
@@ -51,76 +63,34 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/rectangle0"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:ignore="SpeakableTextPresentCheck" />
+            <View
+                android:id="@+id/rectangle_6"
+                android:layout_width="52dp"
+                android:layout_height="57dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/rectangle_6" />
 
             <View
                 android:id="@+id/line_15"
-                android:layout_width="114dp"
-                android:layout_height="36dp"
+                android:layout_width="52dp"
+                android:layout_height="0dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="38dp"
-                android:background="#ECF0F1" />
-
-            <Button
-                android:id="@+id/rectangle1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:background="@drawable/line_15" />
 
             <View
-                android:id="@+id/line_2"
-                android:layout_width="125dp"
-                android:layout_height="36dp"
+                android:id="@+id/rectangle_68"
+                android:layout_width="46dp"
+                android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="38dp"
-                android:layout_weight="1"
-                android:background="#ECF0F1" />
-
-            <Button
-                android:id="@+id/rectangle2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <View
-                android:id="@+id/line_3"
-                android:layout_width="101dp"
-                android:layout_height="36dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="38dp"
-                android:layout_weight="1"
-                android:background="#ECF0F1" />
-
-            <Button
-                android:id="@+id/rectangle3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <View
-                android:id="@+id/line_4"
-                android:layout_width="96dp"
-                android:layout_height="36dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="38dp"
-                android:layout_weight="1"
-                android:background="#ECF0F1" />
-
-            <Button
-                android:id="@+id/rectangle4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_marginLeft="138dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/rectangle_6_grey" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -139,10 +109,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
         android:text="START"
-        android:textColor="#FFFFFF"
         android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/montserrat_bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnStartWorkout"
         app:layout_constraintEnd_toEndOf="@+id/btnStartWorkout"
         app:layout_constraintStart_toStartOf="@+id/btnStartWorkout"
@@ -152,13 +122,12 @@
         android:id="@+id/holderWorkout"
         android:layout_width="218dp"
         android:layout_height="320dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/workout_box"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/horizontalScrollView"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"/>
 
     <TextView
         android:id="@+id/holderAnimation"
@@ -411,20 +380,24 @@
         app:layout_constraintStart_toStartOf="@+id/btnFinishWorkout"
         app:layout_constraintTop_toTopOf="@+id/btnFinishWorkout" />
 
-    <TextView
-        android:id="@+id/warningView1"
-        android:layout_width="228dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="16dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/settingsBtn"
+        android:layout_width="88dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="32dp"
+        android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartWorkout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/mijnAccountbtn"
+        android:layout_width="88dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="32dp"
+        android:text="Mijn acount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
