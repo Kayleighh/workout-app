@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_edit_account.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_exercise.xml" value="0.2694746376811594" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_feature_validatie_scherm.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_my_account.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_my_account2.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_register.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_settings.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_workout.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/adapter_view_layout.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress.xml" value="0.5703125" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress_bar.xml" value="0.5703125" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/finish.xml" value="0.5703125" />

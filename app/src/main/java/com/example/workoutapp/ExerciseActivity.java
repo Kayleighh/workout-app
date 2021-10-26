@@ -59,25 +59,25 @@ public class ExerciseActivity extends AppCompatActivity {
         setContent();
 
         extras = getIntent().getExtras();
-        thumbnail.setVisibility(View.VISIBLE);
-
-        if (extras != null) {
-            int value = extras.getInt("key5");
-            thumbnail.setBackground(ContextCompat.getDrawable(this, value));
-        }
+//        thumbnail.setVisibility(View.VISIBLE);
+//
+//        if (extras != null) {
+//            int value = extras.getInt("key5");
+//            //thumbnail.setBackground(ContextCompat.getDrawable(this, value));
+//        }
 
         btnPlay2 = findViewById(R.id.btnPlay2);
         btnPlay2.setVisibility(View.INVISIBLE);
         btnDone.setOnClickListener(this::toNextExercise);
         btnPlay.setOnClickListener(this::startVideo);
 
-        findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WorkoutActivity.getInstance().finish();
-                finish();
-            }
-        });
+//        findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                WorkoutActivity.getInstance().finish();
+//                finish();
+//            }
+//        });
 
         whatsapp = findViewById(R.id.button2);
         int orientation = this.getResources().getConfiguration().orientation;
@@ -181,7 +181,6 @@ public class ExerciseActivity extends AppCompatActivity {
 
                 for (Training training :trainingJSON.getTraining())
                 {
-                    System.out.println(training.getExerciseName());
                     if (training.getExerciseName().equals("Squat"))
                     {
                         String tip = training.getExerciseTip();
@@ -245,7 +244,7 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
     private void startVideo(View view) {
-        thumbnail.setVisibility(View.INVISIBLE);
+//        thumbnail.setVisibility(View.INVISIBLE);
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -260,6 +259,7 @@ public class ExerciseActivity extends AppCompatActivity {
                     mediaPlayer.setLooping(true);
                     btnPlay.setVisibility(View.INVISIBLE);
                     pauseVideo(mediaPlayer);
+                    stopVideo(mediaPlayer);
 
                     new CountDownTimer(10000, 1000){
 
@@ -270,13 +270,31 @@ public class ExerciseActivity extends AppCompatActivity {
 
                         @Override
                         public void onFinish() {
+                            try {
                             mediaPlayer.stop();
-                            btnPlay.setVisibility(View.VISIBLE);
+                            btnPlay.setVisibility(View.VISIBLE);}
+                            catch (IllegalStateException e)
+                            {
+                                e.printStackTrace();
+                            }
                         }
                     }.start();
                 }
             });
         }
+    }
+    private void stopVideo(MediaPlayer mediaPlayer)
+    {
+        findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mediaPlayer.isPlaying())
+                {
+                    mediaPlayer.stop();
+                    btnPlay.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
     private void pauseVideo(MediaPlayer mediaPlayer)
     {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
@@ -290,12 +308,14 @@ public class ExerciseActivity extends AppCompatActivity {
                 btnPlay2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mediaPlayer.seekTo(length);
+                        mediaPlayer.seekTo(length+200);
                         mediaPlayer.start();
                         btnPlay2.setVisibility(View.INVISIBLE);
                     }
                 });
             }
+
+
 
 //            int i = 0;
 //            while (i==0)

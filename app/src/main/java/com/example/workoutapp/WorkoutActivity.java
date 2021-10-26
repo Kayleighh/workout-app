@@ -52,24 +52,24 @@ public class WorkoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TextView warning = findViewById(R.id.warningView1);
-               if(!isSelected(makeButtonsList()))
-               {
-                   warning.setText("Er is geen datum gekozen");
-                   warning.setTextSize(18);
-                   warning.setVisibility(View.VISIBLE);
-               }
-               else if(compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
-               {
-                   onResume();
-               }
-               else if(compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && !compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
-               {
-                   warning.clearComposingText();
-                   warning.setText("De gekozen dag klopt niet");
-                   warning.setVisibility(View.VISIBLE);
-               }
+                if(!isSelected(makeButtonsList()))
+                {
+                    warning.setText("Er is geen datum gekozen");
+                    warning.setTextSize(18);
+                    warning.setVisibility(View.VISIBLE);
+                }
+                else if(compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+                {
+                    onResume();
+                }
+                else if(compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && !compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+                {
+                    warning.clearComposingText();
+                    warning.setText("De gekozen dag klopt niet");
+                    warning.setVisibility(View.VISIBLE);
+                }
 
-               else if(!!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+                else if(!!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
                 {
                     warning.clearComposingText();
                     warning.setText("Het bepaalde tijd is niet correct voor die gekozen dag");
@@ -147,7 +147,6 @@ public class WorkoutActivity extends AppCompatActivity {
             c.add(Calendar.DATE,i);
             dt = c.getTime();
             String date = String.valueOf(dt);
-            System.out.println(date);
             String day = date.substring(0,3);
             String datum = date.substring(8,10);
             if(day.equals("Sat")){}
@@ -263,7 +262,7 @@ public class WorkoutActivity extends AppCompatActivity {
     private void fillTimes (ArrayList<String> list)
     {
         list.add("09:00");
-        list.add("11:00");
+        list.add("20:00");
         list.add("15:00");
         list.add("09:00");
         list.add("10:00");
