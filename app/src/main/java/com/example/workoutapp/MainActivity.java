@@ -35,8 +35,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.PrivateKey;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onClick(View view) { login();
+            public void onClick(View view) {
+                login();
             }
         });
         Calendar c = Calendar.getInstance();
