@@ -74,13 +74,6 @@ ImageView imageView;
 
 
         }
-       /* else{
-            Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
-                    "://" + getResources().getResourcePackageName(R.drawable.placeholder)
-                    + '/' + getResources().getResourceTypeName(R.drawable.placeholder) + '/' + getResources().getResourceEntryName(R.drawable.placeholder) );
-            image = imageUri.toString();
-            System.out.println(image);
-        }*/
     }
 
     public void next() {
@@ -122,6 +115,7 @@ ImageView imageView;
                     intent.putExtra("Username",gebruiknm);
                     intent.putExtra("Password",password1);
                     intent.putExtra("Image",image);
+
 
                     startActivity(intent);
                 }

@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_edit_account.xml" value="0.4" />
+        <entry key="..\:/Users/gerbe/AndroidStudioProjects/workoutapp/app/src/main/res/layout/activity_register.xml" value="0.176" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress.xml" value="0.5703125" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress_bar.xml" value="0.5703125" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/finish.xml" value="0.5703125" />
