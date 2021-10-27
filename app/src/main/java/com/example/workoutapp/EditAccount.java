@@ -1,5 +1,6 @@
 package com.example.workoutapp;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -11,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -23,6 +25,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class EditAccount extends AppCompatActivity {
+    Uri imageData;
+    String image;
+    ImageView newProfilePic;
+    private static final int GALLERY_REQUEST_CODE = 123;
     ConstraintLayout parent;
     ConstraintLayout mainScreen;
     ConstraintLayout changeUsername;
@@ -138,6 +144,34 @@ public class EditAccount extends AppCompatActivity {
         changePassword.setVisibility(View.INVISIBLE);
         changeUsername.setVisibility(View.INVISIBLE);
         mainScreen.setVisibility(View.INVISIBLE);
+
+        Button profilePic = findViewById(R.id.savePic);
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+                intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                startActivityForResult(Intent.createChooser(intent,"Pick an image"), GALLERY_REQUEST_CODE);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null){
+            imageData = data.getData();
+            image = imageData.toString();
+            newProfilePic = findViewById(R.id.imageView);
+            newProfilePic.setImageURI(imageData);
+            mainScreen.setVisibility(View.VISIBLE);
+            changePhoto.setVisibility(View.INVISIBLE);
+
+
+        }
     }
 
     private void changeUsername()
@@ -147,6 +181,16 @@ public class EditAccount extends AppCompatActivity {
         changePassword.setVisibility(View.INVISIBLE);
         changePhoto.setVisibility(View.INVISIBLE);
         mainScreen.setVisibility(View.INVISIBLE);
+
+        EditText editUsername = findViewById(R.id.editUsername);
+        String newUsername = editUsername.getText().toString();
+        Button saveUsername = findViewById(R.id.saveUsername);
+        saveUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println(newUsername);
+            }
+        });
     }
 
     private void changePassword()
@@ -156,5 +200,24 @@ public class EditAccount extends AppCompatActivity {
         changeUsername.setVisibility(View.INVISIBLE);
         changePhoto.setVisibility(View.INVISIBLE);
         mainScreen.setVisibility(View.INVISIBLE);
+
+        EditText editPassword = findViewById(R.id.editTextTextPassword);
+        EditText editPassword2 = findViewById(R.id.editTextTextPassword2);
+        String pass1 = editPassword.getText().toString();
+        String pass2 = editPassword2.getText().toString();
+
+        Button savePassword = findViewById(R.id.savePassword);
+        savePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(pass1.isEmpty() || pass2.isEmpty()){
+                    System.out.println("Vul beide velden in of klik op annuleer.");
+                }else{
+                    if(pass1.equals(pass2)){
+                        System.out.println(pass1 + " " + pass2);
+                    }
+                }
+            }
+        });
     }
 }
