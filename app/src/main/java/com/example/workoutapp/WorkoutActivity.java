@@ -69,7 +69,7 @@ public class WorkoutActivity extends AppCompatActivity {
                     warning.setVisibility(View.VISIBLE);
                 }
 
-                else if(!!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+                else if(!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
                 {
                     warning.clearComposingText();
                     warning.setText("Het bepaalde tijd is niet correct voor die gekozen dag");
@@ -264,7 +264,7 @@ public class WorkoutActivity extends AppCompatActivity {
         list.add("09:00");
         list.add("20:00");
         list.add("15:00");
-        list.add("09:00");
+        list.add("11:00");
         list.add("10:00");
 
 
