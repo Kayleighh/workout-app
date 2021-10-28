@@ -17,12 +17,14 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EditAccount extends AppCompatActivity {
     Uri imageData;
@@ -34,6 +36,10 @@ public class EditAccount extends AppCompatActivity {
     ConstraintLayout changeUsername;
     ConstraintLayout changePassword;
     ConstraintLayout changePhoto;
+    Profile profile;
+    HashMap<String,String>notifications;
+    HashMap<String,String>times;
+    String newUsername;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +100,13 @@ public class EditAccount extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<String> getProfilesFromJSON() {
         ArrayList<String> profiles = new ArrayList<>();
-
+        //HashMap<String,String> notifications = new HashMap<>();
+        HashMap<String,String> times = new HashMap<>();
         String filename = "test.json";
         Gson gson = new Gson();
         try {
             Reader reader = Files.newBufferedReader(Paths.get(this.getFilesDir() + filename));
-            Profile profile = gson.fromJson(reader, Profile.class);
+            profile = gson.fromJson(reader, Profile.class);
             reader.close();
 
             profile.setNumber(profile.getNumber());
@@ -112,7 +119,7 @@ public class EditAccount extends AppCompatActivity {
             profile.setUsername(profile.getUsername());
             profile.setPassword(profile.getPassword());
             profile.setImage(profile.getImage());
-
+            profile.setNotifications(profile.getNotifications());
 
             profiles.add(profile.getNumber());
             profiles.add(profile.getFirstname());
@@ -123,6 +130,10 @@ public class EditAccount extends AppCompatActivity {
             profiles.add(profile.getPassword());
             profiles.add(profile.getImage());
             profiles.add(profile.getLevel());
+
+
+
+
 
 
         } catch (IOException e) {
@@ -176,6 +187,7 @@ public class EditAccount extends AppCompatActivity {
 
     private void changeUsername()
     {
+
         //ConstraintLayout changeUsername = findViewById(R.id.changeUsername);
         changeUsername.setVisibility(View.VISIBLE);
         changePassword.setVisibility(View.INVISIBLE);
@@ -183,13 +195,16 @@ public class EditAccount extends AppCompatActivity {
         mainScreen.setVisibility(View.INVISIBLE);
 
         EditText editUsername = findViewById(R.id.editUsername);
-        String newUsername = editUsername.getText().toString();
+        newUsername = editUsername.getText().toString();
         Button saveUsername = findViewById(R.id.saveUsername);
         saveUsername.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                System.out.println(newUsername);
+                System.out.println("test");
+                test();
             }
+
         });
     }
 
@@ -219,5 +234,38 @@ public class EditAccount extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void test()
+    {
+
+        getProfilesFromJSON();
+
+        notifications = profile.getNotifications();
+        times = profile.getTimes();
+        profile.setNumber(getProfilesFromJSON().get(0));
+        profile.setFirstname(getProfilesFromJSON().get(1));
+        profile.setLastname(getProfilesFromJSON().get(2));
+        profile.setDepartment(getProfilesFromJSON().get(3));
+        profile.setAge(getProfilesFromJSON().get(4));
+        profile.setLevel(getProfilesFromJSON().get(5));
+        profile.setUsername(newUsername);
+        profile.setPassword(getProfilesFromJSON().get(7));
+        profile.setImage(getProfilesFromJSON().get(8));
+        profile.setNotifications(notifications);
+        profile.setTimes(times);
+
+        System.out.println(newUsername);
+        Gson gson = new Gson();
+        String filename = "test.json";
+        try {
+            FileWriter writer = new FileWriter(this.getFilesDir() + filename);
+            gson.toJson(profile, writer);
+            writer.flush(); //flush data to file   <---
+            writer.close(); //close write
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }
