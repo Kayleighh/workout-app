@@ -1,20 +1,29 @@
 package com.example.workoutapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 public class WorkoutActivity extends AppCompatActivity {
@@ -30,6 +39,7 @@ public class WorkoutActivity extends AppCompatActivity {
     private ArrayList<String> testDays = new ArrayList<>();
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +79,7 @@ public class WorkoutActivity extends AppCompatActivity {
                     warning.setVisibility(View.VISIBLE);
                 }
 
-                else if(!!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+                else if(!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
                 {
                     warning.clearComposingText();
                     warning.setText("Het bepaalde tijd is niet correct voor die gekozen dag");
@@ -258,16 +268,28 @@ public class WorkoutActivity extends AppCompatActivity {
             });
         }
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void fillTimes (ArrayList<String> list)
     {
-        list.add("09:00");
-        list.add("20:00");
-        list.add("15:00");
-        list.add("09:00");
-        list.add("10:00");
+        HashMap times = new HashMap();
 
-
+        String filename = "test.json";
+        Gson gson = new Gson();
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(this.getFilesDir() + filename));
+            Profile profile = gson.fromJson(reader, Profile.class);
+            profile.setTimes(profile.getTimes());
+            times = profile.getTimes();
+            list.add(String.valueOf(times.get("Monday")));
+            list.add(String.valueOf(times.get("Tuesday")));
+            list.add(String.valueOf(times.get("Wednesday")));
+            list.add(String.valueOf(times.get("Thursday")));
+            list.add(String.valueOf(times.get("Friday")));
+            // close reader
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setCurrentMonth(TextView textView)
