@@ -59,12 +59,12 @@ public class ExerciseActivity extends AppCompatActivity {
         setContent();
 
         extras = getIntent().getExtras();
-//        thumbnail.setVisibility(View.VISIBLE);
-//
-//        if (extras != null) {
-//            int value = extras.getInt("key5");
-//            //thumbnail.setBackground(ContextCompat.getDrawable(this, value));
-//        }
+        thumbnail.setVisibility(View.VISIBLE);
+
+        if (extras != null) {
+            int value = extras.getInt("key5");
+            thumbnail.setBackground(ContextCompat.getDrawable(this, value));
+        }
 
         btnPlay2 = findViewById(R.id.btnPlay2);
         btnPlay2.setVisibility(View.INVISIBLE);
@@ -244,7 +244,7 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
     private void startVideo(View view) {
-//        thumbnail.setVisibility(View.INVISIBLE);
+        thumbnail.setVisibility(View.INVISIBLE);
 
         extras = getIntent().getExtras();
         if (extras != null) {
