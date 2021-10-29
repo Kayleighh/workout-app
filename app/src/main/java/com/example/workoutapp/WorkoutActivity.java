@@ -24,6 +24,7 @@ public class WorkoutActivity extends AppCompatActivity {
     private View checkMark;
     private int currentExerciseIndex = -2;
     private ArrayList<Integer> arrayListVideos = new ArrayList<>();
+    private ArrayList<Integer> arrayListThumbnails = new ArrayList<>();
     private boolean shouldExecuteOnResume;
     static WorkoutActivity activityA;
     private ArrayList<String> testTimes = new ArrayList<>();
@@ -35,6 +36,7 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
         addVideosToList();
+        addThumbnailsToList();
         findViews();
         setCurrentMonth(findViewById(R.id.txtMaand));
         fillTimes(testTimes);
@@ -111,11 +113,15 @@ public class WorkoutActivity extends AppCompatActivity {
                 }
                 else {
                     String videopath = "android.resource://com.example.workoutapp/" + arrayListVideos.get(currentExerciseIndex);
+                    int thumbnail = arrayListThumbnails.get(currentExerciseIndex);
+
                     Intent ExerciseIntent = new Intent(this, ExerciseActivity.class);
                     ExerciseIntent.putExtra("key1", videopath);
                     ExerciseIntent.putExtra("key2", currentExerciseIndex);
                     ExerciseIntent.putExtra("key3", arrayListVideos);
                     ExerciseIntent.putExtra("key4", shouldExecuteOnResume);
+                    ExerciseIntent.putExtra("key5", thumbnail);
+
                     startActivity(ExerciseIntent);
 
                 }
@@ -298,6 +304,11 @@ public class WorkoutActivity extends AppCompatActivity {
     public void addVideosToList(){
         arrayListVideos.add(R.raw.squat);
         arrayListVideos.add(R.raw.pushup);
+    }
+
+    public void addThumbnailsToList(){
+        arrayListThumbnails.add(R.drawable.squat);
+        arrayListThumbnails.add(R.drawable.pushup);
     }
 
     private String getTime(ArrayList<Button> buttons)
