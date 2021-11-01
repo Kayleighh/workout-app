@@ -42,10 +42,17 @@ public class EditAccount extends AppCompatActivity {
     String newUsername;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
+
+    /*On create show the profile picture: Only works with placeholder because of an issue with permissions.
+    The screen consists of multiple layouts. The parent layout constains the basic elements that need to be displayed at all times.
+    Mainscreen is the layout that holds all the elements needed to create the screen as seen in Figma.
+    The other layouts are shown when clicked on the respective buttons on the mainscreen.
+    */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
         showImage();
+
         parent = findViewById(R.id.parent);
         mainScreen = findViewById(R.id.startPage);
         changeUsername = findViewById(R.id.changeUsername);
@@ -61,6 +68,7 @@ public class EditAccount extends AppCompatActivity {
         Button btnUsername = findViewById(R.id.button6);
         Button btnPassword = findViewById(R.id.button7);
         Button btnPhoto = findViewById(R.id.button5);
+        Button btnDelete = findViewById(R.id.button8);
 
         btnUsername.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +90,15 @@ public class EditAccount extends AppCompatActivity {
                 changePhoto();
             }
         });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteAccount();
+            }
+        });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void showImage()
     {
@@ -91,17 +107,18 @@ public class EditAccount extends AppCompatActivity {
         image.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
         String imagefromJSON = getProfilesFromJSON().get(7);
         if(imagefromJSON != null){
-                System.out.println("image test");
+           System.out.println("Needs to be fixed: Permission issues.");
 
-            }
         }
+    }
 
 
+    //Method that gets all the info from the json file using Gson. It then makes a new instance of the Profile class and sets all the methods using the data from the json.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<String> getProfilesFromJSON() {
         ArrayList<String> profiles = new ArrayList<>();
         //HashMap<String,String> notifications = new HashMap<>();
-        HashMap<String,String> times = new HashMap<>();
+        //HashMap<String,String> times = new HashMap<>();
         String filename = "test.json";
         Gson gson = new Gson();
         try {
@@ -132,10 +149,6 @@ public class EditAccount extends AppCompatActivity {
             profiles.add(profile.getLevel());
 
 
-
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,6 +161,7 @@ public class EditAccount extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Method to open the gallery on the phone.
     private void changePhoto()
     {
         //changePhoto = findViewById(R.id.changePhoto);
@@ -170,6 +184,8 @@ public class EditAccount extends AppCompatActivity {
             }
         });
     }
+    //Method for when a picture has been chosen.
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -178,6 +194,26 @@ public class EditAccount extends AppCompatActivity {
             image = imageData.toString();
             newProfilePic = findViewById(R.id.imageView);
             newProfilePic.setImageURI(imageData);
+
+            //Set all the methods properly with the data from the json.
+            getProfilesFromJSON();
+            notifications = profile.getNotifications();
+            times = profile.getTimes();
+            profile.setNumber(getProfilesFromJSON().get(0));
+            profile.setFirstname(getProfilesFromJSON().get(1));
+            profile.setLastname(getProfilesFromJSON().get(2));
+            profile.setDepartment(getProfilesFromJSON().get(3));
+            profile.setAge(getProfilesFromJSON().get(4));
+            profile.setLevel(getProfilesFromJSON().get(5));
+            profile.setUsername(getProfilesFromJSON().get(6));
+            profile.setPassword(getProfilesFromJSON().get(7));
+
+            profile.setNotifications(notifications);
+            profile.setTimes(times);
+            //Set this method with the new Image uri.
+            profile.setImage(image);
+            System.out.println(image);
+            toJSON(profile);
             mainScreen.setVisibility(View.VISIBLE);
             changePhoto.setVisibility(View.INVISIBLE);
 
@@ -185,24 +221,46 @@ public class EditAccount extends AppCompatActivity {
         }
     }
 
+    /*
+        All these methods work the same way: Set all the methods of the profile class with the data from the json, except for the field you want to change.
+        Set that one with the data the user fills in. Then send it to the toJSON file, that will write the new data to the json file.
+     */
     private void changeUsername()
     {
 
-        //ConstraintLayout changeUsername = findViewById(R.id.changeUsername);
         changeUsername.setVisibility(View.VISIBLE);
         changePassword.setVisibility(View.INVISIBLE);
         changePhoto.setVisibility(View.INVISIBLE);
         mainScreen.setVisibility(View.INVISIBLE);
 
-        EditText editUsername = findViewById(R.id.editUsername);
-        newUsername = editUsername.getText().toString();
+
         Button saveUsername = findViewById(R.id.saveUsername);
         saveUsername.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                System.out.println("test");
-                test();
+                EditText editUsername = findViewById(R.id.editUsername);
+                newUsername = editUsername.getText().toString();
+
+                getProfilesFromJSON();
+
+                notifications = profile.getNotifications();
+                times = profile.getTimes();
+                profile.setNumber(getProfilesFromJSON().get(0));
+                profile.setFirstname(getProfilesFromJSON().get(1));
+                profile.setLastname(getProfilesFromJSON().get(2));
+                profile.setDepartment(getProfilesFromJSON().get(3));
+                profile.setAge(getProfilesFromJSON().get(4));
+                profile.setLevel(getProfilesFromJSON().get(5));
+                profile.setPassword(getProfilesFromJSON().get(7));
+                profile.setImage(getProfilesFromJSON().get(8));
+                profile.setNotifications(notifications);
+                profile.setTimes(times);
+                profile.setUsername(newUsername);
+                toJSON(profile);
+                mainScreen.setVisibility(View.VISIBLE);
+                changeUsername.setVisibility(View.INVISIBLE);
+
             }
 
         });
@@ -216,50 +274,64 @@ public class EditAccount extends AppCompatActivity {
         changePhoto.setVisibility(View.INVISIBLE);
         mainScreen.setVisibility(View.INVISIBLE);
 
-        EditText editPassword = findViewById(R.id.editTextTextPassword);
-        EditText editPassword2 = findViewById(R.id.editTextTextPassword2);
-        String pass1 = editPassword.getText().toString();
-        String pass2 = editPassword2.getText().toString();
+
 
         Button savePassword = findViewById(R.id.savePassword);
         savePassword.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
+                EditText editPassword = findViewById(R.id.enterPass2);
+                EditText editPassword2 = findViewById(R.id.enterPass1);
+                String pass1 = editPassword.getText().toString();
+                String pass2 = editPassword2.getText().toString();
                 if(pass1.isEmpty() || pass2.isEmpty()){
                     System.out.println("Vul beide velden in of klik op annuleer.");
                 }else{
                     if(pass1.equals(pass2)){
-                        System.out.println(pass1 + " " + pass2);
+                        getProfilesFromJSON();
+                        notifications = profile.getNotifications();
+                        times = profile.getTimes();
+                        profile.setNumber(getProfilesFromJSON().get(0));
+                        profile.setFirstname(getProfilesFromJSON().get(1));
+                        profile.setLastname(getProfilesFromJSON().get(2));
+                        profile.setDepartment(getProfilesFromJSON().get(3));
+                        profile.setAge(getProfilesFromJSON().get(4));
+                        profile.setLevel(getProfilesFromJSON().get(5));
+                        profile.setUsername(getProfilesFromJSON().get(6));
+                        profile.setImage(getProfilesFromJSON().get(7));
+                        System.out.println(getProfilesFromJSON().get(7));
+                        profile.setNotifications(notifications);
+                        profile.setTimes(times);
+                        profile.setPassword(pass1);
+                        toJSON(profile);
+                        mainScreen.setVisibility(View.VISIBLE);
+                        changePassword.setVisibility(View.INVISIBLE);
                     }
                 }
             }
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void test()
+    /*
+        Basically writes nothing to the json so the account doesnt excists anymore. Then sends you back to the first screen of the program.
+     */
+    private void deleteAccount()
     {
+        System.out.println("Your account has been deleted");
+        Intent intent = new Intent(this,MainActivity.class);
+        Profile profile = new Profile();
+        toJSON(profile);
+        startActivity(intent);
+    }
 
-        getProfilesFromJSON();
-
-        notifications = profile.getNotifications();
-        times = profile.getTimes();
-        profile.setNumber(getProfilesFromJSON().get(0));
-        profile.setFirstname(getProfilesFromJSON().get(1));
-        profile.setLastname(getProfilesFromJSON().get(2));
-        profile.setDepartment(getProfilesFromJSON().get(3));
-        profile.setAge(getProfilesFromJSON().get(4));
-        profile.setLevel(getProfilesFromJSON().get(5));
-        profile.setUsername(newUsername);
-        profile.setPassword(getProfilesFromJSON().get(7));
-        profile.setImage(getProfilesFromJSON().get(8));
-        profile.setNotifications(notifications);
-        profile.setTimes(times);
-
-        System.out.println(newUsername);
+    //Writes a Profile instance to the json file using Gson. The file can be found in device file explores -> data -> data -> com.example.workoutapp -> filetest.json
+    private void toJSON(Profile profile)
+    {
         Gson gson = new Gson();
         String filename = "test.json";
         try {
+            //getFilesDir finds the directory on the phone it needs to create the file in.
             FileWriter writer = new FileWriter(this.getFilesDir() + filename);
             gson.toJson(profile, writer);
             writer.flush(); //flush data to file   <---

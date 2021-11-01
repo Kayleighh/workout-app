@@ -49,6 +49,7 @@ ImageView imageView;
             }
         });
 
+        //Method to open the gallery on the phone and be able to pick an image.
         Button profilePic = findViewById(R.id.btnKiesFoto);
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +64,7 @@ ImageView imageView;
             }
         });
     }
-
+//Method that happens when an image has been picked.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -76,6 +77,7 @@ ImageView imageView;
         }
     }
 
+    //When the user presses the button to go further get all the data again. And send it to the next screen using the putExtra method.
     public void next() {
         EditText gebruikersnaam = findViewById(R.id.edtGebruikersnaam);
         EditText pass1 = findViewById(R.id.edtWachtwoord);
@@ -95,17 +97,6 @@ ImageView imageView;
                     String lastname = extras.getString("Lastname");
                     String number = extras.getString("Number");
                     String function = extras.getString("Function");
-/*
-                    if(image == null){
-                        Uri uri = Uri.parse("android:resource://com.example.workoutapp/drawable/placeholder");
-                        try {
-                            InputStream stream = getContentResolver().openInputStream(uri);
-                            image = stream.toString();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-                    }*/
 
                     Intent intent = new Intent(this, MyAccountActivity.class);
                     intent.putExtra("Firstname",firstname);
