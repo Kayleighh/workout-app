@@ -13,31 +13,31 @@
         android:layout_width="296dp"
         android:layout_height="439dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <View
             android:id="@+id/restRectangle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rectangle_rest"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/rust"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
             android:layout_marginTop="21dp"
+            android:layout_marginStart="26dp"
             android:text="RUST"
             android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <View
             android:id="@+id/orange_devider_long"
@@ -46,18 +46,18 @@
             android:background="@drawable/orange_divider_long"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rust" />
+            app:layout_constraintTop_toBottomOf="@id/rust"/>
 
         <ProgressBar
-            android:id="@+id/repProgress"
+            android:id="@+id/progressBar"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginTop="16dp"
             android:indeterminateOnly="false"
+            android:layout_marginTop="16dp"
             android:progressDrawable="@drawable/custom_progress"
+            app:layout_constraintTop_toBottomOf="@+id/orange_devider_long"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orange_devider_long" />
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <TextView
             android:id="@+id/textRest"
@@ -67,33 +67,33 @@
             android:text="10"
             android:textColor="#4C4D4C"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/repProgress"
-            app:layout_constraintLeft_toLeftOf="@+id/repProgress"
-            app:layout_constraintRight_toRightOf="@+id/repProgress"
-            app:layout_constraintTop_toTopOf="@+id/repProgress" />
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+            app:layout_constraintLeft_toLeftOf="@+id/progressBar"
+            app:layout_constraintRight_toRightOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
         <View
             android:id="@+id/rectangle_close_grey"
             android:layout_width="108dp"
             android:layout_height="21dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/rectangle_close_grey"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/repProgress" />
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <TextView
             android:id="@+id/closeRest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
             android:text="SLUIT"
-            android:textColor="#000000"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rectangle_close_grey"
+            android:textColor="#000000"
+            android:fontFamily="@font/montserrat_bold"
             app:layout_constraintLeft_toLeftOf="@+id/rectangle_close_grey"
             app:layout_constraintRight_toRightOf="@+id/rectangle_close_grey"
-            app:layout_constraintTop_toTopOf="@+id/rectangle_close_grey" />
+            app:layout_constraintTop_toTopOf="@+id/rectangle_close_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangle_close_grey"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

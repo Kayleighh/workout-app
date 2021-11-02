@@ -1,31 +1,31 @@
 package com.example.workoutapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+        import static java.lang.Boolean.getBoolean;
 
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.MediaController;
-import android.widget.ProgressBar;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.VideoView;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.core.content.ContextCompat;
 
-import org.json.JSONException;
+        import android.content.Intent;
+        import android.content.res.Configuration;
+        import android.graphics.drawable.Drawable;
+        import android.media.MediaPlayer;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.os.CountDownTimer;
+        import android.os.Handler;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.ImageView;
+        import android.widget.ProgressBar;
+        import android.widget.RatingBar;
+        import android.widget.TextView;
+        import android.widget.VideoView;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+        import org.json.JSONException;
+
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.util.ArrayList;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -43,7 +43,17 @@ public class ExerciseActivity extends AppCompatActivity {
     private View rectangleCloseRest;
     private TextView textRest;
     private long timeLeftInMillis = 10000;
+    private ImageView btnPlay;
 
+    ImageView thumbnail;
+
+    private ImageView btnPlay2;
+    boolean btnDoneIsClicked = false;
+
+    private long timeLeftInMillisReps = 5000;
+    private TextView repCounter;
+    private ProgressBar progressTest;
+    private Integer rep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +63,35 @@ public class ExerciseActivity extends AppCompatActivity {
         addCirclesToList();
         setContent();
 
-        btnDone.setOnClickListener(this::onClick);
+
+        extras = getIntent().getExtras();
+        thumbnail.setVisibility(View.VISIBLE);
+
+        if (extras != null) {
+            int value = extras.getInt("key5");
+            thumbnail.setBackground(ContextCompat.getDrawable(this, value));
+        }
+
+        btnPlay2 = findViewById(R.id.btnPlay2);
+        btnPlay2.setVisibility(View.INVISIBLE);
+        btnDone.setOnClickListener(this::toNextExercise);
+        btnPlay.setOnClickListener(this::startVideo);
+
+//        findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                WorkoutActivity.getInstance().finish();
+//                finish();
+//            }
+//        });
 
         whatsapp = findViewById(R.id.button2);
         int orientation = this.getResources().getConfiguration().orientation;
         //If orientation is landscape, hide whatsapp button and ratingbar
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            thumbnail.setVisibility(View.INVISIBLE);
+            btnPlay2.setVisibility(View.INVISIBLE);
+            btnPlay.setOnClickListener(this::startVideo);
             whatsapp.setVisibility(View.INVISIBLE);
             RatingBar rating = findViewById(R.id.ratingBar);
             rating.setVisibility(View.INVISIBLE);
@@ -73,6 +106,9 @@ public class ExerciseActivity extends AppCompatActivity {
             circle4.setVisibility(View.INVISIBLE);
             View circle5 = findViewById(R.id.ellipse_29);
             circle5.setVisibility(View.INVISIBLE);
+
+            //Get the reps this exercise has.
+            getReps();
 
         }
 
@@ -91,7 +127,8 @@ public class ExerciseActivity extends AppCompatActivity {
         });
     }
 
-    private void onClick(View view) {
+    private void toNextExercise(View view) {
+
         extras = getIntent().getExtras();
         if (extras != null) {
 
@@ -103,7 +140,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 findViewById(R.id.ConstraintLayout3).setVisibility(View.INVISIBLE);
 
                 findViewById(R.id.ConstraintLayout4).setVisibility(View.VISIBLE);
-                CountDownTimer countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+                new CountDownTimer(timeLeftInMillis, 1000) {
                     @Override
                     public void onTick(long l) {
                         currentProgress = currentProgress + 10;
@@ -127,24 +164,6 @@ public class ExerciseActivity extends AppCompatActivity {
     private void setContent(){
         extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("key1");
-
-            Uri uri = Uri.parse(value);
-            videoView.setVideoURI(uri);
-            videoView.setOnPreparedListener(mediaPlayer -> {
-                mediaPlayer.start();
-
-                new CountDownTimer(10000, 1000) {
-                    @Override
-                    public void onTick(long l) {
-                        mediaPlayer.setLooping(true);
-                    }
-
-                    public void onFinish() {
-                        mediaPlayer.stop();
-                    }
-                };
-            });
 
             int currentExerciseIndex = extras.getInt("key2");
             int circle = arrayListCircles.get(currentExerciseIndex);
@@ -174,7 +193,6 @@ public class ExerciseActivity extends AppCompatActivity {
 
                 for (Training training :trainingJSON.getTraining())
                 {
-                    System.out.println(training.getExerciseName());
                     if (training.getExerciseName().equals("Squat"))
                     {
                         String tip = training.getExerciseTip();
@@ -215,10 +233,14 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private void findViews(){
         videoView  = findViewById(R.id.videoView2);
+        thumbnail = findViewById(R.id.imageView);
         btnDone = findViewById(R.id.btnDone);
         pb = findViewById(R.id.progressBar);
-        rectangleCloseRest = findViewById(R.id.closeRest);
+        rectangleCloseRest = findViewById(R.id.rectangle_close_grey);
         textRest = findViewById(R.id.textRest);
+        btnPlay = findViewById(R.id.btnPlay);
+        progressTest = findViewById(R.id.repProgress);
+        repCounter = findViewById(R.id.repCounter);
     }
 
     public void updateTextRest(int progress){
@@ -234,15 +256,174 @@ public class ExerciseActivity extends AppCompatActivity {
 
         textRest.setText(timeLeftText);
     }
+
+    private void startVideo(View view) {
+        thumbnail.setVisibility(View.INVISIBLE);
+
+        extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("key1");
+
+            Uri uri = Uri.parse(value);
+            videoView.setVideoURI(uri);
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                    mediaPlayer.setLooping(true);
+                    btnPlay.setVisibility(View.INVISIBLE);
+                    //Make the countdown.
+                    countdownReps();
+                    pauseVideo(mediaPlayer);
+                    stopVideo(mediaPlayer);
+
+                    new CountDownTimer(10000, 1000){
+
+                        @Override
+                        public void onTick(long l) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            try {
+                                mediaPlayer.stop();
+                                btnPlay.setVisibility(View.VISIBLE);}
+                            catch (IllegalStateException e)
+                            {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
+                }
+            });
+        }
+    }
+    private void stopVideo(MediaPlayer mediaPlayer)
+    {
+        findViewById(R.id.btnStop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mediaPlayer.isPlaying())
+                {
+                    mediaPlayer.stop();
+                    btnPlay.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+    private void pauseVideo(MediaPlayer mediaPlayer)
+    {findViewById(R.id.btnPause).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(mediaPlayer.isPlaying())
+            {
+                mediaPlayer.pause();
+                int length = mediaPlayer.getCurrentPosition();
+                btnPlay2.setVisibility(View.VISIBLE);
+                btnPlay2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mediaPlayer.seekTo(length+200);
+                        mediaPlayer.start();
+                        btnPlay2.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+
+
+
+//            int i = 0;
+//            while (i==0)
+//            {
+//                //setOnCompletionListener
+//                if(mediaPlayer.isPlaying())
+//                {
+//                    mediaPlayer.pause();
+//                    int length = mediaPlayer.getCurrentPosition();
+//                    System.out.println(length);
+//                    btnPlay.setVisibility(View.VISIBLE);
+//                    if(length!=0)
+//                    {
+//                        btnPlay.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                mediaPlayer.seekTo(length +400);
+//                                mediaPlayer.start();
+//                                btnPlay.setVisibility(View.INVISIBLE);
+//
+//                            }
+//                        });
+//                    }
+//                    else{}
+//                    break;
+//                }
+//                else
+//                {
+//                    btnPlay.setOnClickListener(ExerciseActivity.this::startVideo);
+//                    i=1;
+//                }
+//            }
+//        }
+//    });
+//    }
+        }});
+    }
+
+    //Update the text with the remaining reps.
+    public void updateRepCounter(int progress){
+        int reps = progress;
+        String repsLeft;
+        repsLeft = ""+reps;
+        repCounter.setText(repsLeft);
+
+
+    }
+
+    //Turns the progressbar into a countdown bar. For every 5 seconds make the progressbar move 5%.
+    private void countdownReps()
+    {
+        CountDownTimer test = new CountDownTimer(timeLeftInMillis,5000) {
+            @Override
+            public void onTick(long l) {
+                currentProgress = currentProgress + 5;
+                progressTest.setProgress(currentProgress);
+                progressTest.setMax(100);
+                updateRepCounter(rep);
+
+            }
+
+            @Override
+            //If the countdowntimer is finished and the reps are all done set the textview to workout klaar
+            public void onFinish() {
+                if(rep == 0){
+                    repCounter.setText("Workout klaar");
+                }else{
+                    //If the countdowntimer is finished but the reps arent yet. Start again.
+                    rep = rep -1;
+                    start();
+                }
+            }
+        }.start();
+    }
+
+    private int getReps()
+    {
+        for (Training training :trainingJSON.getTraining())
+        {
+            if (training.getExerciseName().equals("Squat"))
+            {
+                rep = training.getAmountOfRepsPerSet().get(0);
+
+            }
+            if(training.getExerciseName().equals("Push up")){
+                rep = training.getAmountOfRepsPerSet().get(0);
+            }
+
+        }
+        return rep;
+    }
 }
-
-
-
-
-
-
-
-
 
 
 
