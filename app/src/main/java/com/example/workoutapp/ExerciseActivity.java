@@ -5,16 +5,11 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -24,8 +19,6 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -42,7 +35,10 @@ public class ExerciseActivity extends AppCompatActivity {
     private ProgressBar pb;
     private View rectangleCloseRest;
     private TextView textRest;
-    private long timeLeftInMillis = 10000;
+    private long timeLeftInMillis = 5000;
+    private TextView repCounter;
+    private ProgressBar progressTest;
+    private Integer rep;
 
 
     @Override
@@ -73,6 +69,12 @@ public class ExerciseActivity extends AppCompatActivity {
             circle4.setVisibility(View.INVISIBLE);
             View circle5 = findViewById(R.id.ellipse_29);
             circle5.setVisibility(View.INVISIBLE);
+            //Get the reps this exercise has.
+            getReps();
+            //Make the countdown.
+            countdownReps();
+
+
 
         }
 
@@ -103,9 +105,11 @@ public class ExerciseActivity extends AppCompatActivity {
                 findViewById(R.id.ConstraintLayout3).setVisibility(View.INVISIBLE);
 
                 findViewById(R.id.ConstraintLayout4).setVisibility(View.VISIBLE);
+
                 CountDownTimer countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
                     @Override
                     public void onTick(long l) {
+
                         currentProgress = currentProgress + 10;
                         pb.setProgress(currentProgress);
                         pb.setMax(100);
@@ -133,7 +137,7 @@ public class ExerciseActivity extends AppCompatActivity {
             videoView.setVideoURI(uri);
             videoView.setOnPreparedListener(mediaPlayer -> {
                 mediaPlayer.start();
-
+               // countdownReps();
                 new CountDownTimer(10000, 1000) {
                     @Override
                     public void onTick(long l) {
@@ -216,14 +220,15 @@ public class ExerciseActivity extends AppCompatActivity {
     private void findViews(){
         videoView  = findViewById(R.id.videoView2);
         btnDone = findViewById(R.id.btnDone);
-        pb = findViewById(R.id.progressBar);
+        pb = findViewById(R.id.repProgress);
         rectangleCloseRest = findViewById(R.id.closeRest);
         textRest = findViewById(R.id.textRest);
+        repCounter = findViewById(R.id.repCounter);
+        progressTest = findViewById(R.id.repProgress);
     }
 
     public void updateTextRest(int progress){
         int seconds = progress % 60;
-
         String timeLeftText;
         if (seconds < 10){
             timeLeftText = "0" + seconds;
@@ -233,6 +238,61 @@ public class ExerciseActivity extends AppCompatActivity {
         }
 
         textRest.setText(timeLeftText);
+    }
+
+    //Update the text with the remaining reps.
+    public void updateRepCounter(int progress){
+        int reps = progress;
+        String repsLeft;
+        repsLeft = ""+reps;
+        repCounter.setText(repsLeft);
+
+
+    }
+
+    //Turns the progressbar into a countdown bar. For every 5 seconds make the progressbar move 5%.
+    private void countdownReps()
+    {
+        CountDownTimer test = new CountDownTimer(timeLeftInMillis,5000) {
+            @Override
+            public void onTick(long l) {
+                currentProgress = currentProgress + 5;
+
+                progressTest.setProgress(currentProgress);
+                progressTest.setMax(100);
+                updateRepCounter(rep);
+
+            }
+
+            @Override
+            //If the countdowntimer is finished and the reps are all done set the textview to workout klaar
+            public void onFinish() {
+                if(rep == 0){
+                    repCounter.setText("Workout klaar");
+                }else{
+                    //If the countdowntimer is finished but the reps arent yet. Start again.
+                    rep = rep -1;
+                    start();
+                }
+            }
+        }.start();
+    }
+
+    private int getReps()
+    {
+        for (Training training :trainingJSON.getTraining())
+        {
+            if (training.getExerciseName().equals("Squat"))
+            {
+                rep = training.getAmountOfRepsPerSet().get(0);
+
+            }
+            if(training.getExerciseName().equals("Push up")){
+                rep = training.getAmountOfRepsPerSet().get(0);
+            }
+
+        }
+        return rep;
     }
 }
 
