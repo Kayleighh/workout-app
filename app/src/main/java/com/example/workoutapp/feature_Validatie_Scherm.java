@@ -43,6 +43,7 @@ public class feature_Validatie_Scherm extends AppCompatActivity {
     }
 
     public void printData(View view) {
+        //Get all the data the user has filled in and make it a string.
         EditText edtName = findViewById(R.id.editTextTextPersonName);
         EditText edtName2 = findViewById(R.id.editTextTextPersonName2);
         EditText edtNumber = findViewById(R.id.editTextNumber);
@@ -53,7 +54,7 @@ public class feature_Validatie_Scherm extends AppCompatActivity {
         Spinner mySpinner = findViewById(R.id.spinner);
         String function = mySpinner.getSelectedItem().toString();
 
-        //addProfile(Name1, Name2, Number, function);
+        //Go to the next screen but take the filled in fields as well.
         Intent intent = new Intent(this, RegisterActivity.class);
         intent.putExtra("Firstname", firstname);
         intent.putExtra("Lastname", lastname);
