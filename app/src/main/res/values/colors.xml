@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Naredo">#ECF0F1</color>
+    <color name="RectangleGray">#C4C4C4</color>
     <color name="Knop">#2D78AA</color>
+    <color name="RectangleBlack">#4C4D4C</color>
 </resources>

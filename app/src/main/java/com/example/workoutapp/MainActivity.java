@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 error.setText("Gebruikersnaam of wachtwoord is niet ingevuld.");
             } else {
                 if (uname.equals(valUser) && password.equals(valPass)) {
-                    Intent intent = new Intent(this, WorkoutActivity.class);
+                    Intent intent = new Intent(this, HomeScherm.class);
                     startActivity(intent);
                 } else {
 
