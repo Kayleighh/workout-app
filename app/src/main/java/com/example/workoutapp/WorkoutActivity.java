@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -36,6 +37,8 @@ public class WorkoutActivity extends AppCompatActivity {
     static WorkoutActivity activityA;
     private ArrayList<String> testTimes = new ArrayList<>();
     private ArrayList<String> testDays = new ArrayList<>();
+    private HashMap<String, String> times = new HashMap<>();
+    private HashMap<String , String> notifications = new HashMap<>();
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -103,6 +106,7 @@ public class WorkoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finishWorkout();
+                addPoints();
             }
         });
     }
@@ -463,4 +467,130 @@ public class WorkoutActivity extends AppCompatActivity {
         return select;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public ArrayList<String> getProfilesFromJSON() {
+        ArrayList<String> profiles = new ArrayList<>();
+        String filename = "test.json";
+        Gson gson = new Gson();
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(this.getFilesDir() + filename));
+            Profile profile = gson.fromJson(reader, Profile.class);
+            // close reader
+            reader.close();
+            profile.setNumber(profile.getNumber());
+            profile.setFirstname(profile.getFirstname());
+            profile.setLastname(profile.getLastname());
+            profile.setDepartment(profile.getDepartment());
+            profile.setAge(profile.getAge());
+            profile.setLevel(profile.getLevel());
+            profile.setTimes(profile.getTimes());
+            profile.setUsername(profile.getUsername());
+            profile.setPassword(profile.getPassword());
+            profile.setImage(profile.getImage());
+            profiles.add(profile.getNumber());
+            profiles.add(profile.getFirstname());
+            profiles.add(profile.getLastname());
+            profiles.add(profile.getDepartment());
+            profiles.add(profile.getAge());
+            profiles.add(profile.getUsername());
+            profiles.add(profile.getPassword());
+            profiles.add(profile.getImage());
+            profiles.add(profile.getLevel());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return profiles;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public HashMap<String, String> getTimes()
+    {
+        String filename = "test.json";
+        Gson gson = new Gson();
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(this.getFilesDir() + filename));
+            Profile profile = gson.fromJson(reader, Profile.class);
+            profile.setTimes(profile.getTimes());
+            times = profile.getTimes();
+            // close reader
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return times;
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public HashMap<String, String> getNotifications() {
+        //ArrayList<HashMap> notifications = new ArrayList<>();
+        //HashMap<String,String> test = new HashMap<>();
+        String filename = "test.json";
+        Gson gson = new Gson();
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(this.getFilesDir() + filename));
+            Profile profile = gson.fromJson(reader, Profile.class);
+            profile.setNotifications(profile.getNotifications());
+            notifications = profile.getNotifications();
+            System.out.println(notifications);
+            // close reader
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //notifications.add(profile.getNotifications());
+        return notifications;
+    }
+
+    private void addPoints() {
+        finishWorkout.setEnabled(false);
+        finishWorkout.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+                finishWorkout();
+
+                getProfilesFromJSON();
+                String number = getProfilesFromJSON().get(0);
+                String firstname = getProfilesFromJSON().get(1);
+                String lastname = getProfilesFromJSON().get(2);
+                String function = getProfilesFromJSON().get(3);
+                String age = getProfilesFromJSON().get(4);
+                String username = getProfilesFromJSON().get(5);
+                String password = getProfilesFromJSON().get(6);
+                String image = getProfilesFromJSON().get(7);
+                String level = getProfilesFromJSON().get(8);
+                HashMap time = getTimes();
+                HashMap notifications = getNotifications();
+                int points = Integer.parseInt(getProfilesFromJSON().get(9));
+
+                Profile profile = new Profile();
+                profile.setFirstname(firstname);
+                profile.setLastname(lastname);
+                profile.setDepartment(function);
+                profile.setNumber(number);
+                profile.setUsername(username);
+                profile.setPassword(password);
+                profile.setAge(age);
+                profile.setLevel(level);
+                profile.setTimes(time);
+                profile.setNotifications(notifications);
+                profile.setImage(image);
+                profile.setPoints(points++);
+                Gson gson = new Gson();
+                String filename = "test.json";
+                try {
+                    FileWriter writer = new FileWriter(this.getFilesDir() + filename);
+                    gson.toJson(profile, writer);
+                    writer.flush(); //flush data to file   <---
+                    writer.close(); //close write
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+    }
+
+});}
 }
