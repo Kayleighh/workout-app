@@ -3,6 +3,42 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/agenda_items_scrollview.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/circle.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/custom_button.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/custom_progress.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/custom_progress_bar.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/ellipse.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/finish.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/ic_add_alert_black_24dp.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/line_15.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/orange_divider.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/orange_divider_long.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_button_left_checked.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_button_left_unchecked.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_button_right_checked.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_button_right_selector.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_button_right_unchecked.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_normal.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_selected.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/radio_selector.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/rectangle_1.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/rectangle_5.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/rectangle_6.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/rectangle_6_grey.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/rectangle_close_grey.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/text_color.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/workout_animation_box.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/drawable/workout_box.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_feature_validatie_scherm.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_home_scherm.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_my_account2.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/raw/drawable-anydpi/WorkOutIcon.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nizar/Desktop/workout-app/app/src/main/res/raw/drawable-anydpi/workouticon.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app-revised/app/src/main/res/layout/activity_exercise.xml" value="0.2638888888888889" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress.xml" value="0.5703125" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/workout-app/app/src/main/res/drawable/custom_progress_bar.xml" value="0.5703125" />

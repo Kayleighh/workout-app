@@ -199,7 +199,10 @@ public class WorkoutActivity extends AppCompatActivity {
         Button btn2 = findViewById(R.id.rectangle2);
         Button btn3 = findViewById(R.id.rectangle3);
         Button btn4 = findViewById(R.id.rectangle4);
-        if(btn0.getText().equals("")){btn0.setText(text);}
+        if(btn0.getText().equals(""))
+        {
+            btn0.setText(text);
+        }
         else if(btn1.getText().equals("")){btn1.setText(text);}
         else if(btn2.getText().equals("")){btn2.setText(text);}
         else if(btn3.getText().equals("")){btn3.setText(text);}
@@ -250,6 +253,8 @@ public class WorkoutActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void GetChosenTimes(ArrayList<String> list)
     {
+//        Settings settings = new Settings();
+//        settings.getTimes();
         HashMap times = new HashMap();
 
         String filename = "test.json";
