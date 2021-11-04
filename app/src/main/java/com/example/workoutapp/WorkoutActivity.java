@@ -52,7 +52,52 @@ public class WorkoutActivity extends AppCompatActivity {
         setRectangles();
         shouldExecuteOnResume = false;
         activityA = this;
+
+
+
+//        btnStartWorkout.setBackgroundColor(Color.argb(223, 96, 55, 1));
+
+//        btnStartWorkout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                TextView warning = findViewById(R.id.warningView1);
+//                if(!isSelected(makeButtonsList()))
+//                {
+//                    warning.setText("Er is geen datum gekozen");
+//                    warning.setTextSize(18);
+//                    warning.setVisibility(View.VISIBLE);
+//                }
+//                else if(compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+//                {
+//                    onResume();
+//                }
+//                else if(compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && !compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+//                {
+//                    warning.clearComposingText();
+//                    warning.setText("De gekozen dag klopt niet");
+//                    warning.setVisibility(View.VISIBLE);
+//                }
+//
+//                else if(!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+//                {
+//                    warning.clearComposingText();
+//                    warning.setText("Het bepaalde tijd is niet correct voor die gekozen dag");
+//                    warning.setVisibility(View.VISIBLE);//1
+//                }
+//                //onResume();
+//                else if (!compareTime(Integer.parseInt(getChosenTime(getTime(makeButtonsList())).substring(0,2)),getCurrentHour()) && !compareDay(translateDaysToDutch(getCurrentDay()).substring(0,4),getTime(makeButtonsList()).substring(0,4)))
+//                {
+//                    warning.clearComposingText();
+//                    warning.setText("De gekozen dag en tijd kloppen niet");
+//                    warning.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
+
+        // finish workout button is set disabled but when enabled and clicked finish workout
+
        startButtonActionListener();
+
         finishWorkout.setEnabled(false);
         finishWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,17 +111,23 @@ public class WorkoutActivity extends AppCompatActivity {
         return activityA;
     }
 
+    // gets called whenever this activity is being resumed (in our case when a exercise is finished)
     @Override
     protected void onResume() {
+        // exercise index increases by one because we want to go to the next exercise
         currentExerciseIndex++;
 
         if (shouldExecuteOnResume){
             try {
+                // when index is equal to the amount of videos in the video list enable the finish workout button
+                // so that user can finish workout
                 if (currentExerciseIndex == arrayListVideos.size()){
                     finishWorkout.setEnabled(true);
                     finishWorkout.setBackground(ContextCompat.getDrawable(this, R.drawable.finish));
                     checkMark.setVisibility(View.VISIBLE);
                 }
+                // when index is not equal to the size of the list with videos, get the right video and thumbnail
+                // start new activity and put different values through to the next activity
                 else {
                     String videopath = "android.resource://com.example.workoutapp/" + arrayListVideos.get(currentExerciseIndex);
                     int thumbnail = arrayListThumbnails.get(currentExerciseIndex);
@@ -102,7 +153,7 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onResume();
     }
 
-
+    // finish workout activity
     public void finishWorkout(){
         finish();
         finishWorkout.setEnabled(false);

@@ -61,11 +61,13 @@ public class ExerciseActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
         thumbnail.setVisibility(View.VISIBLE);
 
+        // get integer from key5 to set the background of imageview on top of the videoview to this value
         if (extras != null) {
             int value = extras.getInt("key5");
             thumbnail.setBackground(ContextCompat.getDrawable(this, value));
         }
 
+        // apply functionality to done en play button
         btnPlay2 = findViewById(R.id.btnPlay2);
         btnPlay2.setVisibility(View.INVISIBLE);
         btnDone.setOnClickListener(this::toNextExercise);
@@ -115,14 +117,17 @@ public class ExerciseActivity extends AppCompatActivity {
         });
     }
 
+    // method to be called when user clicks on done button
     private void toNextExercise(View view) {
 
         extras = getIntent().getExtras();
         if (extras != null) {
 
+            // get integer of exercise index and an arraylist of videos from workoutActivity
             int currentExerciseIndex = extras.getInt("key2");
             ArrayList<Integer> arrayListVideos = extras.getIntegerArrayList("key3");
 
+            // if index is smaller than the size of the arraylist minus one show rest-screen between exercises
             if (currentExerciseIndex != arrayListVideos.size() - 1) {
                 findViewById(R.id.ConstraintLayout2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.ConstraintLayout3).setVisibility(View.INVISIBLE);
@@ -149,10 +154,12 @@ public class ExerciseActivity extends AppCompatActivity {
         }
     }
 
+    // method is being called everytime when user enters an exercise activity
     private void setContent(){
         extras = getIntent().getExtras();
         if (extras != null) {
 
+            // color the ellipse that belongs to the right exercise via exercise index from workout activity
             int currentExerciseIndex = extras.getInt("key2");
             int circle = arrayListCircles.get(currentExerciseIndex);
             View ellipse = findViewById(circle);
@@ -229,6 +236,7 @@ public class ExerciseActivity extends AppCompatActivity {
         btnPlay = findViewById(R.id.btnPlay);
     }
 
+    // update the text every second to display the time left before next exercise starts
     public void updateTextRest(int progress){
         int seconds = progress % 60;
 
@@ -243,23 +251,28 @@ public class ExerciseActivity extends AppCompatActivity {
         textRest.setText(timeLeftText);
     }
 
+    // method is being called when user clicks on play button un top of the videoview
     private void startVideo(View view) {
         thumbnail.setVisibility(View.INVISIBLE);
 
         extras = getIntent().getExtras();
         if (extras != null) {
+            // get location in string of the video from the workout activity
             String value = extras.getString("key1");
 
+            // place video into the videoview
             Uri uri = Uri.parse(value);
             videoView.setVideoURI(uri);
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
+                    // start and loop video for as long as ten seconds then stop and show play button again
                     mediaPlayer.start();
                     mediaPlayer.setLooping(true);
                     btnPlay.setVisibility(View.INVISIBLE);
                     pauseVideo(mediaPlayer);
                     stopVideo(mediaPlayer);
+
 
                     new CountDownTimer(10000, 1000){
 
