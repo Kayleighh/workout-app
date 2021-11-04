@@ -4,59 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Naredo"
     tools:context=".HomeScherm">
 
     <Button
-        android:id="@+id/btnMain"
-        android:layout_width="182dp"
-        android:layout_height="46dp"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/btnMain2"
-        android:layout_width="182dp"
-        android:layout_height="46dp"
-        android:text="Button" />
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="183dp"
-        android:layout_height="253dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMain">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btnMyAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/btnLogOut"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
         android:id="@+id/btnWorkOut"
-        android:layout_width="210dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="110dp"
-        android:layout_marginBottom="157dp"
-        android:drawableLeft="@drawable/workouticon"
+        android:layout_width="166dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="133dp"
+        android:layout_marginBottom="500dp"
+        android:backgroundTint="@color/RectangleGray"
+        android:drawableLeft="@drawable/dumbbles"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnMijnAccount"
+        android:layout_width="166dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginBottom="500dp"
+        android:backgroundTint="@color/RectangleGray"
+        android:drawableBottom="@drawable/placeholderhomescherm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btnRangLijsten"
+        android:layout_width="166dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/RectangleGray"
+        android:drawableBottom="@drawable/rangelijst"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.518"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btnWorkOut2"
+        android:layout_width="168dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="228dp"
+        android:backgroundTint="@color/RectangleBlack"
+        android:fontFamily="@font/montserrat"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnWorkOut" />
+
+    <Button
+        android:id="@+id/btnRangLijsten2"
+        android:layout_width="168dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/RectangleBlack"
+        android:fontFamily="@font/montserrat"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnRangLijsten" />
+
+    <Button
+        android:id="@+id/btnMijnAccount2"
+        android:layout_width="168dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/RectangleBlack"
+        android:fontFamily="@font/montserrat"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMijnAccount" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

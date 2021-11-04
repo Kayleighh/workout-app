@@ -8,14 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ScrollView;
-
-import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class HomeScherm extends AppCompatActivity {
 
@@ -25,85 +17,77 @@ public class HomeScherm extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_scherm);
-        Button btnMain = findViewById(R.id.btnMain);
-        Button btnMain2 = findViewById(R.id.btnMain2);
-        ScrollView scrollView = findViewById(R.id.scrollView);
-        Button btnMyAccount = findViewById(R.id.btnMyAccount);
-        Button btnLogOut = findViewById(R.id.btnLogOut);
-        scrollView.setVisibility(View.INVISIBLE);
-        try {
-            setListenerBtnMain(btnMain,scrollView,btnMain2);
-            setListenerBtnMain2(btnMain2,scrollView,btnMain);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setListenerBtnMyAccount(btnMyAccount);
-        setListenerBtnLogOut(btnLogOut);
+        setListenerBtnWorkout(findViewById(R.id.btnWorkOut));
+        setListenerBtnWorkout2(findViewById(R.id.btnWorkOut2));
+        setListenerBtnMijnAccount(findViewById(R.id.btnMijnAccount));
+        setListenerBtnMijnAccount2(findViewById(R.id.btnMijnAccount2));
+        setListenerbtnRangeLijst(findViewById(R.id.btnRangLijsten));
+        setListenerbtnRangeLijst2(findViewById(R.id.btnRangLijsten2));
+
 
     }
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private String getFirstName() throws  IOException
+    //A method to set a click listener to button workout
+    private void setListenerBtnWorkout(Button btn){
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeScherm.this,WorkoutActivity.class));
+            }
+        });
+    }
+    //A method to set a click listener to button workout2
+    private void setListenerBtnWorkout2(Button btn)
     {
-        String filename = "test.json";
-        Gson gson = new Gson();
-            Reader reader = Files.newBufferedReader(Paths.get(this.getFilesDir() + filename));
-            Profile profile = gson.fromJson(reader, Profile.class);
-            // close reader
-            reader.close();
-            String s = profile.getFirstname();
-
-            return s;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setListenerBtnMain(Button btn , ScrollView scrollView,Button btn2) throws IOException {
-        btn.setText(getFirstName());
+        btn.setText("WORK-OUTS");
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scrollView.setVisibility(View.VISIBLE);
-                btn.setVisibility(View.INVISIBLE);
-                btn2.setVisibility(View.VISIBLE);
-
+                startActivity(new Intent(HomeScherm.this,WorkoutActivity.class));
             }
         });
-    }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setListenerBtnMain2(Button btn , ScrollView scrollView,Button btn2) throws IOException {
-        btn.setText(getFirstName());
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scrollView.setVisibility(View.INVISIBLE);
-                btn.setVisibility(View.INVISIBLE);
-                btn2.setVisibility(View.VISIBLE);
-            }
-        });
-    }
 
-    private void setListenerBtnMyAccount(Button btn)
+    }
+    //A method to set a click listener to button mijn account
+    private void setListenerBtnMijnAccount(Button btn)
     {
-        btn.setText("Mijn Account");
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeScherm.this,Settings.class));
+                startActivity(new Intent(HomeScherm.this, Settings.class));
             }
         });
     }
-
-    private void setListenerBtnLogOut(Button btn)
+    //A method to set a click listener to button mijn account2
+    private void setListenerBtnMijnAccount2(Button btn)
     {
-        btn.setText("Uitloggen");
+        btn.setText("MIJN ACCOUNT");
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeScherm.this,MainActivity.class));
+                startActivity(new Intent(HomeScherm.this, Settings.class));
             }
         });
     }
+    //A method to set a click listener to button ranglijsten
+    private void setListenerbtnRangeLijst(Button btn)
+    {
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeScherm.this,RankingsActivity.class));
+            }
+        });
+    }
+    //A method to set a click listener to button ranglijsten2
+    private void setListenerbtnRangeLijst2(Button btn)
+    {
+        btn.setText("RANGLIJSTEN");
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeScherm.this,RankingsActivity.class));
+            }
+        });}
 
 }
