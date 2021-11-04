@@ -139,10 +139,7 @@ public class MyAccountActivity extends AppCompatActivity {
     }
 
 
-    // TODO: Werkt alleen op het moment dat de Button wordt ingedrukt (dus nog niet wanneer onClick uitgevoerd wordt);
-
-
-
+//Method to get all the new input the user has chosen. Add the profile to the json file and then continue to the next screen.
     public void next() {
         String level;
         EditText editAge = findViewById(R.id.edtAge);
@@ -181,11 +178,13 @@ public class MyAccountActivity extends AppCompatActivity {
 
     public void addProfile(String age, String lvl, HashMap time) {
         HashMap<String, String> notifications = new HashMap<String, String>();
+        //Set all notifications to true. user can change these in the settings screen.
         notifications.put("HR","true");
         notifications.put("Nieuwe oefening","true");
         notifications.put("Behaalde stappen","true");
         notifications.put("Reminder","true");
 
+        //Get all extras from the previous screens.
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             String firstname = extras.getString("Firstname");
@@ -196,7 +195,7 @@ public class MyAccountActivity extends AppCompatActivity {
             String password = extras.getString("Password");
             String image = extras.getString("Image");
 
-
+    //Create a new instance of the Profile class and set all the methods with the data from the user.
             Profile profile = new Profile();
             profile.setFirstname(firstname);
             profile.setLastname(lastname);
@@ -209,7 +208,7 @@ public class MyAccountActivity extends AppCompatActivity {
             profile.setTimes(time);
             profile.setNotifications(notifications);
             profile.setImage(image);
-            System.out.println("image " + profile.getImage());
+            //Write to the json file. The file can be found in device file explores -> data -> data -> com.example.workoutapp -> filetest.json
             Gson gson = new Gson();
             String filename = "test.json";
             try {

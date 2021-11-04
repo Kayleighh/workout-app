@@ -128,9 +128,7 @@ public class Settings extends AppCompatActivity {
         getProfile = getProfilesFromJSON();
         profile = new Profile();
         getNotifications();
-
         getTimes();
-        System.out.println(getTimes().get("Monday"));
         makeTextViewsList();
 
         for (Spinner spinner : makeSpinnersList()) {
@@ -141,11 +139,6 @@ public class Settings extends AppCompatActivity {
         nieuweOefening = findViewById(R.id.switch2);
         stappen = findViewById(R.id.switch3);
         reminder = findViewById(R.id.switch4);
-
-
-
-
-
 
 
       try {
@@ -190,7 +183,7 @@ public class Settings extends AppCompatActivity {
 
     }
 
-
+//When the back button is pressed save all the new data and go back to the last screen.
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBackPressed() {
@@ -201,6 +194,7 @@ public class Settings extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Method to add all the new data to the json file.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addProfile() {
         String level;
@@ -289,7 +283,7 @@ public class Settings extends AppCompatActivity {
 
     }
 
-
+//Method to get all the current data from the json file.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<String> getProfilesFromJSON() {
         ArrayList<String> profiles = new ArrayList<>();
@@ -332,6 +326,7 @@ public class Settings extends AppCompatActivity {
         return profiles;
     }
 
+    //Method to get all the notifcation data from the json.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public HashMap<String, String> getNotifications() {
         //ArrayList<HashMap> notifications = new ArrayList<>();
@@ -354,6 +349,7 @@ public class Settings extends AppCompatActivity {
         return test;
     }
 
+    //Method to set all the times with the times set in the json file.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public HashMap<String, String> getTimes()
     {
@@ -374,28 +370,4 @@ public class Settings extends AppCompatActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public ArrayList<String> setSpinnerTimes(){
-        getTimes();
-        TextView selectedMonday = findViewById(R.id.selectedMonday);
-        TextView selectedTuesday = findViewById(R.id.selectedTuesday);
-        TextView selectedWednesday = findViewById(R.id.selectedWednsday);
-        TextView selectedThursday = findViewById(R.id.selectedThrusday);
-        TextView selectedFriday = findViewById(R.id.selectedFriday);
-
-        selectedMonday.setText(getTimes().get("Monday"));
-        selectedTuesday.setText(getTimes().get("Tuesday"));
-        selectedWednesday.setText(getTimes().get("Wednesday"));
-        selectedThursday.setText(getTimes().get("Thursday"));
-        selectedFriday.setText(getTimes().get("Friday"));
-
-        ArrayList<String> timeList = new ArrayList<>();
-        timeList.add(getTimes().get("Monday"));
-        timeList.add(getTimes().get("Tuesday"));
-        timeList.add(getTimes().get("Wednesday"));
-        timeList.add(getTimes().get("Thursday"));
-        timeList.add(getTimes().get("Friday"));
-
-        return timeList;
-    }
 }
