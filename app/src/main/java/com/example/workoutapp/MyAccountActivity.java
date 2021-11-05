@@ -95,6 +95,7 @@ public class MyAccountActivity extends AppCompatActivity {
         timeList.add("15:00");
         timeList.add("16:00");
         timeList.add("17:00");
+        timeList.add("21:50");
 
         return timeList;
     }

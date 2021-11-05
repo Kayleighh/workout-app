@@ -552,45 +552,49 @@ public class WorkoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finishWorkout();
-
-                getProfilesFromJSON();
-                String number = getProfilesFromJSON().get(0);
-                String firstname = getProfilesFromJSON().get(1);
-                String lastname = getProfilesFromJSON().get(2);
-                String function = getProfilesFromJSON().get(3);
-                String age = getProfilesFromJSON().get(4);
-                String username = getProfilesFromJSON().get(5);
-                String password = getProfilesFromJSON().get(6);
-                String image = getProfilesFromJSON().get(7);
-                String level = getProfilesFromJSON().get(8);
-                HashMap time = getTimes();
-                HashMap notifications = getNotifications();
-                int points = Integer.parseInt(getProfilesFromJSON().get(9));
-
-                Profile profile = new Profile();
-                profile.setFirstname(firstname);
-                profile.setLastname(lastname);
-                profile.setDepartment(function);
-                profile.setNumber(number);
-                profile.setUsername(username);
-                profile.setPassword(password);
-                profile.setAge(age);
-                profile.setLevel(level);
-                profile.setTimes(time);
-                profile.setNotifications(notifications);
-                profile.setImage(image);
-                profile.setPoints(points++);
-                Gson gson = new Gson();
-                String filename = "test.json";
-                try {
-                    FileWriter writer = new FileWriter(this.getFilesDir() + filename);
-                    gson.toJson(profile, writer);
-                    writer.flush(); //flush data to file   <---
-                    writer.close(); //close write
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                }
+                updateProfile();
     }
 
 });}
+
+@RequiresApi(api = Build.VERSION_CODES.O)
+public void updateProfile() {
+    getProfilesFromJSON();
+    String number = getProfilesFromJSON().get(0);
+    String firstname = getProfilesFromJSON().get(1);
+    String lastname = getProfilesFromJSON().get(2);
+    String function = getProfilesFromJSON().get(3);
+    String age = getProfilesFromJSON().get(4);
+    String username = getProfilesFromJSON().get(5);
+    String password = getProfilesFromJSON().get(6);
+    String image = getProfilesFromJSON().get(7);
+    String level = getProfilesFromJSON().get(8);
+    HashMap time = getTimes();
+    HashMap notifications = getNotifications();
+    int points = Integer.parseInt(getProfilesFromJSON().get(9));
+
+    Profile profile = new Profile();
+    profile.setFirstname(firstname);
+    profile.setLastname(lastname);
+    profile.setDepartment(function);
+    profile.setNumber(number);
+    profile.setUsername(username);
+    profile.setPassword(password);
+    profile.setAge(age);
+    profile.setLevel(level);
+    profile.setTimes(time);
+    profile.setNotifications(notifications);
+    profile.setImage(image);
+    profile.setPoints(points++);
+    Gson gson = new Gson();
+    String filename = "test.json";
+    try {
+        FileWriter writer = new FileWriter(this.getFilesDir() + filename);
+        gson.toJson(profile, writer);
+        writer.flush(); //flush data to file   <---
+        writer.close(); //close write
+    } catch (IOException exception) {
+        exception.printStackTrace();
+    }
+}
 }
